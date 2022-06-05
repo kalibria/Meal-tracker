@@ -1,12 +1,7 @@
 import React from 'react';
 
-
 function App() {
-  return (
-    <div>
-      Meal tracker
-    </div>
-  );
+    return <div>Meal tracker</div>;
 }
 
 export default App;
