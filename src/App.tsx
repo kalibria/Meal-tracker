@@ -5,8 +5,6 @@ import { FirstUsing } from './welcome/showWelcomeComponent';
 
 const firstEntry = new FirstUsing();
 function App() {
-  console.log('firstEntry', firstEntry);
-
   return firstEntry.wasUsed() ? (
     <div>Not first entry</div>
   ) : (
