@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
-import { WelcomeComponent } from './components/welcomeComponent';
+import { WelcomeComponent } from './welcome/welcomeComponent';
+import { FirstUsing } from './welcome/showWelcomeComponent';
 
+const firstEntry = new FirstUsing();
 function App() {
-  return (
-    <div>
-      <WelcomeComponent />
-    </div>
+  console.log('firstEntry', firstEntry);
+
+  return firstEntry.wasUsed() ? (
+    <div>Not first entry</div>
+  ) : (
+    <WelcomeComponent />
   );
 }
 
