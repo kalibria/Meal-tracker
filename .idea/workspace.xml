@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="343f2c31-6a49-410d-b6b2-e140e972365e" name="Changes" comment="add basic welcomeComponent.tsx">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/showWelcomeComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/showWelcomeComponent.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +30,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/marffa/projects/meal-tracker-iii",
+    "last_opened_file_path": "/home/marffa/projects/meal-tracker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -36,7 +39,7 @@
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/home/marffa/projects/meal-tracker-iii/node_modules/prettier",
     "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/home/marffa/projects/meal-tracker-iii/node_modules/typescript/lib",
+    "ts.external.directory.path": "/home/marffa/projects/meal-tracker/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -62,6 +65,7 @@
       <option name="presentableId" value="Default" />
       <updated>1654515524567</updated>
       <workItem from="1654515526988" duration="14670000" />
+      <workItem from="1654773094008" duration="182000" />
     </task>
     <task id="LOCAL-00001" summary="add tsconfig.json">
       <created>1654601989664</created>

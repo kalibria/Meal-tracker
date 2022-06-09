@@ -10,3 +10,5 @@ export class FirstUsing {
     localStorage.setItem(wasUsed, 'false');
   };
 }
+
+export const firstEntry = new FirstUsing();
