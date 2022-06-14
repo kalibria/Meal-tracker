@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="343f2c31-6a49-410d-b6b2-e140e972365e" name="Changes" comment="add basic welcomeComponent.tsx">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/getArraysHoursAndMinutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/getArraysHoursAndMinutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/welcome/settings/settings_constant.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/settings_constant.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/welcome/settings/timePeriodBetweenMeals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/timePeriodBetweenMeals.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/welcome/welcom.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/welcom.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
