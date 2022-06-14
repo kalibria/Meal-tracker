@@ -1,4 +1,7 @@
 import { hoursArray, minutesArray } from './getArraysHoursAndMinutes';
+import { useContext } from 'react';
+import { MyContext } from '../../context/context';
+import * as React from 'react';
 
 export interface Settings {
   timeBetweenMeals: { id: number; name: number };
@@ -18,3 +21,10 @@ export const settingsScreen: Settings = {
 
 // export const jsonSettingsScreen = JSON.stringify(settingsScreen);
 // export const jsonSettingsList = JSON.parse(jsonSettingsScreen);
+
+//
+// const optionMinute = minutes.map((min) => (
+//     <option key={min} value={min}>
+//       {min}
+//     </option>
+// ));

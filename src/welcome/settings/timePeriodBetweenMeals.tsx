@@ -1,50 +1,61 @@
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import ListSubheader from '@mui/material/ListSubheader';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { useContext } from 'react';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { MyContext } from '../../context/context';
+import { useContext } from 'react';
 
-export default function TimePeriodBetweenMeals() {
+export default function SelectSmall() {
+  const [hour, setHour] = React.useState('');
+  const [minute, setMinute] = React.useState('');
   const { hours, minutes } = useContext(MyContext);
-  console.log('minutes', minutes);
-  const optionHour = hours.map((hour) => (
-    <option key={hour} value={hour}>
+
+  const menuItemHour = hours.map((hour) => (
+    <MenuItem key={hour} value={hour}>
       {hour}
-    </option>
+    </MenuItem>
   ));
-  const optionMinute = minutes.map((min) => (
-    <option key={min} value={min}>
+
+  const menuItemMinute = minutes.map((min) => (
+    <MenuItem key={min} value={min}>
       {min}
-    </option>
+    </MenuItem>
   ));
+
+  const handleChangeHours = (event: SelectChangeEvent) => {
+    setHour(event.target.value);
+  };
+
+  const handleChangeMinutes = (event: SelectChangeEvent) => {
+    setMinute(event.target.value);
+  };
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel htmlFor='grouped-native-select'>Hours</InputLabel>
+      <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
+        <InputLabel id='demo-select-small'>Hours</InputLabel>
         <Select
-          native
-          defaultValue=''
-          id='grouped-native-select'
-          label='Grouping'
+          labelId='demo-select-small'
+          id='demo-select-small'
+          value={hour}
+          label='Hours'
+          onChange={handleChangeHours}
         >
-          <option aria-label='None' value='' />
-          {optionHour}
+          {menuItemHour}
         </Select>
       </FormControl>
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel htmlFor='grouped-native-select2'>Minutes</InputLabel>
+
+      <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
+        <InputLabel id='demo-select-small'>Minutes</InputLabel>
         <Select
-          native
-          defaultValue=''
-          id='grouped-native-select2'
-          label='Grouping'
+          labelId='demo-select-small'
+          id='demo-select-small'
+          value={minute}
+          label='Minutes'
+          onChange={handleChangeMinutes}
         >
-          <option aria-label='None' value='' />
-          {optionMinute}
+          {menuItemMinute}
         </Select>
       </FormControl>
     </div>

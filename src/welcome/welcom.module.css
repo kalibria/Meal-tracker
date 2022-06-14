@@ -1,22 +1,24 @@
-.settingsIcon {
-    width:25px;
-    height: 25px;
-
-}
-
 .btn_settings {
     padding: 0;
     margin: 0;
     position: fixed;
     top: 1%;
     right: 5%;
-
-
 }
+
+.settingsIcon {
+    width: 25px;
+    height: 25px;
+}
+
+.select {
+max-height: 200px;
+}
+
 
 .welcome_wrapper {
     top: 0;
     right: 0;
     width: 100%;
-
 }
+
