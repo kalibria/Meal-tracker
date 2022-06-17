@@ -5,11 +5,14 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { MyContext } from '../../context/context';
 import { useContext } from 'react';
+import { store } from '../../redux/store';
 
-export default function SelectSmall() {
+export default function TimePeriodBetweenMeals() {
   const [hour, setHour] = React.useState('');
   const [minute, setMinute] = React.useState('');
   const { hours, minutes } = useContext(MyContext);
+
+  console.log('store', store.getState());
 
   const menuItemHour = hours.map((hour) => (
     <MenuItem key={hour} value={hour}>

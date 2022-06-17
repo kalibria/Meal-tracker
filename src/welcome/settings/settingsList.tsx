@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import TimePeriodBetweenMeals from './timePeriodBetweenMeals';
 import { Settings } from './settings_constant';
 import { MyContext } from '../../context/context';
+import NumberOfMealsPerDay from './NumberOfMealsPerDay';
+import { numberOfMealsPErDay } from '../../redux/selectors';
 
 export const SettingsList = () => {
   const { timeBetweenMeals, numberOfMinutesToFirstMeal, numberOfMealsPerDay } =
@@ -13,7 +15,9 @@ export const SettingsList = () => {
         <li key={timeBetweenMeals.id}>
           Time period between meals <TimePeriodBetweenMeals />
         </li>
-        <li key={numberOfMinutesToFirstMeal.id}>Number of meals per day</li>
+        <li key={numberOfMinutesToFirstMeal.id}>
+          Number of meals per day <NumberOfMealsPerDay />
+        </li>
         <li key={numberOfMealsPerDay.id}>
           Number of minutes from waking up to the first meal on the list
         </li>

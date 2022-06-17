@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="343f2c31-6a49-410d-b6b2-e140e972365e" name="Changes" comment="add basic welcomeComponent.tsx">
-      <change afterPath="$PROJECT_DIR$/src/redux/rootReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/welcome/settings/settingsSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/selectors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/welcome/settings/NumberOfMealsPerDay.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/welcome/settings/settings_constant.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/settings_constant.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/settingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/settingsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/timePeriodBetweenMeals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/timePeriodBetweenMeals.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
