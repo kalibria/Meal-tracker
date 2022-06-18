@@ -19,8 +19,7 @@ export const settingsScreen: Settings = {
   minutes: MinutesArrayStartFromZero,
 };
 
-// export const jsonSettingsScreen = JSON.stringify(settingsScreen);
-// export const jsonSettingsList = JSON.parse(jsonSettingsScreen);
+export const jsonSettingsScreen = JSON.stringify(settingsScreen);
 
 export const minNumberOfMealsPerDay = 3;
 export const maxNumberOfMealsPerDay = 24;

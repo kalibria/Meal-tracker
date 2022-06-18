@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classes from './welcom.module.css';
-import { SettingsList } from './settings/settingsList';
+import { SettingsList } from './settings/components/settingsList';
 
 export function WelcomeComponent() {
   const [isOnClick, setOnClick] = useState(false);

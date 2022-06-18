@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { numberOfMealsPerDay } from '../../redux/selectors';
-import { numberCheck } from './numberCheck';
+import { numberOfMealsPerDay } from '../../../redux/selectors';
+import { numberCheck } from '../numberCheck';
 import { Error } from './error';
+import style from '../../welcom.module.css';
 
 export default function NumberOfMealsPerDay() {
   const [numberMeals, setNumberMeals] = React.useState(
@@ -28,9 +29,11 @@ export default function NumberOfMealsPerDay() {
         <TextField
           type={'number'}
           id='outlined-basic'
+          size='small'
           variant='outlined'
           value={numberMeals}
           onChange={handleChangeNumberOfMeals}
+          className={style.textField}
         />
       </Box>
       {!numberCheck(numberMeals) ? <Error /> : null}

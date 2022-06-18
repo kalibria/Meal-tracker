@@ -8,7 +8,7 @@
 
 .error {
     color: red;
-    
+
 }
 
 .settingsIcon {
@@ -20,6 +20,9 @@
 max-height: 200px;
 }
 
+.textField {
+    padding: 0;
+}
 
 .welcome_wrapper {
     top: 0;
