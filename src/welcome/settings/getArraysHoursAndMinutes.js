@@ -1,5 +1,4 @@
 const minutesArray = [0];
-
 const getMinutes = () => {
   for (let i = 1; i <= 60; ++i) {
     if (i.length < 2) {
@@ -16,10 +15,17 @@ export const MinutesArrayStartFromZero = minutesArray.map((num) =>
 );
 
 export const hoursArray = [1];
-
 const getHours = () => {
   for (let i = 2; i <= 2; ++i) {
     hoursArray.push(i);
   }
 };
 getHours();
+
+export const minutesFromWakingUp = [5];
+const getMinutesFromWakingUp = () => {
+  for (let i = 6; i <= 60; ++i) {
+    minutesFromWakingUp.push(i);
+  }
+};
+getMinutesFromWakingUp();

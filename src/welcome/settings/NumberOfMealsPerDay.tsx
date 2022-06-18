@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { numberOfMealsPErDay } from '../../redux/selectors';
+import { numberOfMealsPerDay } from '../../redux/selectors';
 import { numberCheck } from './numberCheck';
 import { Error } from './error';
 
 export default function NumberOfMealsPerDay() {
   const [numberMeals, setNumberMeals] = React.useState(
-    numberOfMealsPErDay.toString()
+    numberOfMealsPerDay.toString()
   );
   const handleChangeNumberOfMeals = (
     event: React.ChangeEvent<HTMLInputElement>
