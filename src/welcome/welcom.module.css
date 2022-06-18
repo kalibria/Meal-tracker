@@ -6,6 +6,11 @@
     right: 5%;
 }
 
+.error {
+    color: red;
+    
+}
+
 .settingsIcon {
     width: 25px;
     height: 25px;

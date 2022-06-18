@@ -2,8 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { numberOfMealsPErDay } from '../../redux/selectors';
-import { ChangeEventHandler } from 'react';
-import { InputProps as StandardInputProps } from '@mui/material/Input/Input';
+import { numberCheck } from './numberCheck';
+import { Error } from './error';
 
 export default function NumberOfMealsPerDay() {
   const [numberMeals, setNumberMeals] = React.useState(
@@ -16,21 +16,24 @@ export default function NumberOfMealsPerDay() {
   };
 
   return (
-    <Box
-      component='form'
-      sx={{
-        '& > :not(style)': { m: 1, width: 120 },
-      }}
-      noValidate
-      autoComplete='off'
-    >
-      <TextField
-        type={'number'}
-        id='outlined-basic'
-        variant='outlined'
-        value={numberMeals}
-        onChange={handleChangeNumberOfMeals}
-      />
-    </Box>
+    <>
+      <Box
+        component='form'
+        sx={{
+          '& > :not(style)': { m: 1, width: 120 },
+        }}
+        noValidate
+        autoComplete='off'
+      >
+        <TextField
+          type={'number'}
+          id='outlined-basic'
+          variant='outlined'
+          value={numberMeals}
+          onChange={handleChangeNumberOfMeals}
+        />
+      </Box>
+      {!numberCheck(numberMeals) ? <Error /> : null}
+    </>
   );
 }
