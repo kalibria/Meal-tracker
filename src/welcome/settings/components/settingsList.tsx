@@ -5,12 +5,16 @@ import { MyContext } from '../../../context/context';
 import NumberOfMealsPerDay from './NumberOfMealsPerDay';
 import { MinutesToTheFirstMeal } from './minutesToTheFirstMeal';
 import SaveButton from './saveButtom';
+import { numberOfMealsPerDay } from '../../../redux/selectors';
 
 export const SettingsList = () => {
   const { timeBetweenMeals, numberOfMinutesToFirstMeal, numberOfMealsPerDay } =
     useContext<Settings>(MyContext);
   const [hourBetweenMeals, setHourBetweenMeals] = React.useState('');
   const [minuteBetweenMeals, setMinuteBetweenMeals] = React.useState('');
+  const [numberMeals, setNumberMeals] = React.useState(
+    numberOfMealsPerDay.name.toString()
+  );
 
   return (
     <div>
@@ -25,7 +29,11 @@ export const SettingsList = () => {
           />
         </li>
         <li key={numberOfMinutesToFirstMeal.id}>
-          Number of meals per day: <NumberOfMealsPerDay />
+          Number of meals per day:{' '}
+          <NumberOfMealsPerDay
+            numberMeals={numberMeals}
+            setNumberMeals={setNumberMeals}
+          />
         </li>
         <li key={numberOfMealsPerDay.id}>
           Number of minutes from waking up to the first meal on the list:{' '}

@@ -6,10 +6,15 @@ import { numberCheck } from '../numberCheck';
 import { Error } from './error';
 import style from '../../welcom.module.css';
 
-export default function NumberOfMealsPerDay() {
-  const [numberMeals, setNumberMeals] = React.useState(
-    numberOfMealsPerDay.toString()
-  );
+interface Props {
+  numberMeals: string;
+  setNumberMeals: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function NumberOfMealsPerDay({
+  numberMeals,
+  setNumberMeals,
+}: Props) {
   const handleChangeNumberOfMeals = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
