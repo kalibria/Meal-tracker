@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="343f2c31-6a49-410d-b6b2-e140e972365e" name="Changes" comment="add basic welcomeComponent.tsx">
-      <change afterPath="$PROJECT_DIR$/src/welcome/settings/components/saveButtom.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/components/saveButtom.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/components/saveButtom.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/welcome/settings/components/settingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/components/settingsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/welcome/welcom.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/welcom.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/welcome/welcomeComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/welcomeComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/components/timePeriodBetweenMeals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/components/timePeriodBetweenMeals.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +51,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/welcome/settings" />
       <recent name="$PROJECT_DIR$/src/welcome/settings/components" />
       <recent name="$PROJECT_DIR$/src/welcome" />
       <recent name="$PROJECT_DIR$" />

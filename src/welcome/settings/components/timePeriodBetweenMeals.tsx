@@ -6,9 +6,19 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { MyContext } from '../../../context/context';
 import { useContext } from 'react';
 
-export default function TimePeriodBetweenMeals() {
-  const [hour, setHour] = React.useState('');
-  const [minute, setMinute] = React.useState('');
+interface Props {
+  hourBetweenMeals: string;
+  setHourBetweenMeals: React.Dispatch<React.SetStateAction<string>>;
+  minuteBetweenMeals: string;
+  setMinuteBetweenMeals: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function TimePeriodBetweenMeals({
+  hourBetweenMeals,
+  setHourBetweenMeals,
+  minuteBetweenMeals,
+  setMinuteBetweenMeals,
+}: Props) {
   const { hours, minutes } = useContext(MyContext);
 
   const menuItemHour = hours.map((hour) => (
@@ -24,11 +34,11 @@ export default function TimePeriodBetweenMeals() {
   ));
 
   const handleChangeHours = (event: SelectChangeEvent) => {
-    setHour(event.target.value);
+    setHourBetweenMeals(event.target.value);
   };
 
   const handleChangeMinutes = (event: SelectChangeEvent) => {
-    setMinute(event.target.value);
+    setMinuteBetweenMeals(event.target.value);
   };
 
   return (
@@ -38,7 +48,7 @@ export default function TimePeriodBetweenMeals() {
         <Select
           labelId='demo-select-small'
           id='demo-select-small'
-          value={hour}
+          value={hourBetweenMeals}
           label='Hours'
           onChange={handleChangeHours}
         >
@@ -51,7 +61,7 @@ export default function TimePeriodBetweenMeals() {
         <Select
           labelId='demo-select-small'
           id='demo-select-small'
-          value={minute}
+          value={minuteBetweenMeals}
           label='Minutes'
           onChange={handleChangeMinutes}
         >
