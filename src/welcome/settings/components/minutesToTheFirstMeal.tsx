@@ -3,14 +3,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { numberOfMinutesToFirstMeal } from '../../../redux/selectors';
 import { minutesFromWakingUp } from '../getArraysHoursAndMinutes';
 
-export function MinutesToTheFirstMeal() {
-  const [minute, setMinute] = React.useState(
-    numberOfMinutesToFirstMeal.toString()
-  );
+interface Props {
+  minute: string;
+  setMinute: React.Dispatch<string>;
+}
 
+export function MinutesToTheFirstMeal({ minute, setMinute }: Props) {
   const menuItemMinuteFromWakingUp = minutesFromWakingUp.map((min) => (
     <MenuItem key={min} value={min}>
       {min}
