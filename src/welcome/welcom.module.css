@@ -8,7 +8,10 @@
 
 .error {
     color: red;
+}
 
+.saveButton {
+    justify-content: center;
 }
 
 .settingsIcon {
@@ -25,6 +28,7 @@ max-height: 200px;
 }
 
 .welcome_wrapper {
+    display: flex;
     top: 0;
     right: 0;
     width: 100%;

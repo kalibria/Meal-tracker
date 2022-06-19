@@ -4,6 +4,7 @@ import { Settings } from '../settings_constant';
 import { MyContext } from '../../../context/context';
 import NumberOfMealsPerDay from './NumberOfMealsPerDay';
 import { MinutesToTheFirstMeal } from './minutesToTheFirstMeal';
+import SaveButton from './saveButtom';
 
 export const SettingsList = () => {
   const { timeBetweenMeals, numberOfMinutesToFirstMeal, numberOfMealsPerDay } =
@@ -23,7 +24,7 @@ export const SettingsList = () => {
           <MinutesToTheFirstMeal />
         </li>
       </ul>
-      <button>Save</button>
+      <SaveButton />
     </div>
   );
 };
