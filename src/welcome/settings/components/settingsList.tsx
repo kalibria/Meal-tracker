@@ -45,7 +45,12 @@ export const SettingsList = () => {
           />
         </li>
       </ul>
-      <SaveButton />
+      <SaveButton
+        hourBetweenMeals={hourBetweenMeals}
+        minuteBetweenMeals={minuteBetweenMeals}
+        numberMeals={numberMeals}
+        minuteToFirstMeal={minuteToFirstMeal}
+      />
     </div>
   );
 };

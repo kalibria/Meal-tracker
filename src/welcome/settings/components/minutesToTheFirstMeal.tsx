@@ -3,7 +3,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { minutesFromWakingUp } from '../getArraysHoursAndMinutes';
+import { time } from '../getArraysHoursAndMinutes';
 
 interface Props {
   minute: string;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export function MinutesToTheFirstMeal({ minute, setMinute }: Props) {
-  const menuItemMinuteFromWakingUp = minutesFromWakingUp.map((min) => (
+  const menuItemMinuteFromWakingUp = time.minutesFromWakingUp.map((min) => (
     <MenuItem key={min} value={min}>
       {min}
     </MenuItem>

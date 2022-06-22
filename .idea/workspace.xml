@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="343f2c31-6a49-410d-b6b2-e140e972365e" name="Changes" comment="add basic welcomeComponent.tsx">
+      <change afterPath="$PROJECT_DIR$/src/welcome/settings/getArraysHoursAndMinutes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/welcome/settings/components/minutesToTheFirstMeal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/components/minutesToTheFirstMeal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/components/saveButtom.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/components/saveButtom.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/welcome/settings/components/settingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/components/settingsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/getArraysHoursAndMinutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/settings_constant.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/settings_constant.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +40,8 @@
     "node.js.selected.package.standard": "",
     "nodejs_interpreter_path": "/home/marffa/.nvm/versions/node/v16.0.0/bin/node",
     "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/home/marffa/projects/meal-tracker-iii/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "prettierjs.PrettierConfiguration.Package": "/home/marffa/projects/meal-tracker/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
     "ts.external.directory.path": "/home/marffa/projects/meal-tracker/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -69,6 +73,7 @@
       <updated>1654515524567</updated>
       <workItem from="1654515526988" duration="14670000" />
       <workItem from="1654773094008" duration="182000" />
+      <workItem from="1655890425357" duration="1720000" />
     </task>
     <task id="LOCAL-00001" summary="add tsconfig.json">
       <created>1654601989664</created>
