@@ -4,7 +4,11 @@ import Stack from '@mui/material/Stack';
 import style from '../../welcom.module.css';
 import { useDispatch, batch } from 'react-redux';
 
-import { setNumberOfMealsPerDay, setTimeBetweenMeals } from '../settingsSlice';
+import {
+  setNumberOfMealsPerDay,
+  setNumberOfMinutesToFirstMeal,
+  setTimeBetweenMeals,
+} from '../settingsSlice';
 
 interface Props {
   hourBetweenMeals: string;
@@ -30,6 +34,7 @@ export default function SaveButton({
         })
       );
       dispatch(setNumberOfMealsPerDay(Number(numberMeals)));
+      dispatch(setNumberOfMinutesToFirstMeal(minuteToFirstMeal));
     });
   };
   return (

@@ -9,14 +9,21 @@ export const settingsSlice = createSlice({
       const timeBetweenMealsInMinutes =
         action.payload.hours * minutesInHour + action.payload.minutes;
 
-      state.timeBetweenMeals = timeBetweenMealsInMinutes;
+      state.timeBetweenMeals.time = timeBetweenMealsInMinutes;
     },
     setNumberOfMealsPerDay: (state, action) => {
       state.numberOfMealsPerDay.name = action.payload;
+    },
+    setNumberOfMinutesToFirstMeal: (state, action) => {
+      state.numberOfMinutesToFirstMeal.time = action.payload;
     },
   },
 });
 
 const { actions, reducer } = settingsSlice;
-export const { setTimeBetweenMeals, setNumberOfMealsPerDay } = actions;
+export const {
+  setTimeBetweenMeals,
+  setNumberOfMealsPerDay,
+  setNumberOfMinutesToFirstMeal,
+} = actions;
 export default reducer;
