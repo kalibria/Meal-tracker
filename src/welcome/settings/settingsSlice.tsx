@@ -1,14 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { settingsScreen } from './settings_constant';
+import { minutesInHour, settingsScreen } from './settings_constant';
 
 export const settingsSlice = createSlice({
   name: 'settings',
   initialState: settingsScreen,
   reducers: {
-    setTimeBetweenMeals: (state, action) =>
-      (state.timeBetweenMeals = action.payload),
+    setTimeBetweenMeals: (state, action) => {
+      const timeBetweenMealsInMinutes =
+        action.payload.hours * minutesInHour + action.payload.minutes;
+
+      state.timeBetweenMeals = timeBetweenMealsInMinutes;
+    },
+    setNumberOfMealsPerDay: (state, action) => {
+      state.numberOfMealsPerDay.name = action.payload;
+    },
   },
 });
 
-export default settingsSlice.reducer;
-export const { setTimeBetweenMeals } = settingsSlice.actions;
+const { actions, reducer } = settingsSlice;
+export const { setTimeBetweenMeals, setNumberOfMealsPerDay } = actions;
+export default reducer;

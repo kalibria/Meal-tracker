@@ -40,7 +40,7 @@ export class Time implements TimeDate {
     }
   }
 
-  convertMinutesArr = (data: Array<number>): Array<string> => {
+  convertMinutesArr = (): Array<string> => {
     const zeroPad = (num: number, places: number) =>
       String(num).padStart(places, '0');
     const minutesArrayStartFromZero = this.minutesArray.map((num) =>
