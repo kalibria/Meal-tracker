@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="343f2c31-6a49-410d-b6b2-e140e972365e" name="Changes" comment="add basic welcomeComponent.tsx">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/selectors.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/selectors.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/components/minutesToTheFirstMeal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/components/minutesToTheFirstMeal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/welcome/settings/components/saveButtom.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/components/saveButtom.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/welcome/settings/settingsSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/settingsSlice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/getArraysHoursAndMinutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/getArraysHoursAndMinutes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/setLocalStorage.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome/settings/settings_constant.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/settings_constant.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +73,7 @@
       <updated>1654515524567</updated>
       <workItem from="1654515526988" duration="14670000" />
       <workItem from="1654773094008" duration="182000" />
-      <workItem from="1655890425357" duration="8765000" />
+      <workItem from="1655890425357" duration="11741000" />
     </task>
     <task id="LOCAL-00001" summary="add tsconfig.json">
       <created>1654601989664</created>

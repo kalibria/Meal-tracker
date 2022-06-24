@@ -10,6 +10,8 @@ import {
   setTimeBetweenMeals,
 } from '../settingsSlice';
 
+import { settingsScreen } from '../settings_constant';
+
 interface Props {
   hourBetweenMeals: string;
   minuteBetweenMeals: string;
@@ -36,6 +38,8 @@ export default function SaveButton({
       dispatch(setNumberOfMealsPerDay(Number(numberMeals)));
       dispatch(setNumberOfMinutesToFirstMeal(minuteToFirstMeal));
     });
+    const jsonSettingsScreen = JSON.stringify(settingsScreen);
+    localStorage.setItem('settings', jsonSettingsScreen);
   };
   return (
     <Stack direction='row' spacing={2} className={style.saveButton}>

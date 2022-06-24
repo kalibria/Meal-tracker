@@ -6,6 +6,7 @@ export interface Settings {
   numberOfMinutesToFirstMeal: { id: number; time: number };
   hours: Array<number>;
   minutes: Array<string>;
+  minutesFromWakingUp: Array<string>;
 }
 
 export const settingsScreen: Settings = {
@@ -13,10 +14,9 @@ export const settingsScreen: Settings = {
   numberOfMealsPerDay: { id: 2, name: 5 }, //5 is default, no max limit, 3 is min number
   numberOfMinutesToFirstMeal: { id: 3, time: 20 }, //20 min is default, min 5 min, max 60 min
   hours: time.hoursArray,
-  minutes: time.convertMinutesArr(),
+  minutes: time.convertMinutesArr(time.minutesArray),
+  minutesFromWakingUp: time.convertMinutesArr(time.minutesFromWakingUp),
 };
-
-export const jsonSettingsScreen = JSON.stringify(settingsScreen);
 
 export const minNumberOfMealsPerDay = 3;
 export const maxNumberOfMealsPerDay = 24;
