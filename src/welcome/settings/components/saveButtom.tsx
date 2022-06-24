@@ -10,7 +10,8 @@ import {
   setTimeBetweenMeals,
 } from '../settingsSlice';
 
-import { settingsScreen } from '../settings_constant';
+import { myLocalStorage } from '../setLocalStorage';
+import { store } from '../../../redux/store';
 
 interface Props {
   hourBetweenMeals: string;
@@ -38,9 +39,9 @@ export default function SaveButton({
       dispatch(setNumberOfMealsPerDay(Number(numberMeals)));
       dispatch(setNumberOfMinutesToFirstMeal(minuteToFirstMeal));
     });
-    const jsonSettingsScreen = JSON.stringify(settingsScreen);
-    localStorage.setItem('settings', jsonSettingsScreen);
+    myLocalStorage.setLocalStorage(store.getState().settings);
   };
+
   return (
     <Stack direction='row' spacing={2} className={style.saveButton}>
       <Button variant='outlined' onClick={handleSubmit}>
