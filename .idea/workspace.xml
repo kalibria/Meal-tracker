@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="343f2c31-6a49-410d-b6b2-e140e972365e" name="Changes" comment="add basic welcomeComponent.tsx">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/selectors.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/selectors.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/store.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/welcome/settings/components/minutesToTheFirstMeal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome/settings/components/minutesToTheFirstMeal.tsx" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+>>>>>>> e5325500c04805e9e7422fb0a0fed26009f1ce95
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,15 +34,24 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+<<<<<<< HEAD
     &quot;last_opened_file_path&quot;: &quot;/home/marffa/projects/meal-tracker/src/welcome/settings&quot;,
+=======
+    &quot;last_opened_file_path&quot;: &quot;/home/marffa/projects/meal-tracker&quot;,
+>>>>>>> e5325500c04805e9e7422fb0a0fed26009f1ce95
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;/home/marffa/.nvm/versions/node/v16.0.0/bin/node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+<<<<<<< HEAD
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/marffa/projects/meal-tracker/node_modules/prettier&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
+=======
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/marffa/projects/meal-tracker-iii/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+>>>>>>> e5325500c04805e9e7422fb0a0fed26009f1ce95
     &quot;ts.external.directory.path&quot;: &quot;/home/marffa/projects/meal-tracker/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
