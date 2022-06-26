@@ -1,12 +1,13 @@
-import { store } from './store';
+import { RootState } from './store';
 
-export const numberOfMealsPerDay =
-  store.getState().settings.numberOfMealsPerDay.name;
+export const select_numberOfMealsPerDay = (store: RootState) =>
+  store.settings.numberOfMealsPerDay.name;
 
-export const numberOfMinutesToFirstMeal =
-  store.getState().settings.numberOfMinutesToFirstMeal.time;
+export const select_numberOfMinutesToFirstMeal = (store: RootState) =>
+  store.settings.numberOfMinutesToFirstMeal.time;
 
-export const timeBetweenMeals = store.getState().settings.timeBetweenMeals.time;
+export const select_timeBetweenMeals = (store: RootState) =>
+  store.settings.timeBetweenMeals.time;
 
-export const minutesFromWakingUp =
-  store.getState().settings.minutesFromWakingUp;
+export const select_minutesFromWakingUp = (store: RootState) =>
+  store.settings.minutesFromWakingUp;
