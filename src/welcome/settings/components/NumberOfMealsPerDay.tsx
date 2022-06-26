@@ -1,11 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { numberCheck } from '../numberCheck';
-import { Error } from './error';
 import style from '../../welcom.module.css';
+import { ValidationMessage } from './validationMessage';
 
-interface Props {
+export interface Props {
   numberMeals: string;
   setNumberMeals: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -20,6 +19,7 @@ export default function NumberOfMealsPerDay({
     setNumberMeals(event.target.value);
   };
 
+  // @ts-ignore
   return (
     <>
       <Box
@@ -40,7 +40,7 @@ export default function NumberOfMealsPerDay({
           className={style.textField}
         />
       </Box>
-      {!numberCheck(numberMeals) ? <Error /> : null}
+      <ValidationMessage numberMeals={numberMeals} />
     </>
   );
 }
