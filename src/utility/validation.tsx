@@ -4,7 +4,7 @@ import {
 } from '../welcome/settings/settings_constant';
 
 class Validation {
-  numberCheck(value: string): boolean {
+  isNumber(value: string): boolean {
     const enteredValue = Number(value);
     if (
       enteredValue >= minNumberOfMealsPerDay &&
@@ -15,12 +15,12 @@ class Validation {
       return false;
     }
   }
-  emptyStringCheck(valueHours: string, valueMinutes: string) {
+  isEmptyString(valueHours: string, valueMinutes: string) {
     if (valueHours === '' || valueMinutes === '') return true;
     else return false;
   }
 
-  disabledSaveButtonCheck(
+  isDisabledSaveButton(
     stringOfTimeCheck: boolean,
     numberOfMealsCheck: boolean
   ) {

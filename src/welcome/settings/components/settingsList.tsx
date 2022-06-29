@@ -1,4 +1,4 @@
-import React, { SetStateAction, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import TimePeriodBetweenMeals from '../components/timePeriodBetweenMeals';
 import { Settings } from '../settings_constant';
 import { MyContext } from '../../../context/context';
@@ -18,7 +18,7 @@ export const SettingsList = () => {
     numberOfMinutesToFirstMeal.time.toString()
   );
 
-  const [numberCheck, setNumberCheck] = useState(true);
+  const [isNumberValid, setIsNumberValid] = useState(true);
 
   return (
     <div>
@@ -37,8 +37,8 @@ export const SettingsList = () => {
           <NumberOfMealsPerDay
             numberMeals={numberMeals}
             setNumberMeals={setNumberMeals}
-            numberCheck={numberCheck}
-            setNumberCheck={setNumberCheck}
+            numberCheck={isNumberValid}
+            setNumberCheck={setIsNumberValid}
           />
         </li>
         <li key={numberOfMealsPerDay.id}>
@@ -54,7 +54,7 @@ export const SettingsList = () => {
         minuteBetweenMeals={minuteBetweenMeals}
         numberMeals={numberMeals}
         minuteToFirstMeal={minuteToFirstMeal}
-        numberCheck={numberCheck}
+        numberCheck={isNumberValid}
       />
     </div>
   );

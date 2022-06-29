@@ -31,12 +31,12 @@ export default function SaveButton({
 }: Props) {
   const dispatch = useDispatch();
 
-  const isEmptyString = validation.emptyStringCheck(
+  const isEmptyString = validation.isEmptyString(
     hourBetweenMeals,
     minuteBetweenMeals
   );
 
-  const isDisabledButton = validation.disabledSaveButtonCheck(
+  const isDisabledButton = validation.isDisabledSaveButton(
     isEmptyString,
     numberCheck
   );
