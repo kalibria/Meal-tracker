@@ -7,11 +7,15 @@ import { ValidationMessage } from './validationMessage';
 export interface Props {
   numberMeals: string;
   setNumberMeals: React.Dispatch<React.SetStateAction<string>>;
+  numberCheck: boolean;
+  setNumberCheck: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function NumberOfMealsPerDay({
   numberMeals,
   setNumberMeals,
+  numberCheck,
+  setNumberCheck,
 }: Props) {
   const handleChangeNumberOfMeals = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -19,7 +23,6 @@ export default function NumberOfMealsPerDay({
     setNumberMeals(event.target.value);
   };
 
-  // @ts-ignore
   return (
     <>
       <Box
@@ -40,7 +43,11 @@ export default function NumberOfMealsPerDay({
           className={style.textField}
         />
       </Box>
-      <ValidationMessage numberMeals={numberMeals} />
+      <ValidationMessage
+        numberMeals={numberMeals}
+        numberCheck={numberCheck}
+        setNumberCheck={setNumberCheck}
+      />
     </>
   );
 }

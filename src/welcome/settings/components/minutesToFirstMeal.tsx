@@ -12,7 +12,7 @@ interface Props {
   setMinute: React.Dispatch<string>;
 }
 
-export function MinutesToTheFirstMeal({ minute, setMinute }: Props) {
+export function MinutesToFirstMeal({ minute, setMinute }: Props) {
   const minutes = useSelector(select_minutesFromWakingUp);
   const menuItemMinuteFromWakingUp = minutes.map((min) => (
     <MenuItem key={min} value={min}>

@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { SetStateAction, useContext, useState } from 'react';
 import TimePeriodBetweenMeals from '../components/timePeriodBetweenMeals';
 import { Settings } from '../settings_constant';
 import { MyContext } from '../../../context/context';
 import NumberOfMealsPerDay from './NumberOfMealsPerDay';
-import { MinutesToTheFirstMeal } from './minutesToTheFirstMeal';
+import { MinutesToFirstMeal } from './minutesToFirstMeal';
 import SaveButton from './saveButtom';
 
 export const SettingsList = () => {
@@ -17,6 +17,8 @@ export const SettingsList = () => {
   const [minuteToFirstMeal, setMinuteToFirstMeal] = React.useState(
     numberOfMinutesToFirstMeal.time.toString()
   );
+
+  const [numberCheck, setNumberCheck] = useState(true);
 
   return (
     <div>
@@ -35,11 +37,13 @@ export const SettingsList = () => {
           <NumberOfMealsPerDay
             numberMeals={numberMeals}
             setNumberMeals={setNumberMeals}
+            numberCheck={numberCheck}
+            setNumberCheck={setNumberCheck}
           />
         </li>
         <li key={numberOfMealsPerDay.id}>
           Number of minutes from waking up to the first meal on the list:{' '}
-          <MinutesToTheFirstMeal
+          <MinutesToFirstMeal
             minute={minuteToFirstMeal}
             setMinute={setMinuteToFirstMeal}
           />
@@ -50,6 +54,7 @@ export const SettingsList = () => {
         minuteBetweenMeals={minuteBetweenMeals}
         numberMeals={numberMeals}
         minuteToFirstMeal={minuteToFirstMeal}
+        numberCheck={numberCheck}
       />
     </div>
   );
