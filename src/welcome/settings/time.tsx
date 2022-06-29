@@ -1,3 +1,9 @@
+import {
+  maxHoursBetweenMeals,
+  minutesInHour,
+  startMinuteFromWakingUp,
+} from './settings_constant';
+
 interface TimeDate {
   minutesArray: Array<number>;
   hoursArray: Array<number>;
@@ -23,19 +29,19 @@ export class Time implements TimeDate {
   }
 
   private prepareMinuteFromWakingUp() {
-    for (let i = 6; i <= 60; ++i) {
+    for (let i = startMinuteFromWakingUp; i <= minutesInHour; ++i) {
       this.minutesFromWakingUp.push(i);
     }
   }
 
   private prepareMinutesForTimeBetweenMeals() {
-    for (let i = 1; i <= 60; ++i) {
+    for (let i = 1; i <= minutesInHour; ++i) {
       this.minutesArray.push(i);
     }
   }
 
   private prepareHoursForTimeBetweenMeals() {
-    for (let i = 2; i <= 2; ++i) {
+    for (let i = maxHoursBetweenMeals; i <= maxHoursBetweenMeals; ++i) {
       this.hoursArray.push(i);
     }
   }

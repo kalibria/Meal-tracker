@@ -1,4 +1,4 @@
-import { time } from './getArraysHoursAndMinutes';
+import { time } from './time';
 
 export interface Settings {
   timeBetweenMeals: { id: number; time: number };
@@ -22,3 +22,6 @@ export const minNumberOfMealsPerDay = 3;
 export const maxNumberOfMealsPerDay = 24;
 
 export const minutesInHour = 60;
+
+export const startMinuteFromWakingUp = 6;
+export const maxHoursBetweenMeals = 2;
