@@ -1,7 +1,7 @@
-import { Settings } from './settings_constant';
+import { Settings } from './settingsConfig';
 
 class LocalStorage {
-  setLocalStorage(storage: Settings) {
+  saveSettings(storage: Settings) {
     const jsonSettingsScreen = JSON.stringify(storage);
     localStorage.setItem('settings', jsonSettingsScreen);
   }

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { minutesInHour, settingsScreen } from './settings_constant';
+import { minutesInHour } from './settings_constant';
+import { settingsScreen } from './settingsConfig';
 
 export const settingsSlice = createSlice({
   name: 'settings',
@@ -26,4 +27,5 @@ export const {
   setNumberOfMealsPerDay,
   setNumberOfMinutesToFirstMeal,
 } = actions;
+
 export default reducer;

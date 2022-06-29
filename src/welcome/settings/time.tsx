@@ -1,27 +1,28 @@
 import {
   maxHoursBetweenMeals,
   minutesInHour,
+  startMinuteBetweenMeals,
   startMinuteFromWakingUp,
 } from './settings_constant';
 
 interface TimeDate {
-  minutesArray: Array<number>;
-  hoursArray: Array<number>;
+  minutes: Array<number>;
+  hours: Array<number>;
   minutesFromWakingUp: number[];
 }
 
 export class Time implements TimeDate {
-  minutesArray: Array<number>;
-  hoursArray: Array<number>;
+  minutes: Array<number>;
+  hours: Array<number>;
   minutesFromWakingUp: number[];
 
   constructor(
-    minutesArray: Array<number>,
-    hoursArray: Array<number>,
+    minutes: Array<number>,
+    hours: Array<number>,
     minutesFromWakingUp: Array<number>
   ) {
-    this.minutesArray = minutesArray;
-    this.hoursArray = hoursArray;
+    this.minutes = minutes;
+    this.hours = hours;
     this.minutesFromWakingUp = minutesFromWakingUp;
     this.prepareMinuteFromWakingUp();
     this.prepareMinutesForTimeBetweenMeals();
@@ -29,30 +30,28 @@ export class Time implements TimeDate {
   }
 
   private prepareMinuteFromWakingUp() {
-    for (let i = startMinuteFromWakingUp; i <= minutesInHour; ++i) {
+    for (let i = 6; i <= 60; ++i) {
       this.minutesFromWakingUp.push(i);
     }
   }
 
   private prepareMinutesForTimeBetweenMeals() {
-    for (let i = 1; i <= minutesInHour; ++i) {
-      this.minutesArray.push(i);
+    for (let i = startMinuteBetweenMeals; i <= minutesInHour; ++i) {
+      this.minutes.push(i);
     }
   }
 
   private prepareHoursForTimeBetweenMeals() {
     for (let i = maxHoursBetweenMeals; i <= maxHoursBetweenMeals; ++i) {
-      this.hoursArray.push(i);
+      this.hours.push(i);
     }
   }
 
-  convertMinutesArr = (arrayOfMinutes: Array<number>): Array<string> => {
+  convertMinutes = (minutes: Array<number>): Array<string> => {
     const zeroPad = (num: number, places: number) =>
       String(num).padStart(places, '0');
-    const minutesArrayStartFromZero = arrayOfMinutes.map((num) =>
-      zeroPad(num, 2)
-    );
-    return minutesArrayStartFromZero;
+    const minutesStartFromZero = minutes.map((num) => zeroPad(num, 2));
+    return minutesStartFromZero;
   };
 }
 

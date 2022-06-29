@@ -52,7 +52,7 @@ export default function SaveButton({
       dispatch(setNumberOfMealsPerDay(Number(numberMeals)));
       dispatch(setNumberOfMinutesToFirstMeal(minuteToFirstMeal));
     });
-    myLocalStorage.setLocalStorage(store.getState().settings);
+    myLocalStorage.saveSettings(store.getState().settings);
   };
 
   return (

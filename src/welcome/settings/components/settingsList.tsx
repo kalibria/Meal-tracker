@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import TimePeriodBetweenMeals from '../components/timePeriodBetweenMeals';
-import { Settings } from '../settings_constant';
+
 import { MyContext } from '../../../context/context';
 import NumberOfMealsPerDay from './NumberOfMealsPerDay';
 import { MinutesToFirstMeal } from './minutesToFirstMeal';
 import SaveButton from './saveButtom';
+import { Settings } from '../settingsConfig';
 
 export const SettingsList = () => {
   const { timeBetweenMeals, numberOfMinutesToFirstMeal, numberOfMealsPerDay } =
