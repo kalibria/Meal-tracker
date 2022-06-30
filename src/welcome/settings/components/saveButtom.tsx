@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import style from '../../welcom.module.css';
-import { useDispatch, batch } from 'react-redux';
+import { useDispatch, batch, useSelector } from 'react-redux';
 
 import {
   setNumberOfMealsPerDay,
@@ -13,6 +13,8 @@ import {
 import { myLocalStorage } from '../setLocalStorage';
 import { store } from '../../../redux/store';
 import { validation } from '../../../utility/validation';
+import { selectSettings } from '../../../redux/selectors';
+import { firstEntry } from '../../showWelcomeComponent';
 
 interface Props {
   hourBetweenMeals: string;
@@ -30,6 +32,7 @@ export default function SaveButton({
   numberCheck,
 }: Props) {
   const dispatch = useDispatch();
+  const settings = useSelector(selectSettings);
 
   const isEmptyString = validation.isEmptyString(
     hourBetweenMeals,
@@ -52,7 +55,8 @@ export default function SaveButton({
       dispatch(setNumberOfMealsPerDay(Number(numberMeals)));
       dispatch(setNumberOfMinutesToFirstMeal(minuteToFirstMeal));
     });
-    myLocalStorage.saveSettings(store.getState().settings);
+    myLocalStorage.saveSettings(settings);
+    firstEntry.markAsUsed();
   };
 
   return (
