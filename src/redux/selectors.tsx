@@ -1,13 +1,15 @@
 import { RootState } from './store';
 
-export const select_numberOfMealsPerDay = (store: RootState) =>
+export const selectNumberOfMealsPerDay = (store: RootState) =>
   store.settings.numberOfMealsPerDay.name;
 
-export const select_numberOfMinutesToFirstMeal = (store: RootState) =>
+export const selectNumberOfMinutesToFirstMeal = (store: RootState) =>
   store.settings.numberOfMinutesToFirstMeal.time;
 
-export const select_timeBetweenMeals = (store: RootState) =>
+export const selectTimeBetweenMeals = (store: RootState) =>
   store.settings.timeBetweenMeals.time;
 
-export const select_minutesFromWakingUp = (store: RootState) =>
+export const selectMinutesFromWakingUp = (store: RootState) =>
   store.settings.minutesFromWakingUp;
+
+export const selectSettings = (store: RootState) => store.settings;

@@ -8,7 +8,7 @@ export class FirstUsing {
   };
 
   markAsUsed = (): void => {
-    localStorage.setItem(wasUsed, 'false');
+    localStorage.setItem(wasUsed, 'true');
   };
 }
 
