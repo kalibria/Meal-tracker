@@ -14,6 +14,15 @@ describe('testing App component', () => {
     // screen.debug();
     expect(screen.getByText('Good morning!!!')).toBeInTheDocument();
   });
+  it('display only meals', () => {
+    jest.spyOn(currentTime, 'isMorning').mockReturnValue(false);
+    jest.spyOn(firstEntry, 'wasUsed').mockReturnValue(true);
+
+    render(<App />);
+
+    // screen.debug();
+    expect(screen.getByText('Meals')).toBeInTheDocument();
+  });
   it('display ListOfMeals after clicking goodMorning button', () => {
     jest.spyOn(currentTime, 'isMorning').mockReturnValue(true);
     jest.spyOn(firstEntry, 'wasUsed').mockReturnValue(true);
@@ -21,7 +30,17 @@ describe('testing App component', () => {
     render(<App />);
     const goodMorningBtn = screen.getByText('Good morning!!!');
     fireEvent.click(goodMorningBtn);
-    screen.debug();
+    // screen.debug();
     expect(screen.getByText('Meals')).toBeInTheDocument();
+  });
+  it('goodMorning button should not display after clicking goodMorning button', () => {
+    jest.spyOn(currentTime, 'isMorning').mockReturnValue(true);
+    jest.spyOn(firstEntry, 'wasUsed').mockReturnValue(true);
+
+    render(<App />);
+    const goodMorningBtn = screen.getByText('Good morning!!!');
+    fireEvent.click(goodMorningBtn);
+    screen.debug();
+    expect(screen.queryByText('Good morning!!!')).not.toBeInTheDocument();
   });
 });

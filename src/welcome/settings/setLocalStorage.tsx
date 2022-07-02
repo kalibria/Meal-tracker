@@ -7,6 +7,4 @@ class LocalStorage {
   }
 }
 
-console.log('fix Local Storage');
-
 export const myLocalStorage = new LocalStorage();
