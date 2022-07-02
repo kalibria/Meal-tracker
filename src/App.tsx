@@ -7,10 +7,16 @@ import { currentTime } from './utility/currentTime';
 
 function App() {
   const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
-
+  const handleClick = (): React.ReactNode => {
+    return <ListOfMeals />;
+  };
   return firstEntry.wasUsed() ? (
     <div>
-      {isMorning && <p>Good morning!!!</p>}
+      {isMorning && (
+        <button onClick={handleClick} data-testid='goodMorning'>
+          Good morning!!!
+        </button>
+      )}
       <ListOfMeals />
     </div>
   ) : (
