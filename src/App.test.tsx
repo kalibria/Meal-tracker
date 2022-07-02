@@ -40,7 +40,7 @@ describe('testing App component', () => {
     render(<App />);
     const goodMorningBtn = screen.getByText('Good morning!!!');
     fireEvent.click(goodMorningBtn);
-    screen.debug();
+    // screen.debug();
     expect(screen.queryByText('Good morning!!!')).not.toBeInTheDocument();
   });
 });
