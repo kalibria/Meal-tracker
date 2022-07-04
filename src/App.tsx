@@ -8,9 +8,8 @@ import { currentTime } from './utility/currentTime';
 function App() {
   const [pressBtn, setPressBtn] = useState(false);
   const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
-  const handleClick = (): React.ReactNode => {
+  const handleClick = () => {
     setPressBtn(true);
-    return <ListOfMeals />;
   };
   return firstEntry.wasUsed() ? (
     <div>
