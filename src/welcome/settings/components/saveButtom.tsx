@@ -10,8 +10,7 @@ import {
   setTimeBetweenMeals,
 } from '../settingsSlice';
 
-import { myLocalStorage } from '../setLocalStorage';
-import { store } from '../../../redux/store';
+import { myLocalStorage } from '../../../utility/setLocalStorage';
 import { validation } from '../../../utility/validation';
 import { selectSettings } from '../../../redux/selectors';
 import { firstEntry } from '../../showWelcomeComponent';

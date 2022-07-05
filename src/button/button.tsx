@@ -6,7 +6,7 @@ interface IGoodMorningScreenBtn {
   dataTest?: string;
 }
 
-export const GoodMorningScreenBtn = ({
+export const Button = ({
   text,
   handleClick,
   dataTest,

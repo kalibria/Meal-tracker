@@ -4,36 +4,41 @@ import { WelcomeComponent } from './welcome/welcomeComponent';
 import { firstEntry } from './welcome/showWelcomeComponent';
 import { ListOfMeals } from './list-of-meals/listOfMeals';
 import { currentTime } from './utility/currentTime';
-import { GoodMorningScreenBtn } from './goodMorningScreen/goodMorningScreenBtn';
+import { Button } from './button/button';
+import { myLocalStorage } from './utility/setLocalStorage';
 
 function App() {
   const [pressBtn, setPressBtn] = useState(false);
-  console.log('изменить setPressBtn послк последнего приема пищи сегодня');
+  const [isGeneratedMeals, setIsGeneratedMeals] = useState(
+    myLocalStorage.getIsGeneratedMeals()
+  );
+
   const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
   // const isMorning = false;
   const handleClick = () => {
     setPressBtn(true);
+
+    setIsGeneratedMeals(myLocalStorage.setIsGeneratedMeals(true));
   };
   return firstEntry.wasUsed() ? (
     <div>
-      {isMorning && !pressBtn && (
-        // <button onClick={handleClick} data-testid='goodMorning'>
-        //   Good morning!!!
-        // </button>
-        <GoodMorningScreenBtn
+      {isMorning && !pressBtn && !isGeneratedMeals && (
+        <Button
           text={'Good morning!!!'}
           handleClick={handleClick}
           dataTest={'goodMorning'}
         />
       )}
-      {!isMorning && !pressBtn && (
-        <GoodMorningScreenBtn
+      {!isMorning && !pressBtn && !isGeneratedMeals && (
+        <Button
           text={'Plan your meals'}
           handleClick={handleClick}
           dataTest={'planeMeals'}
         />
       )}
-      {pressBtn ? <ListOfMeals /> : null}
+      {isGeneratedMeals && (
+        <ListOfMeals setIsGeneratedMeals={setIsGeneratedMeals} />
+      )}
     </div>
   ) : (
     <WelcomeComponent />
