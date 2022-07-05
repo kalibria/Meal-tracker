@@ -4,22 +4,34 @@ import { WelcomeComponent } from './welcome/welcomeComponent';
 import { firstEntry } from './welcome/showWelcomeComponent';
 import { ListOfMeals } from './list-of-meals/listOfMeals';
 import { currentTime } from './utility/currentTime';
+import { GoodMorningScreenBtn } from './goodMorningScreen/goodMorningScreenBtn';
 
 function App() {
   const [pressBtn, setPressBtn] = useState(false);
-  const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
-  const handleClick = (): React.ReactNode => {
+  // const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
+  const isMorning = true;
+  const handleClick = () => {
     setPressBtn(true);
-    return <ListOfMeals />;
   };
   return firstEntry.wasUsed() ? (
     <div>
       {isMorning && !pressBtn && (
-        <button onClick={handleClick} data-testid='goodMorning'>
-          Good morning!!!
-        </button>
+        // <button onClick={handleClick} data-testid='goodMorning'>
+        //   Good morning!!!
+        // </button>
+        <GoodMorningScreenBtn
+          text={'Good morning!!!'}
+          handleClick={handleClick}
+          dataTest={'goodMorning'}
+        />
       )}
-      {!isMorning || pressBtn ? <ListOfMeals /> : null}
+      {!isMorning && !pressBtn && (
+        <GoodMorningScreenBtn
+          text={'Plan your meals'}
+          handleClick={handleClick}
+        />
+      )}
+      {pressBtn ? <ListOfMeals /> : null}
     </div>
   ) : (
     <WelcomeComponent />
