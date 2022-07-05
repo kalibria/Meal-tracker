@@ -8,8 +8,9 @@ import { GoodMorningScreenBtn } from './goodMorningScreen/goodMorningScreenBtn';
 
 function App() {
   const [pressBtn, setPressBtn] = useState(false);
-  // const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
-  const isMorning = true;
+  console.log('изменить setPressBtn послк последнего приема пищи сегодня');
+  const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
+  // const isMorning = false;
   const handleClick = () => {
     setPressBtn(true);
   };
@@ -29,6 +30,7 @@ function App() {
         <GoodMorningScreenBtn
           text={'Plan your meals'}
           handleClick={handleClick}
+          dataTest={'planeMeals'}
         />
       )}
       {pressBtn ? <ListOfMeals /> : null}
