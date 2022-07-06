@@ -1,6 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import reducer from '../welcome/settings/settingsSlice';
+import settingsReducer from '../welcome/settings/settingsSlice';
+import keysReducer from '../buttonsWindow/SliceKeysOfScreenWithBtn';
 
 export const rootReducer = combineReducers({
-  settings: reducer,
+  settings: settingsReducer,
+  keysOfScreenWithBtn: keysReducer,
 });

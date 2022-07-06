@@ -23,10 +23,8 @@ export const WindowWithButtons = ({
   setIsGeneratedMeals,
   setIsEndTheDay,
 }: IWindowWithButtons) => {
-  const keySelector = useSelector(keyOfScreenWithBtn);
-
   return (
-    <div key={keySelector}>
+    <div>
       {conditionsForGMBtn && (
         <Button
           text={'Good morning!!!'}
@@ -41,12 +39,12 @@ export const WindowWithButtons = ({
           dataTest={'planeMeals'}
         />
       )}
-      {isGeneratedMeals && !isEndTheDay ? (
+      {isGeneratedMeals && !isEndTheDay && (
         <ListOfMeals
           setIsGeneratedMeals={setIsGeneratedMeals}
           setIsEndTheDay={setIsEndTheDay}
         />
-      ) : null}
+      )}
     </div>
   );
 };

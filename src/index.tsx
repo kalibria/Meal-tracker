@@ -4,16 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { store } from './redux/store';
+import { keyOfScreenWithBtn } from './redux/selectors';
+import { WrapperApp } from './WrapperApp';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <WrapperApp />
     </Provider>
   </React.StrictMode>
 );

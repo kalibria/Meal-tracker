@@ -13,3 +13,6 @@ export const selectMinutesFromWakingUp = (store: RootState) =>
   store.settings.minutesFromWakingUp;
 
 export const selectSettings = (store: RootState) => store.settings;
+
+export const keyOfScreenWithBtn = (store: RootState) =>
+  store.keysOfScreenWithBtn.value;

@@ -14,6 +14,9 @@ class LocalStorage {
     localStorage.setItem('isEndTheDay', endTheDay.toString());
     return endTheDay;
   }
+  getEndTheDay() {
+    return localStorage.getItem('isEndTheDay');
+  }
   getIsGeneratedMeals() {
     return localStorage.getItem('isGeneratedMeals');
   }
