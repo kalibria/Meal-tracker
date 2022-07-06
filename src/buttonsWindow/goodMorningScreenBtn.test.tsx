@@ -3,10 +3,9 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import App from '../App';
 import { currentTime } from '../utility/currentTime';
 import { firstEntry } from '../welcome/showWelcomeComponent';
-import { myLocalStorage } from '../utility/setLocalStorage';
 
 describe('testing App component', () => {
-  it('display Good morning button', () => {
+  it('display Good morning buttonWindow', () => {
     jest.spyOn(currentTime, 'isMorning').mockReturnValue(true);
     jest.spyOn(firstEntry, 'wasUsed').mockReturnValue(true);
 
@@ -15,7 +14,7 @@ describe('testing App component', () => {
     // screen.debug();
     expect(screen.getByText('Good morning!!!')).toBeInTheDocument();
   });
-  it('display Plan your meal button', () => {
+  it('display Plan your meal buttonWindow', () => {
     jest.spyOn(currentTime, 'isMorning').mockReturnValue(false);
     jest.spyOn(firstEntry, 'wasUsed').mockReturnValue(true);
 
@@ -33,7 +32,7 @@ describe('testing App component', () => {
   //   // screen.debug();
   //   expect(screen.getByText('Meals')).toBeInTheDocument();
   // });
-  it('display ListOfMeals after clicking goodMorning button', () => {
+  it('display ListOfMeals after clicking goodMorning buttonWindow', () => {
     jest.spyOn(currentTime, 'isMorning').mockReturnValue(true);
     jest.spyOn(firstEntry, 'wasUsed').mockReturnValue(true);
 
@@ -43,7 +42,7 @@ describe('testing App component', () => {
     // screen.debug();
     expect(screen.getByText('Meals')).toBeInTheDocument();
   });
-  it('goodMorning button should not display after clicking goodMorning button', () => {
+  it('goodMorning buttonWindow should not display after clicking goodMorning buttonWindow', () => {
     jest.spyOn(currentTime, 'isMorning').mockReturnValue(true);
     jest.spyOn(firstEntry, 'wasUsed').mockReturnValue(true);
 
