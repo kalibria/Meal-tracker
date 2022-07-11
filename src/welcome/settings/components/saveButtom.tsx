@@ -14,6 +14,7 @@ import { myLocalStorage } from '../../../utility/setLocalStorage';
 import { validation } from '../../../utility/validation';
 import { selectSettings } from '../../../redux/selectors';
 import { firstEntry } from '../../showWelcomeComponent';
+import { useEffect } from 'react';
 
 interface Props {
   hourBetweenMeals: string;
@@ -32,6 +33,7 @@ export default function SaveButton({
 }: Props) {
   const dispatch = useDispatch();
   const settings = useSelector(selectSettings);
+  console.log('settings', settings);
 
   const isEmptyString = validation.isEmptyString(
     hourBetweenMeals,
@@ -54,9 +56,13 @@ export default function SaveButton({
       dispatch(setNumberOfMealsPerDay(Number(numberMeals)));
       dispatch(setNumberOfMinutesToFirstMeal(minuteToFirstMeal));
     });
-    myLocalStorage.saveSettings(settings);
+
     firstEntry.markAsUsed();
   };
+
+  useEffect(() => {
+    myLocalStorage.saveSettings(settings);
+  }, [settings]);
 
   return (
     <Stack direction='row' spacing={2} className={style.saveButton}>
