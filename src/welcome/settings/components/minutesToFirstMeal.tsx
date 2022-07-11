@@ -3,9 +3,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { selectMinutesFromWakingUp } from '../../../redux/selectors';
-
-import { useSelector } from 'react-redux';
+import { minutesFromWakingUp } from '../time';
 
 interface Props {
   minute: string;
@@ -13,8 +11,7 @@ interface Props {
 }
 
 export function MinutesToFirstMeal({ minute, setMinute }: Props) {
-  const minutes = useSelector(selectMinutesFromWakingUp);
-  const menuItemMinuteFromWakingUp = minutes.map((min) => (
+  const menuItemMinuteFromWakingUp = minutesFromWakingUp.map((min) => (
     <MenuItem key={min} value={min}>
       {min}
     </MenuItem>

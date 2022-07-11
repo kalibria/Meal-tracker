@@ -9,9 +9,6 @@ export const selectNumberOfMinutesToFirstMeal = (store: RootState) =>
 export const selectTimeBetweenMeals = (store: RootState) =>
   store.settings.timeBetweenMeals.time;
 
-export const selectMinutesFromWakingUp = (store: RootState) =>
-  store.settings.minutesFromWakingUp;
-
 export const selectSettings = (store: RootState) => store.settings;
 
 export const keyOfScreenWithBtn = (store: RootState) =>
