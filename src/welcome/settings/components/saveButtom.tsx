@@ -32,8 +32,6 @@ export default function SaveButton({
   numberCheck,
 }: Props) {
   const dispatch = useDispatch();
-  const settings = useSelector(selectSettings);
-  console.log('settings', settings);
 
   const isEmptyString = validation.isEmptyString(
     hourBetweenMeals,
@@ -59,7 +57,7 @@ export default function SaveButton({
 
     firstEntry.markAsUsed();
   };
-
+  const settings = useSelector(selectSettings);
   useEffect(() => {
     myLocalStorage.saveSettings(settings);
   }, [settings]);

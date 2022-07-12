@@ -6,9 +6,7 @@ import { firstEntry } from './welcome/showWelcomeComponent';
 import { currentTime } from './utility/currentTime';
 
 import { myLocalStorage } from './utility/setLocalStorage';
-import { WindowWithButtons } from './buttonsWindow/windowWithButtons';
-import { useSelector } from 'react-redux';
-import { keyOfScreenWithBtn } from './redux/selectors';
+import { WindowWithButton } from './buttonsWindow/windowWithButton';
 
 function App() {
   const [pressBtn, setPressBtn] = useState(false);
@@ -16,25 +14,26 @@ function App() {
     myLocalStorage.getIsGeneratedMeals()
   );
   const [isEndTheDay, setIsEndTheDay] = useState(myLocalStorage.getEndTheDay());
-  const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
-  // const isMorning = false;
-  const conditionsForGMBtn = isMorning && !pressBtn && !isGeneratedMeals;
-  const conditionsForPMBtn = !isMorning && !pressBtn && !isGeneratedMeals;
+  // const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
+
+  const isMorning = false;
+  // const conditionsForGMBtn = isMorning && !pressBtn && !isGeneratedMeals;
+  // const conditionsForPMBtn = !isMorning && !pressBtn && !isGeneratedMeals;
 
   const handleClick = () => {
     setPressBtn(true);
     setIsGeneratedMeals(myLocalStorage.setIsGeneratedMeals(true));
   };
   return firstEntry.wasUsed() ? (
-    <WindowWithButtons
-      conditionsForGMBtn={conditionsForGMBtn}
-      conditionsForPMBtn={conditionsForPMBtn}
+    <WindowWithButton
+      // conditionsForGMBtn={conditionsForGMBtn}
+      // conditionsForPMBtn={conditionsForPMBtn}
+      isMorning={isMorning}
       handleClick={handleClick}
-      isEndTheDay={isEndTheDay}
-      setIsEndTheDay={setIsEndTheDay}
-      isGeneratedMeals={isGeneratedMeals}
-      setIsGeneratedMeals={setIsGeneratedMeals}
-
+      // isEndTheDay={isEndTheDay}
+      // setIsEndTheDay={setIsEndTheDay}
+      // isGeneratedMeals={isGeneratedMeals}
+      // setIsGeneratedMeals={setIsGeneratedMeals}
     />
   ) : (
     <WelcomeComponent />

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button } from './button';
 import { ListOfMeals } from '../list-of-meals/listOfMeals';
-import { useSelector } from 'react-redux';
-import { keyOfScreenWithBtn } from '../redux/selectors';
+
 
 interface IWindowWithButtons {
   conditionsForGMBtn: boolean;
