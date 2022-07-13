@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import style from '../settings.module.css';
+import style from './settings.module.css';
 import { useDispatch, batch, useSelector } from 'react-redux';
 
 import {
@@ -36,7 +36,7 @@ export default function SaveButton({
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const goToSecondRouteEl = () => {
+  const goToWindowWithBtn = () => {
     navigate('/button');
   };
   const isEmptyString = validation.isEmptyString(
@@ -50,7 +50,7 @@ export default function SaveButton({
   );
 
   const handleSubmit = () => {
-    goToSecondRouteEl();
+    goToWindowWithBtn();
     batch(() => {
       dispatch(
         setTimeBetweenMeals({

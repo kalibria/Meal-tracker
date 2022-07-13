@@ -12,10 +12,12 @@ export const Button = ({
   text,
   handleClick,
   dataTest,
+  children,
 }: IGoodMorningScreenBtn) => {
   return (
     <button onClick={handleClick} data-testid={dataTest}>
       {text}
+      {children}
     </button>
   );
 };
