@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import style from '../../welcom.module.css';
@@ -32,7 +34,11 @@ export default function SaveButton({
   numberCheck,
 }: Props) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const goToSecondRouteEl = () => {
+    navigate('/button');
+  };
   const isEmptyString = validation.isEmptyString(
     hourBetweenMeals,
     minuteBetweenMeals
@@ -44,6 +50,7 @@ export default function SaveButton({
   );
 
   const handleSubmit = () => {
+    goToSecondRouteEl();
     batch(() => {
       dispatch(
         setTimeBetweenMeals({

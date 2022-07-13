@@ -4,7 +4,7 @@ import TimePeriodBetweenMeals from '../components/timePeriodBetweenMeals';
 import { MyContext } from '../../../context/context';
 import NumberOfMealsPerDay from './NumberOfMealsPerDay';
 import { MinutesToFirstMeal } from './minutesToFirstMeal';
-import SaveButton from './saveButtom';
+import SaveButton from './saveButton';
 import { Settings } from '../settingsConfig';
 
 export const SettingsList = () => {

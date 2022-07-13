@@ -1,15 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from './button';
+import { currentTime } from '../utility/currentTime';
 
-interface IWindowWithButtons {
-  handleClick(): void;
-  isMorning: boolean;
-}
+export const WindowWithButton = () => {
+  const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
+  const navigate = useNavigate();
+  const goToMealList = () => {
+    navigate('/mealList');
+  };
 
-export const WindowWithButton = ({
-  handleClick,
-  isMorning,
-}: IWindowWithButtons) => {
+  const handleClick = () => {
+    goToMealList();
+  };
   return (
     <div>
       <Button

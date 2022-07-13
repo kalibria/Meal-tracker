@@ -1,42 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import { WelcomeComponent } from './welcome/welcomeComponent';
-import { firstEntry } from './welcome/showWelcomeComponent';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { currentTime } from './utility/currentTime';
-
-import { myLocalStorage } from './utility/setLocalStorage';
+import { ListOfMeals } from './list-of-meals/listOfMeals';
+import { FirstRouteEl } from './routeElements/firstRouteEl';
+import { SecondRuteEl } from './routeElements/secondRouteEl';
 import { WindowWithButton } from './buttonsWindow/windowWithButton';
 
 function App() {
-  const [pressBtn, setPressBtn] = useState(false);
-  const [isGeneratedMeals, setIsGeneratedMeals] = useState(
-    myLocalStorage.getIsGeneratedMeals()
-  );
-  const [isEndTheDay, setIsEndTheDay] = useState(myLocalStorage.getEndTheDay());
-  // const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
+  return (
+    <Router>
+      <Routes>
+        <Route path='/' element={<FirstRouteEl />} />
+        <Route path='/secondEl' element={<SecondRuteEl />} />
+        <Route path='/button' element={<WindowWithButton />} />
 
-  const isMorning = false;
-  // const conditionsForGMBtn = isMorning && !pressBtn && !isGeneratedMeals;
-  // const conditionsForPMBtn = !isMorning && !pressBtn && !isGeneratedMeals;
-
-  const handleClick = () => {
-    setPressBtn(true);
-    setIsGeneratedMeals(myLocalStorage.setIsGeneratedMeals(true));
-  };
-  return firstEntry.wasUsed() ? (
-    <WindowWithButton
-      // conditionsForGMBtn={conditionsForGMBtn}
-      // conditionsForPMBtn={conditionsForPMBtn}
-      isMorning={isMorning}
-      handleClick={handleClick}
-      // isEndTheDay={isEndTheDay}
-      // setIsEndTheDay={setIsEndTheDay}
-      // isGeneratedMeals={isGeneratedMeals}
-      // setIsGeneratedMeals={setIsGeneratedMeals}
-    />
-  ) : (
-    <WelcomeComponent />
+        <Route path='/mealList' element={<ListOfMeals />} />
+      </Routes>
+    </Router>
   );
 }
 
