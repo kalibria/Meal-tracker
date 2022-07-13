@@ -17,12 +17,16 @@ export const WindowWithButton = () => {
   };
   return (
     <div>
-      <SettingsBtn />
-      <Button
-        text={isMorning ? 'Good morning!!!' : 'Plan your meals'}
-        handleClick={handleClick}
-        dataTest={'goodMorning'}
-      ></Button>
+      <div className={style.btn_settings_position}>
+        <SettingsBtn />
+      </div>
+      <div className={style.btn_position}>
+        <Button
+          text={isMorning ? 'Good morning!!!' : 'Plan your meals'}
+          handleClick={handleClick}
+          dataTest={'goodMorning'}
+        ></Button>
+      </div>
     </div>
   );
 };

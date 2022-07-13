@@ -1,5 +1,9 @@
-.btn_settings {
- border:red
+.btn_settings_position {
+    margin-left: 85%;
+}
+
+.btn_position {
+    margin-left: 35%;
 }
 
 .settingsIcon {
