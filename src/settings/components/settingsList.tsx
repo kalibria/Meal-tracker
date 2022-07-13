@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import TimePeriodBetweenMeals from '../components/timePeriodBetweenMeals';
+import TimePeriodBetweenMeals from './timePeriodBetweenMeals';
 
-import { MyContext } from '../../../context/context';
+import { MyContext } from '../../context/context';
 import NumberOfMealsPerDay from './NumberOfMealsPerDay';
 import { MinutesToFirstMeal } from './minutesToFirstMeal';
 import SaveButton from './saveButton';

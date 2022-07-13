@@ -1,4 +1,4 @@
-import { Settings } from '../welcome/settings/settingsConfig';
+import { Settings } from '../settings/settingsConfig';
 
 class LocalStorage {
   isGeneratedMeals: boolean;

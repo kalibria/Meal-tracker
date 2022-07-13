@@ -3,7 +3,7 @@ import {
   maxNumberOfMealsPerDay,
   minNumberOfMealsPerDay,
 } from '../settings_constant';
-import style from '../../welcom.module.css';
+import style from '../../welcome/welcom.module.css';
 
 export const Error = () => {
   return (

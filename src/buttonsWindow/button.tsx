@@ -1,9 +1,11 @@
 import React from 'react';
 
 interface IGoodMorningScreenBtn {
-  text: string;
+  text?: string;
   handleClick(): void;
   dataTest?: string;
+  className?: string;
+  children?: React.ReactNode;
 }
 
 export const Button = ({

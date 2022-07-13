@@ -1,7 +1,7 @@
 import {
   maxNumberOfMealsPerDay,
   minNumberOfMealsPerDay,
-} from '../welcome/settings/settings_constant';
+} from '../settings/settings_constant';
 
 class Validation {
   isNumber(value: string): boolean {

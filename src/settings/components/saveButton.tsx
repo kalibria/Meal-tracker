@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import style from '../../welcom.module.css';
+import style from '../settings.module.css';
 import { useDispatch, batch, useSelector } from 'react-redux';
 
 import {
@@ -12,10 +12,10 @@ import {
   setTimeBetweenMeals,
 } from '../settingsSlice';
 
-import { myLocalStorage } from '../../../utility/setLocalStorage';
-import { validation } from '../../../utility/validation';
-import { selectSettings } from '../../../redux/selectors';
-import { firstEntry } from '../../showWelcomeComponent';
+import { myLocalStorage } from '../../utility/setLocalStorage';
+import { validation } from '../../utility/validation';
+import { selectSettings } from '../../redux/selectors';
+import { firstEntry } from '../../welcome/showWelcomeComponent';
 import { useEffect } from 'react';
 
 interface Props {
