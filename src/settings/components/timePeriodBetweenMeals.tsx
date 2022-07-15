@@ -17,8 +17,6 @@ export default function TimePeriodBetweenMeals({
   minuteBetweenMeals,
   setMinuteBetweenMeals,
 }: Props) {
-  // const { hours, minutes } = useContext(MyContext);
-
   const menuItemHour = hours.map((hour) => (
     <MenuItem key={hour} value={hour}>
       {hour}

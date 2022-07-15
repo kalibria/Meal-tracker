@@ -50,7 +50,6 @@ export default function SaveButton({
   );
 
   const handleSubmit = () => {
-    goToWindowWithBtn();
     batch(() => {
       dispatch(
         setTimeBetweenMeals({
@@ -61,13 +60,14 @@ export default function SaveButton({
       dispatch(setNumberOfMealsPerDay(Number(numberMeals)));
       dispatch(setNumberOfMinutesToFirstMeal(minuteToFirstMeal));
     });
-
     firstEntry.markAsUsed();
+    goToWindowWithBtn();
   };
   const settings = useSelector(selectSettings);
+
   useEffect(() => {
     myLocalStorage.saveSettings(settings);
-  }, [settings]);
+  });
 
   return (
     <Stack direction='row' spacing={2} className={style.saveButton}>
