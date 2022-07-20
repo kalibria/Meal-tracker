@@ -96,7 +96,7 @@ import {
   setTimeBetweenMeals,
 } from '../settingsSlice';
 
-import { myLocalStorage } from '../../utility/setLocalStorage';
+import { myLocalStorage } from '../../utility/LocalStorage';
 import { validation } from '../../utility/validation';
 import { selectSettings } from '../../redux/selectors';
 import { firstEntry } from '../../welcome/showWelcomeComponent';

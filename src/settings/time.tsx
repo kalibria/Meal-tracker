@@ -56,7 +56,7 @@ export class Time implements TimeDate {
 
 export const time = new Time([0], [1], [5]);
 
-export const hours = time.hours;
+export const { hours } = time;
 export const minutes = time.convertMinutes(time.minutes);
 export const minutesFromWakingUp = time.convertMinutes(
   time.minutesFromWakingUp

@@ -33,14 +33,4 @@ describe('testing App component', () => {
     // screen.debug();
     expect(screen.getByText('End the day')).toBeInTheDocument();
   });
-  // it('goodMorning buttonsWindow should not display after clicking goodMorning buttonsWindow', () => {
-  //   jest.spyOn(currentTime, 'isMorning').mockReturnValue(true);
-  //   jest.spyOn(firstEntry, 'wasUsed').mockReturnValue(true);
-  //
-  //   render(<App />);
-  //   const goodMorningBtn = screen.getByText('Good morning!!!');
-  //   fireEvent.click(goodMorningBtn);
-  //   screen.debug();
-  //   expect(screen.queryByText('Good morning!!!')).not.toBeInTheDocument();
-  // });
 });

@@ -5,7 +5,7 @@ import './App.css';
 import { ListOfMeals } from './list-of-meals/listOfMeals';
 import { FirstRouteEl } from './routeElements/firstRouteEl';
 import { SecondRuteEl } from './routeElements/secondRouteEl';
-import { WindowWithButton } from './buttonsWindow/windowWithButton';
+import { WindowWithButton } from './buttonsWindow/WindowWithButton';
 
 import { SettingsList } from './settings/components/settingsList';
 

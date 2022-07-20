@@ -6,8 +6,8 @@ class LocalStorage {
   constructor(isGeneratedMeals: boolean) {
     this.isGeneratedMeals = isGeneratedMeals;
   }
-  saveSettings(storage: INewSettings) {
-    const jsonSettingsScreen = JSON.stringify(storage);
+  saveSettings(data: INewSettings) {
+    const jsonSettingsScreen = JSON.stringify(data);
     localStorage.setItem('settings', jsonSettingsScreen);
   }
   getSettings() {
