@@ -1,4 +1,4 @@
-import { INewSettings } from '../settings/components/saveButton';
+import { INewSettings } from '../settings/components/wrapperForSaveButton';
 
 class LocalStorage {
   isGeneratedMeals: boolean;

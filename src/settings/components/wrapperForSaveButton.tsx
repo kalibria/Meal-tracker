@@ -101,6 +101,7 @@ import { validation } from '../../utility/validation';
 import { selectSettings } from '../../redux/selectors';
 import { firstEntry } from '../../welcome/showWelcomeComponent';
 import { currentTime } from '../../utility/currentTime';
+import { SaveButton } from './SaveButton';
 
 interface Props {
   hourBetweenMeals: string;
@@ -115,7 +116,7 @@ export interface INewSettings {
   numberOfMealsPerDay: { id: number; time: string };
   numberOfMinutesToFirstMeal: { id: number; time: string };
 }
-export function SaveButton({
+export function WrapperForSaveButton({
   hourBetweenMeals,
   minuteBetweenMeals,
   numberMeals,
@@ -162,6 +163,7 @@ export function SaveButton({
     };
     myLocalStorage.saveSettings(newSettings);
     const settingsFromDb = myLocalStorage.getSettings();
+
     if (!settingsFromDb) {
       return;
     } else {
@@ -183,14 +185,9 @@ export function SaveButton({
   };
 
   return (
-    <Stack direction='row' spacing={2} className={style.saveButton}>
-      <Button
-        variant='outlined'
-        onClick={handleSubmit}
-        disabled={isDisabledButton}
-      >
-        Save
-      </Button>
-    </Stack>
+    <SaveButton
+      handleSubmit={handleSubmit}
+      isDisabledButton={isDisabledButton}
+    />
   );
 }

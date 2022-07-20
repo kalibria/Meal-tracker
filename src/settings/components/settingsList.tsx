@@ -6,7 +6,7 @@ import NumberOfMealsPerDay from './NumberOfMealsPerDay';
 import { MinutesToFirstMeal } from './minutesToFirstMeal';
 
 import { Settings } from '../settingsConfig';
-import { SaveButton } from './saveButton';
+import { WrapperForSaveButton } from './wrapperForSaveButton';
 
 export const SettingsList = () => {
   const { timeBetweenMeals, numberOfMinutesToFirstMeal, numberOfMealsPerDay } =
@@ -51,7 +51,7 @@ export const SettingsList = () => {
           />
         </li>
       </ul>
-      <SaveButton
+      <WrapperForSaveButton
         hourBetweenMeals={hourBetweenMeals}
         minuteBetweenMeals={minuteBetweenMeals}
         numberMeals={numberMeals}
