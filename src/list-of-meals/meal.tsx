@@ -24,6 +24,7 @@ export const Meal = () => {
   const arrNumbersOfMeal = myMeal.getArrNumbersOfMeal();
   console.log('arrNumbers', arrNumbersOfMeal);
   console.log('myMeal', myMeal);
+
   return (
     <div>
       <p>Number</p>

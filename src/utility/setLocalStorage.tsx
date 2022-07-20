@@ -1,4 +1,4 @@
-import { Settings } from '../settings/settingsConfig';
+import { INewSettings } from '../settings/components/saveButton';
 
 class LocalStorage {
   isGeneratedMeals: boolean;
@@ -6,9 +6,14 @@ class LocalStorage {
   constructor(isGeneratedMeals: boolean) {
     this.isGeneratedMeals = isGeneratedMeals;
   }
-  saveSettings(storage: Settings) {
+  saveSettings(storage: INewSettings) {
     const jsonSettingsScreen = JSON.stringify(storage);
     localStorage.setItem('settings', jsonSettingsScreen);
+  }
+  getSettings() {
+    const settings = localStorage.getItem('settings');
+    if (!settings) return null;
+    return JSON.parse(settings) as INewSettings;
   }
   setEndTheDay(endTheDay: boolean) {
     localStorage.setItem('isEndTheDay', endTheDay.toString());
@@ -28,3 +33,4 @@ class LocalStorage {
 }
 
 export const myLocalStorage = new LocalStorage(false);
+console.log('settings', myLocalStorage.getSettings());

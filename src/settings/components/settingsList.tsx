@@ -4,8 +4,9 @@ import TimePeriodBetweenMeals from './timePeriodBetweenMeals';
 import { MyContext } from '../../context/context';
 import NumberOfMealsPerDay from './NumberOfMealsPerDay';
 import { MinutesToFirstMeal } from './minutesToFirstMeal';
-import SaveButton from './saveButton';
+
 import { Settings } from '../settingsConfig';
+import { SaveButton } from './saveButton';
 
 export const SettingsList = () => {
   const { timeBetweenMeals, numberOfMinutesToFirstMeal, numberOfMealsPerDay } =
@@ -13,7 +14,7 @@ export const SettingsList = () => {
   const [hourBetweenMeals, setHourBetweenMeals] = React.useState('');
   const [minuteBetweenMeals, setMinuteBetweenMeals] = React.useState('');
   const [numberMeals, setNumberMeals] = React.useState(
-    numberOfMealsPerDay.name.toString()
+    numberOfMealsPerDay.time.toString()
   );
   const [minuteToFirstMeal, setMinuteToFirstMeal] = React.useState(
     numberOfMinutesToFirstMeal.time.toString()

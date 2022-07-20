@@ -1,7 +1,7 @@
 import { RootState } from './store';
 
 export const selectNumberOfMealsPerDay = (store: RootState) =>
-  store.settings.numberOfMealsPerDay.name;
+  store.settings.numberOfMealsPerDay.time;
 
 export const selectNumberOfMinutesToFirstMeal = (store: RootState) =>
   store.settings.numberOfMinutesToFirstMeal.time;
