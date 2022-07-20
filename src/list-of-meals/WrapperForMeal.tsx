@@ -1,5 +1,5 @@
 import React from 'react';
-import { IMeals, Meals } from './meals';
+import { IMeals, Meals } from './Meals';
 import { currentTime } from '../utility/currentTime';
 import { useSelector } from 'react-redux';
 import {
@@ -7,8 +7,9 @@ import {
   selectNumberOfMinutesToFirstMeal,
   selectTimeBetweenMeals,
 } from '../redux/selectors';
+import { Meal } from './Meal';
 
-export const Meal = () => {
+export const WrapperForMeal = () => {
   const myCurrentTime = currentTime.getCurrentTime();
   const selectMinAfterWakingUp = useSelector(selectNumberOfMinutesToFirstMeal);
   const timeBetweenMeals = useSelector(selectTimeBetweenMeals);
@@ -22,16 +23,11 @@ export const Meal = () => {
   };
   const myMeal = new Meals(mealAsObj);
   const arrNumbersOfMeal = myMeal.getArrNumbersOfMeal();
-  console.log('arrNumbers', arrNumbersOfMeal);
-  console.log('myMeal', myMeal);
+  const timeForFirstMeal = myMeal.firstMealTime();
+  console.log('time', timeForFirstMeal);
+  const mealEl = arrNumbersOfMeal.map((num) => (
+    <Meal key={num} number={num} timeOfMeal={timeForFirstMeal} />
+  ));
 
-  return (
-    <div>
-      <p>Number</p>
-      <>Time of meal </>
-      <button>Eat</button>
-      <button>Edit</button>
-      <button>Delete</button>
-    </div>
-  );
+  return <div>{mealEl}</div>;
 };

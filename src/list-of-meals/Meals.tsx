@@ -23,14 +23,17 @@ export class Meals {
     this.numberOfMeals = numberOfMeals;
   }
   firstMealTime() {
-    return this.currentTime + this.minutesAfterWakingUp;
+    const dataStr = this.currentTime + this.minutesAfterWakingUp;
+    const hours = new Date(dataStr).getHours();
+    const minutes = new Date(dataStr).getMinutes();
+    return `${hours} : ${minutes}`;
   }
   subsequentMeals(timeOfMeal: number) {
     return timeOfMeal + this.timeBetweenMeals;
   }
   getArrNumbersOfMeal() {
     const arrNumberOfMeals = [];
-    for (let i = 1; i < this.numberOfMeals; i++) {
+    for (let i = 1; i <= this.numberOfMeals; i++) {
       arrNumberOfMeals.push(i);
     }
     return arrNumberOfMeals;
