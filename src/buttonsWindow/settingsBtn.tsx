@@ -10,7 +10,7 @@ export const SettingsBtn = () => {
   };
 
   return (
-    <Button handleClick={showSettingsList}>
+    <Button classNames={['settings-open']} handleClick={showSettingsList}>
       <img
         className={style.settingsIcon}
         src='http://cdn.onlinewebfonts.com/svg/img_79951.png'
