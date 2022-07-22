@@ -10,8 +10,8 @@
         "plugin:import/errors",
         "plugin:import/warnings",
         "plugin:import/typescript",
-
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:cypress/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -31,5 +31,15 @@
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/ban-types": "off",
         "prettier/prettier": "warn"
-    }
+    },
+    "overrides": [
+        {
+            "files": [
+                "./cypress/**"
+            ],
+            "rules": {
+                "@typescript-eslint/no-unused-expressions": "off"
+            }
+        }
+    ]
 }
