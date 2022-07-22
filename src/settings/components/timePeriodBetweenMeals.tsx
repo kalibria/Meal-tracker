@@ -3,9 +3,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { MyContext } from '../../../context/context';
-import { useContext } from 'react';
-
+import { hours, minutes } from '../time';
 interface Props {
   hourBetweenMeals: string;
   setHourBetweenMeals: React.Dispatch<React.SetStateAction<string>>;
@@ -19,8 +17,6 @@ export default function TimePeriodBetweenMeals({
   minuteBetweenMeals,
   setMinuteBetweenMeals,
 }: Props) {
-  const { hours, minutes } = useContext(MyContext);
-
   const menuItemHour = hours.map((hour) => (
     <MenuItem key={hour} value={hour}>
       {hour}

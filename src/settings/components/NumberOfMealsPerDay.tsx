@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import style from '../../welcom.module.css';
+import style from '../../welcome/welcom.module.css';
 import { ValidationMessage } from './validationMessage';
-import { validation } from '../../../utility/validation';
+import { validation } from '../../utility/validation';
 
 export interface Props {
   numberMeals: string;

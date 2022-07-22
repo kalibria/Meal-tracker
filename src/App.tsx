@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { WelcomeComponent } from './welcome/welcomeComponent';
-import { firstEntry } from './welcome/showWelcomeComponent';
+
 import { ListOfMeals } from './list-of-meals/listOfMeals';
-import { currentTime } from './utility/currentTime';
+import { FirstRouteEl } from './routeElements/firstRouteEl';
+import { SecondRuteEl } from './routeElements/secondRouteEl';
+import { WindowWithButton } from './buttonsWindow/WindowWithButton';
+
+import { SettingsList } from './settings/components/settingsList';
 
 function App() {
-  const [pressBtn, setPressBtn] = useState(false);
-  const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
-  const handleClick = (): React.ReactNode => {
-    setPressBtn(true);
-    return <ListOfMeals />;
-  };
-  return firstEntry.wasUsed() ? (
-    <div>
-      {isMorning && !pressBtn && (
-        <button onClick={handleClick} data-testid='goodMorning'>
-          Good morning!!!
-        </button>
-      )}
-      {!isMorning || pressBtn ? <ListOfMeals /> : null}
-    </div>
-  ) : (
-    <WelcomeComponent />
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path='/' element={<FirstRouteEl />} />
+          <Route path='/secondEl' element={<SecondRuteEl />} />
+          <Route path='/button' element={<WindowWithButton />} />
+          <Route path='/settings' element={<SettingsList />} />
+
+          <Route path='/mealList' element={<ListOfMeals />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

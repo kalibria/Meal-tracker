@@ -7,13 +7,10 @@ export const settingsSlice = createSlice({
   initialState: settingsScreen,
   reducers: {
     setTimeBetweenMeals: (state, action) => {
-      const timeBetweenMealsInMinutes =
-        action.payload.hours * minutesInHour + action.payload.minutes;
-
-      state.timeBetweenMeals.time = timeBetweenMealsInMinutes;
+      state.timeBetweenMeals.time = action.payload;
     },
     setNumberOfMealsPerDay: (state, action) => {
-      state.numberOfMealsPerDay.name = action.payload;
+      state.numberOfMealsPerDay.time = action.payload;
     },
     setNumberOfMinutesToFirstMeal: (state, action) => {
       state.numberOfMinutesToFirstMeal.time = action.payload;

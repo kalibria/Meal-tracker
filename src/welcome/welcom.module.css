@@ -1,36 +1,8 @@
-.btn_settings {
-    padding: 0;
-    margin: 0;
-    position: fixed;
-    top: 1%;
-    right: 5%;
-}
-
-.error {
-    color: red;
-}
-
-.saveButton {
-    justify-content: center;
-}
-
-.settingsIcon {
-    width: 25px;
-    height: 25px;
-}
-
-.select {
-max-height: 200px;
-}
-
-.textField {
-    padding: 0;
-}
-
 .welcome_wrapper {
     display: flex;
     top: 0;
     right: 0;
     width: 100%;
+
 }
 

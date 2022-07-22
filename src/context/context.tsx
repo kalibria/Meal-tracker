@@ -1,4 +1,4 @@
 import React from 'react';
-import { settingsScreen } from '../welcome/settings/settingsConfig';
+import { settingsScreen } from '../settings/settingsConfig';
 
 export const MyContext = React.createContext(settingsScreen);
