@@ -1,3 +1,4 @@
+// todo remove
 describe('First test', () => {
   it('should find a settings button', () => {
     cy.visit('/');

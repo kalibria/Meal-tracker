@@ -12,9 +12,10 @@ The following table specifies the core UI elements and their selectors:
 | Welcome   | Settings button                | .settings-open                                |
 |           | Plan your meals, plan your day | .meals-plan                                   |
 |           |                                |                                               |
-| Settings  | input - number of meals        | .setting-num-meals                            |
-|           | input - interval b/w meals     | .setting-interval-meals                       |
-|           | input - interval to first meal | .setting-interval-breakfast                   |
+| Settings  | input - number of meals        | #setting-num-meals                            |
+|           | input - interval b/w meals hrs | #setting-interval-meals-hrs                   |
+|           | input - interval b/w meals min | #setting-interval-meals-min                   |
+|           | input - interval to first meal | #setting-interval-breakfast                   |
 |           | Save settings                  | .settings-save                                |
 |           |                                |                                               |
 | Meal list | Meal row                       | .meal-{id}, where id <br/>is meal from 1 to X |

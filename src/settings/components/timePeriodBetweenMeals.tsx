@@ -17,13 +17,13 @@ export default function TimePeriodBetweenMeals({
   minuteBetweenMeals,
   setMinuteBetweenMeals,
 }: Props) {
-  const menuItemHour = hours.map((hour) => (
+  const menuItemsHour = hours.map((hour) => (
     <MenuItem key={hour} value={hour}>
       {hour}
     </MenuItem>
   ));
 
-  const menuItemMinute = minutes.map((min) => (
+  const menuItemsMinute = minutes.map((min) => (
     <MenuItem key={min} value={min}>
       {min}
     </MenuItem>
@@ -42,26 +42,26 @@ export default function TimePeriodBetweenMeals({
       <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
         <InputLabel id='demo-select-small'>Hours</InputLabel>
         <Select
-          labelId='demo-select-small'
-          id='demo-select-small'
+          labelId='setting-interval-meals-hrs'
+          id='setting-interval-meals-hrs'
           value={hourBetweenMeals}
           label='Hours'
           onChange={handleChangeHours}
         >
-          {menuItemHour}
+          {menuItemsHour}
         </Select>
       </FormControl>
 
       <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
         <InputLabel id='demo-select-small'>Minutes</InputLabel>
         <Select
-          labelId='demo-select-small'
-          id='demo-select-small'
+          labelId='setting-interval-meals-min'
+          id='setting-interval-meals-min'
           value={minuteBetweenMeals}
           label='Minutes'
           onChange={handleChangeMinutes}
         >
-          {menuItemMinute}
+          {menuItemsMinute}
         </Select>
       </FormControl>
     </div>
