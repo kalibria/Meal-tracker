@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { minutesInHour } from './settings_constant';
+
 import { settingsScreen } from './settingsConfig';
 
 export const settingsSlice = createSlice({

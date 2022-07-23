@@ -33,4 +33,3 @@ class LocalStorage {
 }
 
 export const myLocalStorage = new LocalStorage(false);
-console.log('settings', myLocalStorage.getSettings());
