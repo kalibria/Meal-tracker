@@ -188,6 +188,7 @@ export function WrapperForSaveButton({
     <SaveButton
       handleSubmit={handleSubmit}
       isDisabledButton={isDisabledButton}
+      classNames={['settings-save']}
     />
   );
 }
