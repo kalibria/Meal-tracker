@@ -3,12 +3,12 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { hours, minutes } from '../time';
+import { hours, minutes, time } from '../time';
 interface Props {
-  hourBetweenMeals: string;
-  setHourBetweenMeals: React.Dispatch<React.SetStateAction<string>>;
-  minuteBetweenMeals: string;
-  setMinuteBetweenMeals: React.Dispatch<React.SetStateAction<string>>;
+  hourBetweenMeals: number;
+  minuteBetweenMeals: number;
+  setHourBetweenMeals: React.Dispatch<React.SetStateAction<number>>;
+  setMinuteBetweenMeals: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function TimePeriodBetweenMeals({
@@ -30,12 +30,15 @@ export default function TimePeriodBetweenMeals({
   ));
 
   const handleChangeHours = (event: SelectChangeEvent) => {
-    setHourBetweenMeals(event.target.value);
+    setHourBetweenMeals(+event.target.value);
   };
 
   const handleChangeMinutes = (event: SelectChangeEvent) => {
-    setMinuteBetweenMeals(event.target.value);
+    setMinuteBetweenMeals(+event.target.value);
   };
+
+  console.log({ hourBetweenMeals });
+  console.log({ minuteBetweenMeals });
 
   return (
     <div>
@@ -44,7 +47,7 @@ export default function TimePeriodBetweenMeals({
         <Select
           labelId='demo-select-small'
           id='demo-select-small'
-          value={hourBetweenMeals}
+          value={hourBetweenMeals.toString()}
           label='Hours'
           onChange={handleChangeHours}
         >
@@ -57,7 +60,7 @@ export default function TimePeriodBetweenMeals({
         <Select
           labelId='demo-select-small'
           id='demo-select-small'
-          value={minuteBetweenMeals}
+          value={time.convertMinute(minuteBetweenMeals)}
           label='Minutes'
           onChange={handleChangeMinutes}
         >

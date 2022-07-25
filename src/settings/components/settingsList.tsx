@@ -1,31 +1,47 @@
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TimePeriodBetweenMeals from './timePeriodBetweenMeals';
 
-import { MyContext } from '../../context/context';
 import NumberOfMealsPerDay from './NumberOfMealsPerDay';
 import { MinutesToFirstMeal } from './minutesToFirstMeal';
 
-import { Settings } from '../settingsConfig';
-import { WrapperForSaveButton } from './wrapperForSaveButton';
+import { INewSettings, WrapperForSaveButton } from './wrapperForSaveButton';
+import { myLocalStorage } from '../../utility/LocalStorage';
 
 export const SettingsList = () => {
-  const { timeBetweenMeals, numberOfMinutesToFirstMeal, numberOfMealsPerDay } =
-    useContext<Settings>(MyContext);
-  const [hourBetweenMeals, setHourBetweenMeals] = React.useState('');
-  const [minuteBetweenMeals, setMinuteBetweenMeals] = React.useState('');
-  const [numberMeals, setNumberMeals] = React.useState(
-    numberOfMealsPerDay.time.toString()
-  );
-  const [minuteToFirstMeal, setMinuteToFirstMeal] = React.useState(
-    numberOfMinutesToFirstMeal.time.toString()
+  const [settingsFromLS, setSettingsFromL] = useState<INewSettings | null>(
+    null
   );
 
-  const [isNumberValid, setIsNumberValid] = useState(true);
+  useEffect(() => {
+    console.log('hi');
+    const newSettings = myLocalStorage.getSettings();
+    console.log(settingsFromLS?.timeBetweenMeals.time);
+
+    if (newSettings) {
+      setSettingsFromL(settingsFromLS);
+      const hours = Math.floor(newSettings.timeBetweenMeals.time / 60);
+      const minutes = newSettings.timeBetweenMeals.time - hours * 60;
+
+      console.log({ hours });
+      console.log({ minutes });
+      setHourBetweenMeals(hours);
+      setMinuteBetweenMeals(minutes);
+      setMinuteToFirstMeal(newSettings.numberOfMinutesToFirstMeal.time);
+      setNumberMeals(newSettings.numberOfMealsPerDay.time);
+    }
+  }, [settingsFromLS]);
+
+  const [hourBetweenMeals, setHourBetweenMeals] = React.useState(2);
+  const [minuteBetweenMeals, setMinuteBetweenMeals] = React.useState(20);
+  const [numberMeals, setNumberMeals] = React.useState('6');
+  const [minuteToFirstMeal, setMinuteToFirstMeal] = React.useState('21');
+
+  const [isMealCountValid, setIsMealCountValid] = useState(true);
 
   return (
     <div>
       <ul>
-        <li key={timeBetweenMeals.id}>
+        <li key={settingsFromLS?.timeBetweenMeals.id}>
           Time period between meals:{' '}
           <TimePeriodBetweenMeals
             hourBetweenMeals={hourBetweenMeals}
@@ -34,16 +50,16 @@ export const SettingsList = () => {
             setMinuteBetweenMeals={setMinuteBetweenMeals}
           />
         </li>
-        <li key={numberOfMinutesToFirstMeal.id}>
+        <li key={settingsFromLS?.numberOfMealsPerDay.id}>
           Number of meals per day:{' '}
           <NumberOfMealsPerDay
             numberMeals={numberMeals}
             setNumberMeals={setNumberMeals}
-            numberCheck={isNumberValid}
-            setNumberCheck={setIsNumberValid}
+            numberCheck={isMealCountValid}
+            setNumberCheck={setIsMealCountValid}
           />
         </li>
-        <li key={numberOfMealsPerDay.id}>
+        <li key={settingsFromLS?.numberOfMinutesToFirstMeal.id}>
           Number of minutes from waking up to the first meal on the list:{' '}
           <MinutesToFirstMeal
             minute={minuteToFirstMeal}
@@ -56,7 +72,11 @@ export const SettingsList = () => {
         minuteBetweenMeals={minuteBetweenMeals}
         numberMeals={numberMeals}
         minuteToFirstMeal={minuteToFirstMeal}
-        numberCheck={isNumberValid}
+        isValidMealsCount={isMealCountValid}
+        // setHourBetweenMeals={setHourBetweenMeals}
+        // setMinuteBetweenMeals={setMinuteBetweenMeals}
+        setNumberMeals={setNumberMeals}
+        setMinute={setMinuteToFirstMeal}
       />
     </div>
   );

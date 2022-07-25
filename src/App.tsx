@@ -2,12 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import { ListOfMeals } from './list-of-meals/ListOfMeals';
 import { FirstRouteEl } from './routeElements/firstRouteEl';
 import { SecondRuteEl } from './routeElements/secondRouteEl';
 import { WindowWithButton } from './buttonsWindow/WindowWithButton';
 
 import { SettingsList } from './settings/components/settingsList';
+import { ListOfMeals } from './list-of-meals/ListOfMeals';
 
 function App() {
   return (

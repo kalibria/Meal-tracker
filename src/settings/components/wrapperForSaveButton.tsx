@@ -104,11 +104,15 @@ import { currentTime } from '../../utility/currentTime';
 import { SaveButton } from './SaveButton';
 
 interface Props {
-  hourBetweenMeals: string;
-  minuteBetweenMeals: string;
+  hourBetweenMeals: number;
+  minuteBetweenMeals: number;
   numberMeals: string;
   minuteToFirstMeal: string;
-  numberCheck: boolean;
+  isValidMealsCount: boolean;
+  // setHourBetweenMeals: React.Dispatch<React.SetStateAction<string>>;
+  // setMinuteBetweenMeals: React.Dispatch<React.SetStateAction<string>>;
+  setNumberMeals: React.Dispatch<React.SetStateAction<string>>;
+  setMinute: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface INewSettings {
@@ -121,7 +125,11 @@ export function WrapperForSaveButton({
   minuteBetweenMeals,
   numberMeals,
   minuteToFirstMeal,
-  numberCheck,
+  isValidMealsCount,
+  // setHourBetweenMeals,
+  // setMinuteBetweenMeals,
+  setNumberMeals,
+  setMinute,
 }: Props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -129,14 +137,17 @@ export function WrapperForSaveButton({
   const goToWindowWithBtn = () => {
     navigate('/button');
   };
-  const isEmptyString = validation.isEmptyString(
+  const isValidHoursAndMinutes = validation.isValidNumOfHoursAndMinutes(
     hourBetweenMeals,
     minuteBetweenMeals
   );
 
+  console.log({ isValidHoursAndMinutes });
+  console.log({ isValidMealsCount });
   const isDisabledButton = validation.isDisabledSaveButton(
-    isEmptyString,
-    numberCheck
+    isValidHoursAndMinutes,
+    isValidMealsCount
+    // todo add third option?
   );
   const settings = useSelector(selectSettings);
 
@@ -161,12 +172,14 @@ export function WrapperForSaveButton({
         time: minuteToFirstMeal,
       },
     };
-    myLocalStorage.saveSettings(newSettings);
+    myLocalStorage.setSettings(newSettings);
     const settingsFromDb = myLocalStorage.getSettings();
 
     if (!settingsFromDb) {
       return;
     } else {
+      setNumberMeals(settingsFromDb.numberOfMealsPerDay.time);
+      setMinute(settingsFromDb.numberOfMinutesToFirstMeal.time);
       batch(() => {
         dispatch(setTimeBetweenMeals(settingsFromDb.timeBetweenMeals.time));
         dispatch(
