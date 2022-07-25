@@ -5,7 +5,7 @@ export const FirstRouteEl = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate('/secondEl');
+    navigate('/welcome');
   });
 
   return <div></div>;

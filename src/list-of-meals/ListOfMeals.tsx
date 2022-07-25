@@ -7,7 +7,7 @@ import { WrapperForMeal } from './WrapperForMeal';
 export const ListOfMeals = () => {
   const navigate = useNavigate();
   const goToFirstRouteEl = () => {
-    navigate('/secondEl');
+    navigate('/welcome');
   };
   const handleClick = () => {
     goToFirstRouteEl();

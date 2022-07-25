@@ -135,7 +135,7 @@ export function WrapperForSaveButton({
   const navigate = useNavigate();
 
   const goToWindowWithBtn = () => {
-    navigate('/button');
+    navigate('/planYourMeals');
   };
   const isValidHoursAndMinutes = validation.isValidNumOfHoursAndMinutes(
     hourBetweenMeals,

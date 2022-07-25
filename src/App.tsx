@@ -15,8 +15,8 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<FirstRouteEl />} />
-          <Route path='/secondEl' element={<SecondRuteEl />} />
-          <Route path='/button' element={<WindowWithButton />} />
+          <Route path='/welcome' element={<SecondRuteEl />} />
+          <Route path='/planYourMeals' element={<WindowWithButton />} />
           <Route path='/settings' element={<SettingsList />} />
 
           <Route path='/mealList' element={<ListOfMeals />} />
