@@ -1,70 +1,9 @@
-// export interface IMeals {
-//   currentTime: number;
-//   minutesAfterWakingUp: number;
-//   timeBetweenMeals: number;
-//   numberOfMeals: number;
-// }
-//
-// export class Meals {
-//   currentTime: number;
-//   minutesAfterWakingUp: number;
-//   timeBetweenMeals: number;
-//   numberOfMeals: number;
-//
-//   constructor({
-//     currentTime,
-//     minutesAfterWakingUp,
-//     timeBetweenMeals,
-//     numberOfMeals,
-//   }: IMeals) {
-//     this.currentTime = currentTime;
-//     this.minutesAfterWakingUp = minutesAfterWakingUp;
-//     this.timeBetweenMeals = timeBetweenMeals;
-//     this.numberOfMeals = numberOfMeals;
-//   }
-//   firstMealTime() {
-//     return this.currentTime + this.minutesAfterWakingUp;
-//   }
-//   firstMealHourMin() {
-//     const dataStr = this.currentTime + this.minutesAfterWakingUp;
-//     const hours = new Date(dataStr).getHours();
-//     const minutes = new Date(dataStr).getMinutes();
-//     return `${hours} : ${minutes}`;
-//   }
-//   subsequentMeals(timeOfMeal: number) {
-//     return timeOfMeal + this.timeBetweenMeals;
-//   }
-//
-//   setArrUiTimesOfMeal() {
-//     const allMealTimes: Array<number> = [];
-//
-//     allMealTimes.fill(0, 0, this.numberOfMeals);
-//     allMealTimes[0] = this.firstMealTime();
-//
-//     const realMealTimes: Array<number> = [];
-//
-//     realMealTimes.push(allMealTimes[0]);
-//
-//     for (let i = 0; i <= allMealTimes.length; i++) {
-//       allMealTimes[i] += this.timeBetweenMeals;
-//       realMealTimes.push();
-//     }
-//
-//     return realMealTimes;
-//   }
-//
-//   setArrNumbersOfMeal() {
-//     const arrNumberOfMeals = [];
-//     for (let i = 1; i <= this.numberOfMeals; i++) {
-//       arrNumberOfMeals.push(i);
-//     }
-//     return arrNumberOfMeals;
-//   }
-// }
-
 import { currentTime } from '../utility/currentTime';
+import { serialNumberOfFirstMeal } from './constantOfListOfMeal';
+import { LocalStorage, myLocalStorage } from '../utility/LocalStorage';
+import { INewSettings } from '../settings/components/wrapperForSaveButton';
 
-export interface IMealListComponent {
+export interface IMealBL {
   number: number;
   time: number;
   eaten: boolean;
@@ -72,46 +11,78 @@ export interface IMealListComponent {
   delete: boolean;
 }
 
-export class ComponentsOfAMeal {
+export const mealBL: IMealBL = {
+  number: serialNumberOfFirstMeal,
+  time: 0,
+  eaten: false,
+  edit: false,
+  delete: false,
+};
+
+export class MealsManagerBL {
   currentTime: number;
-  dataSettings: string | null;
+  dataSettings: INewSettings | null;
+  allMealsInDayBL: Array<IMealBL>;
+  timesOfMeals: Array<number>;
+  mealsNumberInDay: number;
+  timeBetweenMeals: number;
+  minutesBeforeFirstMeal: number;
 
-  constructor(currentTime: number) {
-    this.currentTime = currentTime;
-    this.dataSettings = localStorage.getItem('settings');
+  constructor(private myLocalStorage: LocalStorage) {
+    this.dataSettings = this.myLocalStorage.getSettings();
+    this.currentTime = currentTime.getCurrentTime();
+
+    if (this.dataSettings) {
+      this.mealsNumberInDay = +this.dataSettings.numberOfMealsPerDay.time;
+      this.timeBetweenMeals = this.dataSettings.timeBetweenMeals.time;
+      this.minutesBeforeFirstMeal =
+        +this.dataSettings.numberOfMinutesToFirstMeal.time;
+    } else {
+      this.mealsNumberInDay = 0;
+      this.timeBetweenMeals = 0;
+      this.minutesBeforeFirstMeal = 0;
+    }
+    this.timesOfMeals = [];
+    this.allMealsInDayBL = [];
   }
 
-  getDataSettingsAfterPars() {
-    if (!this.dataSettings) return;
-    else return JSON.parse(this.dataSettings);
+  accumulateAllMealsTimes(): Array<number> {
+    const firstMealTime = this.getFirstMealTime();
+    const allMealTimes: number[] = new Array(this.mealsNumberInDay).fill(1);
+
+    return allMealTimes.reduce((acc: number[], time: number, iteration) => {
+      if (iteration === 0) {
+        acc[0] = firstMealTime;
+        return acc;
+      }
+
+      acc[iteration] = acc[iteration - 1] + this.timeBetweenMeals * 60 * 1000;
+
+      return acc;
+    }, []);
   }
 
-  getFirstMealTime() {
-    const minutesAfterWakingUp =
-      this.getDataSettingsAfterPars().numberOfMinutesToFirstMeal.time;
-    return minutesAfterWakingUp + this.currentTime;
+  getMealListBL() {
+    return this.accumulateAllMealsTimes();
+    // console.log('allTimes', this.timesOfMeals);
+    // .map((time) => {
+    //   mealBL.number += 1;
+    //   mealBL.time = time;
+    //   this.allMealsInDayBL.push(mealBL);
+    // });
+    // return this.allMealsInDayBL;
   }
 
-  // getSubsequentMealTime(previousTime: number) {
-  //   const timeBetweenMeal = localStorage.getItem();
-  // }
+  private getFirstMealTime(): number {
+    if (this.dataSettings) {
+      const mealTime = this.currentTime + this.minutesBeforeFirstMeal;
+      // this.timesOfMeals.push(mealTime);
+      console.log('firstTime', this.timesOfMeals);
+      return mealTime;
+    }
+
+    return Date.now();
+  }
 }
 
-const timeFirstMeal = new ComponentsOfAMeal(currentTime.getCurrentTime());
-console.log('firstTime', timeFirstMeal.getFirstMealTime());
-
-export class ComponentsOfAMealList {
-  mealListComponent: {
-    number: number;
-    time: number;
-    eaten: boolean;
-    edit: boolean;
-    delete: boolean;
-  };
-
-  constructor(mealListComponent: IMealListComponent) {
-    this.mealListComponent = mealListComponent;
-  }
-
-  createMealList() {}
-}
+export const mealsManagerBL = new MealsManagerBL(myLocalStorage);

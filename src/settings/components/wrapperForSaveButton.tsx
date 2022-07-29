@@ -109,8 +109,6 @@ interface Props {
   numberMeals: string;
   minuteToFirstMeal: string;
   isValidMealsCount: boolean;
-  // setHourBetweenMeals: React.Dispatch<React.SetStateAction<string>>;
-  // setMinuteBetweenMeals: React.Dispatch<React.SetStateAction<string>>;
   setNumberMeals: React.Dispatch<React.SetStateAction<string>>;
   setMinute: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -126,8 +124,6 @@ export function WrapperForSaveButton({
   numberMeals,
   minuteToFirstMeal,
   isValidMealsCount,
-  // setHourBetweenMeals,
-  // setMinuteBetweenMeals,
   setNumberMeals,
   setMinute,
 }: Props) {
@@ -142,8 +138,6 @@ export function WrapperForSaveButton({
     minuteBetweenMeals
   );
 
-  console.log({ isValidHoursAndMinutes });
-  console.log({ isValidMealsCount });
   const isDisabledButton = validation.isDisabledSaveButton(
     isValidHoursAndMinutes,
     isValidMealsCount

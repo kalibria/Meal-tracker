@@ -37,9 +37,6 @@ export default function TimePeriodBetweenMeals({
     setMinuteBetweenMeals(+event.target.value);
   };
 
-  console.log({ hourBetweenMeals });
-  console.log({ minuteBetweenMeals });
-
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>

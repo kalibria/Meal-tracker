@@ -14,7 +14,7 @@ export const ListOfMeals = () => {
   };
   return (
     <div>
-      {/*<WrapperForMeal />*/}
+      <WrapperForMeal />
       <div className={style.btn_position}>
         <Button text={'End the day'} handleClick={handleClick} />
       </div>

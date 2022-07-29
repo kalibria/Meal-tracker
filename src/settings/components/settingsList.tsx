@@ -13,17 +13,13 @@ export const SettingsList = () => {
   );
 
   useEffect(() => {
-    console.log('hi');
     const newSettings = myLocalStorage.getSettings();
-    console.log(settingsFromLS?.timeBetweenMeals.time);
 
     if (newSettings) {
       setSettingsFromL(settingsFromLS);
       const hours = Math.floor(newSettings.timeBetweenMeals.time / 60);
       const minutes = newSettings.timeBetweenMeals.time - hours * 60;
 
-      console.log({ hours });
-      console.log({ minutes });
       setHourBetweenMeals(hours);
       setMinuteBetweenMeals(minutes);
       setMinuteToFirstMeal(newSettings.numberOfMinutesToFirstMeal.time);
@@ -73,8 +69,6 @@ export const SettingsList = () => {
         numberMeals={numberMeals}
         minuteToFirstMeal={minuteToFirstMeal}
         isValidMealsCount={isMealCountValid}
-        // setHourBetweenMeals={setHourBetweenMeals}
-        // setMinuteBetweenMeals={setMinuteBetweenMeals}
         setNumberMeals={setNumberMeals}
         setMinute={setMinuteToFirstMeal}
       />
