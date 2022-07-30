@@ -5,22 +5,22 @@ import { INewSettings } from '../settings/components/wrapperForSaveButton';
 
 export interface IMealBL {
   number: number;
-  time: number;
+  mealTime: number;
   eaten: boolean;
   edit: boolean;
   delete: boolean;
 }
 
-export const mealBL: IMealBL = {
-  number: serialNumberOfFirstMeal,
-  time: 0,
+export const defaultMealBL: IMealBL = {
+  number: 0,
+  mealTime: 0,
   eaten: false,
   edit: false,
   delete: false,
 };
 
 export class MealsManagerBL {
-  currentTime: number;
+  currentTimeMs: number;
   dataSettings: INewSettings | null;
   allMealsInDayBL: Array<IMealBL>;
   timesOfMeals: Array<number>;
@@ -30,7 +30,7 @@ export class MealsManagerBL {
 
   constructor(private myLocalStorage: LocalStorage) {
     this.dataSettings = this.myLocalStorage.getSettings();
-    this.currentTime = currentTime.getCurrentTime();
+    this.currentTimeMs = currentTime.getCurrentTime();
 
     if (this.dataSettings) {
       this.mealsNumberInDay = +this.dataSettings.numberOfMealsPerDay.time;
@@ -46,7 +46,35 @@ export class MealsManagerBL {
     this.allMealsInDayBL = [];
   }
 
-  accumulateAllMealsTimes(): Array<number> {
+  getMealListBL(): Array<IMealBL> {
+    const allMealsTimesMs = this.accumulateAllMealsTimes();
+
+    return allMealsTimesMs.reduce((acc: IMealBL[], time, iteration) => {
+      const itemOfListBL = {
+        ...defaultMealBL,
+        number: iteration + serialNumberOfFirstMeal,
+        mealTime: time,
+      };
+
+      acc.push(itemOfListBL);
+
+      return acc;
+    }, []);
+  }
+
+  private getFirstMealTime(): number {
+    if (this.dataSettings) {
+      const mealTime =
+        this.currentTimeMs + this.minutesBeforeFirstMeal * 60 * 1000;
+      // this.timesOfMeals.push(mealTime);
+
+      return mealTime;
+    }
+
+    return Date.now();
+  }
+
+  private accumulateAllMealsTimes(): Array<number> {
     const firstMealTime = this.getFirstMealTime();
     const allMealTimes: number[] = new Array(this.mealsNumberInDay).fill(1);
 
@@ -60,28 +88,6 @@ export class MealsManagerBL {
 
       return acc;
     }, []);
-  }
-
-  getMealListBL() {
-    return this.accumulateAllMealsTimes();
-    // console.log('allTimes', this.timesOfMeals);
-    // .map((time) => {
-    //   mealBL.number += 1;
-    //   mealBL.time = time;
-    //   this.allMealsInDayBL.push(mealBL);
-    // });
-    // return this.allMealsInDayBL;
-  }
-
-  private getFirstMealTime(): number {
-    if (this.dataSettings) {
-      const mealTime = this.currentTime + this.minutesBeforeFirstMeal;
-      // this.timesOfMeals.push(mealTime);
-      console.log('firstTime', this.timesOfMeals);
-      return mealTime;
-    }
-
-    return Date.now();
   }
 }
 
