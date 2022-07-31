@@ -21,27 +21,12 @@ export const defaultMealBL: IMealBL = {
 
 export class MealsManagerBL {
   currentTimeMs: number;
-  dataSettings: INewSettings | null;
   allMealsInDayBL: Array<IMealBL>;
   timesOfMeals: Array<number>;
-  mealsNumberInDay: number;
-  timeBetweenMeals: number;
-  minutesBeforeFirstMeal: number;
 
   constructor(private myLocalStorage: LocalStorage) {
-    this.dataSettings = this.myLocalStorage.getSettings();
     this.currentTimeMs = currentTime.getCurrentTime();
 
-    if (this.dataSettings) {
-      this.mealsNumberInDay = +this.dataSettings.numberOfMealsPerDay.time;
-      this.timeBetweenMeals = this.dataSettings.timeBetweenMeals.time;
-      this.minutesBeforeFirstMeal =
-        +this.dataSettings.numberOfMinutesToFirstMeal.time;
-    } else {
-      this.mealsNumberInDay = 0;
-      this.timeBetweenMeals = 0;
-      this.minutesBeforeFirstMeal = 0;
-    }
     this.timesOfMeals = [];
     this.allMealsInDayBL = [];
   }
@@ -63,20 +48,18 @@ export class MealsManagerBL {
   }
 
   private getFirstMealTime(): number {
-    if (this.dataSettings) {
-      const mealTime =
-        this.currentTimeMs + this.minutesBeforeFirstMeal * 60 * 1000;
-      // this.timesOfMeals.push(mealTime);
+    const mealTime =
+      this.currentTimeMs +
+      myLocalStorage.getMinutesBeforeFirstMeal() * 60 * 1000;
 
-      return mealTime;
-    }
-
-    return Date.now();
+    return mealTime;
   }
 
   private accumulateAllMealsTimes(): Array<number> {
     const firstMealTime = this.getFirstMealTime();
-    const allMealTimes: number[] = new Array(this.mealsNumberInDay).fill(1);
+    const allMealTimes: number[] = new Array(
+      myLocalStorage.getMealsNumber()
+    ).fill(1);
 
     return allMealTimes.reduce((acc: number[], time: number, iteration) => {
       if (iteration === 0) {
@@ -84,7 +67,8 @@ export class MealsManagerBL {
         return acc;
       }
 
-      acc[iteration] = acc[iteration - 1] + this.timeBetweenMeals * 60 * 1000;
+      acc[iteration] =
+        acc[iteration - 1] + myLocalStorage.getTimeBetweenMeals() * 60 * 1000;
 
       return acc;
     }, []);

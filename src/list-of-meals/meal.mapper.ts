@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { IMealBL } from './Meals';
 
-interface IMealItemUi {
+export interface IMealItemUi {
   number: number;
   mealTime: string;
   eaten: boolean;

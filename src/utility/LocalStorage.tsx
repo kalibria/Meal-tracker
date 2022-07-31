@@ -1,5 +1,5 @@
 import { INewSettings } from '../settings/components/wrapperForSaveButton';
-import { Settings } from '../settings/settingsConfig';
+import { Settings, settingsScreen } from '../settings/settingsConfig';
 import { IMealBL } from '../list-of-meals/Meals';
 
 export class LocalStorage {
@@ -22,14 +22,32 @@ export class LocalStorage {
     return JSON.parse(settings) as INewSettings;
   }
 
-  setMeal(meals: Array<IMealBL>) {
-    const jsonMeal = JSON.stringify(meals);
-    localStorage.setItem('meals', jsonMeal);
+  getMealsNumber(): number {
+    const settings = localStorage.getItem('settings');
+    if (settings) {
+      const numberOFMealsString = JSON.parse(settings).numberOfMealsPerDay.time;
+      return Number(numberOFMealsString);
+    }
+    return settingsScreen.numberOfMealsPerDay.time;
   }
-  getMeal() {
-    const meal = localStorage.getItem('meal');
-    if (!meal) return null;
-    return JSON.parse(meal) as IMealBL;
+
+  getMinutesBeforeFirstMeal() {
+    const settings = localStorage.getItem('settings');
+    if (settings) {
+      const minutesBeforeMealString =
+        JSON.parse(settings).numberOfMinutesToFirstMeal.time;
+      return Number(minutesBeforeMealString);
+    }
+    return settingsScreen.numberOfMinutesToFirstMeal.time;
+  }
+
+  getTimeBetweenMeals() {
+    const settings = localStorage.getItem('settings');
+    if (settings) {
+      const timeBetweenMealsString = JSON.parse(settings).timeBetweenMeals.time;
+      return Number(timeBetweenMealsString);
+    }
+    return settingsScreen.timeBetweenMeals.time;
   }
 }
 
