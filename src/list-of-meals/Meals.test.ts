@@ -1,4 +1,4 @@
-import { MealsManagerBL } from './Meals';
+import { MealsManagerBL } from './mealsManager';
 import { LocalStorage } from '../utility/LocalStorage';
 
 describe('MealsManager', () => {

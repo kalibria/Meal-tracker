@@ -47,11 +47,10 @@ export class MealsManagerBL {
   }
 
   private getFirstMealTime(): number {
-    const mealTime =
+    return (
       this.currentTimeMs +
-      myLocalStorage.getMinutesBeforeFirstMeal() * 60 * 1000;
-
-    return mealTime;
+      myLocalStorage.getMinutesBeforeFirstMeal() * 60 * 1000
+    );
   }
 
   private accumulateAllMealsTimes(): Array<number> {

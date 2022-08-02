@@ -1,6 +1,5 @@
 import { INewSettings } from '../settings/components/wrapperForSaveButton';
 import { Settings, settingsScreen } from '../settings/settingsConfig';
-import { IMealBL } from '../list-of-meals/Meals';
 import { IMealItemUi } from '../list-of-meals/meal.mapper';
 
 export class LocalStorage {
