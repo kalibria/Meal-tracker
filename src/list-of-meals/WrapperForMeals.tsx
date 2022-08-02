@@ -1,20 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { mealsManagerBL } from './Meals';
+
 import { IMealItemUi, mealMapper } from './meal.mapper';
 import { Meal } from './Meal';
+import { myLocalStorage } from '../utility/LocalStorage';
 
 export const WrapperForMeals = () => {
   const [allMeals, setAllMeals] = useState<IMealItemUi[]>([]);
 
   useEffect(() => {
-    const mealsBL = mealsManagerBL.getMealListBL();
-
-    setAllMeals(mealMapper.fromBLToUi(mealsBL));
+    const mealsBL = myLocalStorage.getMealList();
+    if (mealsBL) setAllMeals(mealMapper.fromBLToUi(mealsBL));
   }, []);
 
-  const mealsForUi = allMeals.map((item) => {
+  const handleSubmitForEat = (mealOrderNum: number) => {
+    return () => {
+      console.log('mealOrderNum', mealOrderNum);
+    };
+  };
+
+  const mealsForUi = allMeals.map((item, index) => {
+    if (index === 0) {
+      item.eaten = true;
+    }
     return (
-      <Meal key={item.number} number={item.number} timeOfMeal={item.mealTime} />
+      <Meal
+        key={item.number}
+        number={item.number}
+        timeOfMeal={item.mealTime}
+        disabled={true}
+        handleSubmitForEat={handleSubmitForEat(item.number)}
+      />
     );
   });
 

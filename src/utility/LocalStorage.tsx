@@ -49,6 +49,18 @@ export class LocalStorage {
     }
     return settingsScreen.timeBetweenMeals.time;
   }
+
+  setMealList(data: IMealBL[]) {
+    const jsonMealList = JSON.stringify(data);
+    localStorage.setItem('mealList', jsonMealList);
+  }
+  getMealList(): IMealBL[] | null {
+    const mealList = localStorage.getItem('mealList');
+
+    if (!mealList) return null;
+
+    return JSON.parse(mealList) as IMealBL[];
+  }
 }
 
 export const myLocalStorage = new LocalStorage(false);

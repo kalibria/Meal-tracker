@@ -1,7 +1,6 @@
 import { currentTime } from '../utility/currentTime';
 import { serialNumberOfFirstMeal } from './constantOfListOfMeal';
 import { LocalStorage, myLocalStorage } from '../utility/LocalStorage';
-import { INewSettings } from '../settings/components/wrapperForSaveButton';
 
 export interface IMealBL {
   number: number;
