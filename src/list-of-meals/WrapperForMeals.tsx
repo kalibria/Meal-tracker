@@ -7,8 +7,8 @@ import { mealsManagerBL } from './mealsManager';
 
 export const WrapperForMeals = () => {
   const [allMeals, setAllMeals] = useState<IMealItemUi[]>([]);
+  const [isDeleteBtnDisable, setIsDeleteBtnDisable] = useState(false);
 
-  console.log(allMeals);
   useEffect(() => {
     const mealsBL = mealsManagerBL.getMealListBL();
 
@@ -21,8 +21,6 @@ export const WrapperForMeals = () => {
 
   const handleSubmitForEat = (mealOrderNum: number) => {
     return () => {
-      console.log('mealOrderNum', mealOrderNum);
-
       setAllMeals((prevState) => {
         const newMeals = [...prevState];
         const lastMeal = newMeals.length - 1;
@@ -30,6 +28,7 @@ export const WrapperForMeals = () => {
         if (mealOrderNum - 1 === lastMeal) {
           newMeals[mealOrderNum - 1].eatButtonDisabled = true;
           newMeals[mealOrderNum - 1].eaten = true;
+          setIsDeleteBtnDisable(true);
         } else {
           newMeals[mealOrderNum].eaten = true;
           newMeals[mealOrderNum - 1].eatButtonDisabled = true;
@@ -41,6 +40,8 @@ export const WrapperForMeals = () => {
     };
   };
 
+  const lastOrderNumber = allMeals.length;
+
   const mealsForUi = allMeals.map((item) => {
     return (
       <Meal
@@ -49,6 +50,8 @@ export const WrapperForMeals = () => {
         timeOfMeal={item.mealTime}
         eatButtonDisabled={item.eatButtonDisabled}
         handleSubmitForEat={handleSubmitForEat(item.number)}
+        conditionForDeleteBtn={item.number === lastOrderNumber}
+        isDeleteBtnActive={isDeleteBtnDisable}
       />
     );
   });

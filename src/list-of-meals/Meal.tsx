@@ -6,6 +6,8 @@ interface IMeal {
   timeOfMeal: string;
   eatButtonDisabled: boolean;
   handleSubmitForEat: React.EventHandler<React.MouseEvent> | undefined;
+  conditionForDeleteBtn: boolean;
+  isDeleteBtnActive: boolean;
 }
 
 export const Meal = ({
@@ -13,6 +15,8 @@ export const Meal = ({
   timeOfMeal,
   eatButtonDisabled,
   handleSubmitForEat,
+  conditionForDeleteBtn,
+  isDeleteBtnActive,
 }: IMeal) => {
   return (
     <div className={style.meal}>
@@ -22,7 +26,12 @@ export const Meal = ({
         Eat
       </button>
       <button>Edit</button>
-      <button>Delete</button>
+      <div>
+        {' '}
+        {conditionForDeleteBtn && (
+          <button disabled={isDeleteBtnActive}>Delete</button>
+        )}
+      </div>
     </div>
   );
 };
