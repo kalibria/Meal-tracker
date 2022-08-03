@@ -25,9 +25,16 @@ export const WrapperForMeals = () => {
 
       setAllMeals((prevState) => {
         const newMeals = [...prevState];
+        const lastMeal = newMeals.length - 1;
 
-        newMeals[mealOrderNum - 1].eaten = false;
-        newMeals[mealOrderNum + 1].eaten = true;
+        if (mealOrderNum - 1 === lastMeal) {
+          newMeals[mealOrderNum - 1].eatButtonDisabled = true;
+          newMeals[mealOrderNum - 1].eaten = true;
+        } else {
+          newMeals[mealOrderNum].eaten = true;
+          newMeals[mealOrderNum - 1].eatButtonDisabled = true;
+          newMeals[mealOrderNum].eatButtonDisabled = false;
+        }
 
         return newMeals;
       });
