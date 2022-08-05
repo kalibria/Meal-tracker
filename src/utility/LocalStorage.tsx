@@ -1,36 +1,67 @@
 import { INewSettings } from '../settings/components/wrapperForSaveButton';
+import { Settings, settingsScreen } from '../settings/settingsConfig';
+import { IMealItemUi } from '../list-of-meals/meal.mapper';
 
-class LocalStorage {
+export class LocalStorage {
   isGeneratedMeals: boolean;
 
   constructor(isGeneratedMeals: boolean) {
     this.isGeneratedMeals = isGeneratedMeals;
   }
-  saveSettings(data: INewSettings) {
+
+  setSettings(data: INewSettings | Settings): void {
     const jsonSettingsScreen = JSON.stringify(data);
     localStorage.setItem('settings', jsonSettingsScreen);
   }
-  getSettings() {
+
+  getSettings(): INewSettings | null {
     const settings = localStorage.getItem('settings');
+
     if (!settings) return null;
+
     return JSON.parse(settings) as INewSettings;
   }
-  setEndTheDay(endTheDay: boolean) {
-    localStorage.setItem('isEndTheDay', endTheDay.toString());
-    return endTheDay;
+
+  getMealsNumber(): number {
+    const settings = localStorage.getItem('settings');
+    if (settings) {
+      const numberOFMealsString = JSON.parse(settings).numberOfMealsPerDay.time;
+      return Number(numberOFMealsString);
+    }
+    return settingsScreen.numberOfMealsPerDay.time;
   }
-  getEndTheDay() {
-    return localStorage.getItem('isEndTheDay');
+
+  getMinutesBeforeFirstMeal() {
+    const settings = localStorage.getItem('settings');
+    if (settings) {
+      const minutesBeforeMealString =
+        JSON.parse(settings).numberOfMinutesToFirstMeal.time;
+      return Number(minutesBeforeMealString);
+    }
+    return settingsScreen.numberOfMinutesToFirstMeal.time;
   }
-  getIsGeneratedMeals() {
-    return localStorage.getItem('isGeneratedMeals');
+
+  getTimeBetweenMeals() {
+    const settings = localStorage.getItem('settings');
+    if (settings) {
+      const timeBetweenMealsString = JSON.parse(settings).timeBetweenMeals.time;
+      return Number(timeBetweenMealsString);
+    }
+    return settingsScreen.timeBetweenMeals.time;
   }
-  setIsGeneratedMeals(isGenerated: boolean) {
-    this.isGeneratedMeals = isGenerated;
-    localStorage.setItem('isGeneratedMeals', this.isGeneratedMeals.toString());
-    return localStorage.getItem('isGeneratedMeals');
+
+  setMealList(data: IMealItemUi[]) {
+    const jsonMealList = JSON.stringify(data);
+    localStorage.setItem('mealList', jsonMealList);
   }
+
+  // getMealList(): IMealItemUi[] | null {
+  //   const mealList = localStorage.getItem('mealList');
+  //
+  //   if (!mealList) return null;
+  //
+  //   return JSON.parse(mealList) as IMealItemUi[];
+  // }
 }
 
 export const myLocalStorage = new LocalStorage(false);
-console.log('settings', myLocalStorage.getSettings());

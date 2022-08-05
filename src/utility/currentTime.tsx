@@ -14,7 +14,7 @@ class CurrentTime {
     if (time >= startMorning && time < endMorning) return true;
     else return false;
   }
-  setTimeBetweenMealsInMin(hours: string, minutes: string) {
+  setTimeBetweenMealsInMin(hours: number, minutes: number) {
     const timeBetweenMealsInMinutes =
       Number(hours) * minutesInHour + Number(minutes);
 

@@ -1,8 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import settingsReducer from '../settings/settingsSlice';
-import keysReducer from '../buttonsWindow/SliceKeysOfScreenWithBtn';
+
+import mealReducer from '../list-of-meals/mealsSlice';
 
 export const rootReducer = combineReducers({
   settings: settingsReducer,
-  keysOfScreenWithBtn: keysReducer,
+  listOfMeals: mealReducer,
 });

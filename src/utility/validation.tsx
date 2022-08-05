@@ -15,17 +15,16 @@ class Validation {
       return false;
     }
   }
-  isEmptyString(valueHours: string, valueMinutes: string) {
-    if (valueHours === '' || valueMinutes === '') return true;
-    else return false;
+  isValidNumOfHoursAndMinutes(valueHours: number, valueMinutes: number) {
+    if (isNaN(valueHours) || isNaN(valueMinutes)) return false;
+    else return true;
   }
 
   isDisabledSaveButton(
     stringOfTimeCheck: boolean,
     numberOfMealsCheck: boolean
   ) {
-    if (stringOfTimeCheck || !numberOfMealsCheck) return true;
-    else return false;
+    return !stringOfTimeCheck || !numberOfMealsCheck;
   }
 }
 

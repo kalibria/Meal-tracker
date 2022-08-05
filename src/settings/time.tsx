@@ -52,6 +52,12 @@ export class Time implements TimeDate {
     const minutesStartFromZero = minutes.map((num) => zeroPad(num, 2));
     return minutesStartFromZero;
   };
+  convertMinute = (minute: number): string => {
+    const zeroPad = (num: number, places: number) =>
+      String(num).padStart(places, '0');
+    const minutesStartFromZero = zeroPad(minute, 2);
+    return minutesStartFromZero;
+  };
 }
 
 export const time = new Time([0], [1], [5]);
