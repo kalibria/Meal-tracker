@@ -39,7 +39,7 @@ export default function NumberOfMealsPerDay({
       >
         <TextField
           type={'number'}
-          id='outlined-basic'
+          id={'setting-num-meals'}
           size='small'
           variant='outlined'
           value={numberMeals}
