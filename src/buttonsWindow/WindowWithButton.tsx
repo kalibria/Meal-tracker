@@ -4,12 +4,13 @@ import { Button } from './button';
 import { currentTime } from '../utility/currentTime';
 import style from './btnSettings.module.css';
 import { SettingsBtn } from './settingsBtn';
+import { KnownRoutes } from '../enumsForApp';
 
 export const WindowWithButton = () => {
   const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
   const navigate = useNavigate();
   const goToMealList = () => {
-    navigate('/mealList');
+    navigate(KnownRoutes.MEAL_LIST);
   };
 
   const handleClick = () => {

@@ -8,18 +8,22 @@ import { WindowWithButton } from './buttonsWindow/WindowWithButton';
 
 import { SettingsList } from './settings/components/settingsList';
 import { ListOfMeals } from './list-of-meals/ListOfMeals';
+import { KnownRoutes } from './enumsForApp';
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path='/' element={<FirstRouteEl />} />
-          <Route path='/welcome' element={<SecondRuteEl />} />
-          <Route path='/planYourMeals' element={<WindowWithButton />} />
-          <Route path='/settings' element={<SettingsList />} />
+          <Route path={KnownRoutes.START_PAGE} element={<FirstRouteEl />} />
+          <Route path={KnownRoutes.WELCOME} element={<SecondRuteEl />} />
+          <Route
+            path={KnownRoutes.PLANE_MEALS}
+            element={<WindowWithButton />}
+          />
+          <Route path={KnownRoutes.SETTINGS} element={<SettingsList />} />
 
-          <Route path='/mealList' element={<ListOfMeals />} />
+          <Route path={KnownRoutes.MEAL_LIST} element={<ListOfMeals />} />
         </Routes>
       </Router>
     </>

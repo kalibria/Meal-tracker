@@ -102,6 +102,7 @@ import { selectSettings } from '../../redux/selectors';
 import { firstEntry } from '../../welcome/showWelcomeComponent';
 import { currentTime } from '../../utility/currentTime';
 import { SaveButton } from './SaveButton';
+import { KnownRoutes } from '../../enumsForApp';
 
 interface Props {
   hourBetweenMeals: number;
@@ -131,7 +132,7 @@ export function WrapperForSaveButton({
   const navigate = useNavigate();
 
   const goToWindowWithBtn = () => {
-    navigate('/planYourMeals');
+    navigate(KnownRoutes.PLANE_MEALS);
   };
   const isValidHoursAndMinutes = validation.isValidNumOfHoursAndMinutes(
     hourBetweenMeals,

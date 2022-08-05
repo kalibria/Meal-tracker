@@ -4,11 +4,12 @@ import style from './btnSettings.module.css';
 import { Button } from './button';
 import { myLocalStorage } from '../utility/LocalStorage';
 import { settingsScreen } from '../settings/settingsConfig';
+import { KnownRoutes } from '../enumsForApp';
 
 export const SettingsBtn = () => {
   const navigate = useNavigate();
   const showSettingsList = () => {
-    navigate('/settings');
+    navigate(KnownRoutes.SETTINGS);
   };
 
   return (

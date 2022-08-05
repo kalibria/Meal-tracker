@@ -6,6 +6,8 @@ import { MinutesToFirstMeal } from './minutesToFirstMeal';
 
 import { INewSettings, WrapperForSaveButton } from './wrapperForSaveButton';
 import { myLocalStorage } from '../../utility/LocalStorage';
+import { settingMapper } from './setting.mapper';
+import { settingsScreen } from '../settingsConfig';
 
 export const SettingsList = () => {
   const [settingsFromLS, setSettingsFromL] = useState<INewSettings | null>(
@@ -27,10 +29,18 @@ export const SettingsList = () => {
     }
   }, [settingsFromLS]);
 
-  const [hourBetweenMeals, setHourBetweenMeals] = React.useState(2);
-  const [minuteBetweenMeals, setMinuteBetweenMeals] = React.useState(20);
-  const [numberMeals, setNumberMeals] = React.useState('6');
-  const [minuteToFirstMeal, setMinuteToFirstMeal] = React.useState('21');
+  const [hourBetweenMeals, setHourBetweenMeals] = React.useState(
+    settingMapper.getHourFromBLToUI(settingsScreen.timeBetweenMeals.time)
+  );
+  const [minuteBetweenMeals, setMinuteBetweenMeals] = React.useState(
+    settingMapper.getMinsFromBLToUI(settingsScreen.timeBetweenMeals.time)
+  );
+  const [numberMeals, setNumberMeals] = React.useState(
+    settingsScreen.numberOfMealsPerDay.time.toString()
+  );
+  const [minuteToFirstMeal, setMinuteToFirstMeal] = React.useState(
+    settingsScreen.numberOfMinutesToFirstMeal.time.toString()
+  );
 
   const [isMealCountValid, setIsMealCountValid] = useState(true);
 
