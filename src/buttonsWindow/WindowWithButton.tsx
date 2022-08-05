@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from './button';
+import { Button } from '../buttons/Button';
 import { currentTime } from '../utility/currentTime';
-import style from './btnSettings.module.css';
-import { SettingsBtn } from './settingsBtn';
+import style from '../buttons/btnSettings.module.css';
+import { SettingsBtn } from '../buttons/settingsBtn';
 import { KnownRoutes } from '../enumsForApp';
 
 export const WindowWithButton = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-interface IButton {
+export interface IButton {
   text?: string;
   handleClick(): void;
   dataTest?: string;

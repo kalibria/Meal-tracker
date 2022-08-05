@@ -22,6 +22,7 @@ export const Meal = ({
     <div className={style.meal}>
       <span>{number} </span>
       <span>{timeOfMeal} </span>
+
       <button disabled={eatButtonDisabled} onClick={handleSubmitForEat}>
         Eat
       </button>

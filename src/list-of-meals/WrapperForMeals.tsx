@@ -4,6 +4,8 @@ import { IMealItemUi, mealMapper } from './meal.mapper';
 import { Meal } from './Meal';
 import { myLocalStorage } from '../utility/LocalStorage';
 import { mealsManagerBL } from './mealsManager';
+import { currentTime } from '../utility/currentTime';
+import { timeManager } from '../utility/time.manager';
 
 export const WrapperForMeals = () => {
   const [allMeals, setAllMeals] = useState<IMealItemUi[]>([]);
@@ -24,6 +26,12 @@ export const WrapperForMeals = () => {
       setAllMeals((prevState) => {
         const newMeals = [...prevState];
         const lastMeal = newMeals.length - 1;
+
+        const timeOnClickMs = currentTime.getCurrentTime();
+        const newTimeForUI = timeManager.timeFromBLToUI(timeOnClickMs);
+        newMeals[mealOrderNum - 1].mealTime = newTimeForUI;
+
+        console.log('timeOnClick', newTimeForUI);
 
         if (mealOrderNum - 1 === lastMeal) {
           newMeals[mealOrderNum - 1].eatButtonDisabled = true;
