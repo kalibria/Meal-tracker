@@ -1,11 +1,12 @@
 import React from 'react';
 import style from './meals.module.css';
+import { Eat_button } from './Eat_button';
 
 interface IMeal {
   number: number;
   timeOfMeal: string;
   eatButtonDisabled: boolean;
-  handleSubmitForEat: React.EventHandler<React.MouseEvent> | undefined;
+  handleSubmitForEat: React.MouseEventHandler<HTMLButtonElement>;
   conditionForDeleteBtn: boolean;
   isDeleteBtnActive: boolean;
 }
@@ -22,10 +23,10 @@ export const Meal = ({
     <div className={style.meal}>
       <span>{number} </span>
       <span>{timeOfMeal} </span>
-
-      <button disabled={eatButtonDisabled} onClick={handleSubmitForEat}>
-        Eat
-      </button>
+      <Eat_button
+        disabled={eatButtonDisabled}
+        handleSubmitForEat={handleSubmitForEat}
+      />
       <button>Edit</button>
       <div>
         {' '}

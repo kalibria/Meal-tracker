@@ -22,7 +22,7 @@ export const WrapperForMeals = () => {
   }, [allMeals]);
 
   const handleSubmitForEat = (mealOrderNum: number) => {
-    return () => {
+    return (event: React.MouseEvent) => {
       setAllMeals((prevState) => {
         const newMeals = [...prevState];
         const lastMeal = newMeals.length - 1;
@@ -30,8 +30,6 @@ export const WrapperForMeals = () => {
         const timeOnClickMs = currentTime.getCurrentTime();
         const newTimeForUI = timeManager.timeFromBLToUI(timeOnClickMs);
         newMeals[mealOrderNum - 1].mealTime = newTimeForUI;
-
-        console.log('timeOnClick', newTimeForUI);
 
         if (mealOrderNum - 1 === lastMeal) {
           newMeals[mealOrderNum - 1].eatButtonDisabled = true;
