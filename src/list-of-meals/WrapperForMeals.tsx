@@ -5,7 +5,6 @@ import { Meal } from './Meal';
 import { myLocalStorage } from '../utility/LocalStorage';
 import { mealsManagerBL } from './mealsManager';
 import { currentTime } from '../utility/currentTime';
-import { timeManager } from '../utility/time.manager';
 
 export const WrapperForMeals = () => {
   const [allMeals, setAllMeals] = useState<IMealItemUi[]>([]);
@@ -24,21 +23,15 @@ export const WrapperForMeals = () => {
   const handleSubmitForEat = (mealOrderNum: number) => {
     return (event: React.MouseEvent) => {
       setAllMeals((prevState) => {
-        const newMeals = [...prevState];
-        const lastMeal = newMeals.length - 1;
-
         const timeOnClickMs = currentTime.getCurrentTime();
-        const newTimeForUI = timeManager.timeFromBLToUI(timeOnClickMs);
-        newMeals[mealOrderNum - 1].mealTime = newTimeForUI;
+        const newMeals = mealMapper.fromUIToBL(
+          allMeals,
+          mealOrderNum,
+          timeOnClickMs
+        );
 
-        if (mealOrderNum - 1 === lastMeal) {
-          newMeals[mealOrderNum - 1].eatButtonDisabled = true;
-          newMeals[mealOrderNum - 1].eaten = true;
+        if (mealOrderNum - 1 === allMeals.length) {
           setIsDeleteBtnDisable(true);
-        } else {
-          newMeals[mealOrderNum].eaten = true;
-          newMeals[mealOrderNum - 1].eatButtonDisabled = true;
-          newMeals[mealOrderNum].eatButtonDisabled = false;
         }
 
         return newMeals;
@@ -58,6 +51,7 @@ export const WrapperForMeals = () => {
         handleSubmitForEat={handleSubmitForEat(item.number)}
         conditionForDeleteBtn={item.number === lastOrderNumber}
         isDeleteBtnActive={isDeleteBtnDisable}
+        eatenIcon={item.eatenIcon}
       />
     );
   });

@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './meals.module.css';
-import { Eat_button } from './Eat_button';
+import { EatButton } from './EatButton';
+import { IMealItemUi } from './meal.mapper';
 
 interface IMeal {
   number: number;
@@ -9,6 +10,7 @@ interface IMeal {
   handleSubmitForEat: React.MouseEventHandler<HTMLButtonElement>;
   conditionForDeleteBtn: boolean;
   isDeleteBtnActive: boolean;
+  eatenIcon: string;
 }
 
 export const Meal = ({
@@ -18,14 +20,16 @@ export const Meal = ({
   handleSubmitForEat,
   conditionForDeleteBtn,
   isDeleteBtnActive,
+  eatenIcon,
 }: IMeal) => {
   return (
     <div className={style.meal}>
       <span>{number} </span>
       <span>{timeOfMeal} </span>
-      <Eat_button
+      <EatButton
         disabled={eatButtonDisabled}
         handleSubmitForEat={handleSubmitForEat}
+        eatenIcon={eatenIcon}
       />
       <button>Edit</button>
       <div>

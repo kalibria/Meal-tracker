@@ -4,10 +4,25 @@ import { Button } from '../buttons/Button';
 interface IEatButton {
   disabled: boolean;
   handleSubmitForEat: React.MouseEventHandler<HTMLButtonElement>;
+  eatenIcon: string;
 }
 
-export const Eat_button = ({ disabled, handleSubmitForEat }: IEatButton) => {
+export const EatButton = ({
+  disabled,
+  handleSubmitForEat,
+  eatenIcon,
+}: IEatButton) => {
   return (
-    <Button disabled={disabled} handleClick={handleSubmitForEat} text={'Eat'} />
+    <>
+      {eatenIcon !== '' ? (
+        <img src={eatenIcon} alt={'icon'} />
+      ) : (
+        <Button
+          disabled={disabled}
+          handleClick={handleSubmitForEat}
+          text={'Eat'}
+        />
+      )}
+    </>
   );
 };
