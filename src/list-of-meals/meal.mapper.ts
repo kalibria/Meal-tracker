@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import { IMealBL } from './mealsManager';
 import { iconEaten } from './constantOfListOfMeal';
 import { timeManager } from '../utility/time.manager';
+import { myLocalStorage } from '../utility/LocalStorage';
 
 export interface IMealItemUi {
   number: number;
@@ -32,22 +33,27 @@ class MealMapper {
 
   fromUIToBL(mealsUI: IMealItemUi[], mealOrder: number, time: number) {
     const newMeals = [...mealsUI];
-    console.log('newMeals', newMeals);
-    console.log('mealsUI', mealsUI);
     const lastMealNumber = newMeals.length - 1;
 
-    const newTimeForUI = timeManager.timeFromBLToUI(time);
-    newMeals[mealOrder - 1].mealTime = newTimeForUI;
+    const newTimeForEatenMealUI = timeManager.timeFromBLToUI(time);
+
+    newMeals[mealOrder - 1].mealTime = newTimeForEatenMealUI;
+    for (let i = mealOrder; i <= lastMealNumber; i++) {
+      const mealTimeMS = timeManager.timeFromUIToBL(newMeals[i - 1].mealTime);
+      const newTimeMS =
+        mealTimeMS + myLocalStorage.getTimeBetweenMeals() * 60000;
+
+      newMeals[i].mealTime = timeManager.timeFromBLToUI(newTimeMS);
+    }
+
     newMeals[mealOrder - 1].eatenIcon = iconEaten;
 
     if (mealOrder - 1 === lastMealNumber) {
       newMeals[mealOrder - 1].eatButtonDisabled = true;
       newMeals[mealOrder - 1].eaten = true;
-      // setIsDeleteBtnDisable(true);
     } else {
-      console.log('mealOrder', mealOrder);
       newMeals[mealOrder - 1].eaten = true;
-      console.log('newMeals[mealOrder - 1]', newMeals[mealOrder - 1]);
+
       newMeals[mealOrder - 1].eatButtonDisabled = true;
       newMeals[mealOrder].eatButtonDisabled = false;
     }
