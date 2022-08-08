@@ -13,9 +13,9 @@ export const EatButton = ({
   eatenIcon,
 }: IEatButton) => {
   return (
-    <>
+    <div>
       {eatenIcon !== '' ? (
-        <img src={eatenIcon} alt={'icon'} />
+        <img src={eatenIcon} alt={'icon'} width={'30px'} />
       ) : (
         <Button
           disabled={disabled}
@@ -23,6 +23,6 @@ export const EatButton = ({
           text={'Eat'}
         />
       )}
-    </>
+    </div>
   );
 };
