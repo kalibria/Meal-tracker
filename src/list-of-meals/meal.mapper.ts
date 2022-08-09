@@ -38,10 +38,11 @@ class MealMapper {
     const newTimeForEatenMealUI = timeManager.timeFromBLToUI(time);
 
     newMeals[mealOrder - 1].mealTime = newTimeForEatenMealUI;
+
     for (let i = mealOrder; i <= lastMealNumber; i++) {
       const mealTimeMS = timeManager.timeFromUIToBL(newMeals[i - 1].mealTime);
       const newTimeMS =
-        mealTimeMS + myLocalStorage.getTimeBetweenMeals() * 60000;
+        mealTimeMS + myLocalStorage.getTimeBetweenMeals() * 60 * 1000;
 
       newMeals[i].mealTime = timeManager.timeFromBLToUI(newTimeMS);
     }
@@ -59,6 +60,19 @@ class MealMapper {
     }
     return newMeals;
   }
+
+  mealsFromUiToBl = (mealsUi: IMealItemUi[]): IMealBL[] => {
+    return mealsUi.reduce((acc: IMealBL[], item: IMealItemUi) => {
+      const timeBL = timeManager.timeFromUIToBL(item.mealTime);
+      const newItem: IMealBL = {
+        ...item,
+        mealTime: timeBL,
+      };
+      acc.push(newItem);
+
+      return acc;
+    }, []);
+  };
 }
 
 export const mealMapper = new MealMapper();

@@ -5,6 +5,8 @@ import { currentTime } from '../utility/currentTime';
 import style from '../buttons/btnSettings.module.css';
 import { SettingsBtn } from '../buttons/settingsBtn';
 import { KnownRoutes } from '../enumsForApp';
+import { myLocalStorage } from '../utility/LocalStorage';
+import { mealsManagerBL } from '../list-of-meals/mealsManager';
 
 export const WindowWithButton = () => {
   const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
@@ -15,6 +17,7 @@ export const WindowWithButton = () => {
 
   const handleClick = () => {
     goToMealList();
+    myLocalStorage.setMealListBL(mealsManagerBL.getMealListBL());
   };
   return (
     <div>

@@ -7,17 +7,19 @@ import { mealsManagerBL } from './mealsManager';
 import { currentTime } from '../utility/currentTime';
 
 export const WrapperForMeals = () => {
-  const [allMeals, setAllMeals] = useState<IMealItemUi[]>([]);
+  const [allMeals, setAllMeals] = useState<IMealItemUi[]>(
+    mealMapper.fromBLToUi(mealsManagerBL.isMealListInBL())
+  );
   const [isDeleteBtnDisable, setIsDeleteBtnDisable] = useState(false);
 
   useEffect(() => {
-    const mealsBL = mealsManagerBL.getMealListBL();
+    const mealsBL = mealsManagerBL.isMealListInBL();
 
     if (mealsBL) setAllMeals(mealMapper.fromBLToUi(mealsBL));
   }, []);
 
   useEffect(() => {
-    myLocalStorage.setMealList(allMeals);
+    myLocalStorage.setMealListBL(mealMapper.mealsFromUiToBl(allMeals));
   }, [allMeals]);
 
   const handleSubmitForEat = (mealOrderNum: number) => {
