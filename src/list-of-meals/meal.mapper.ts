@@ -14,21 +14,27 @@ export interface IMealItemUi {
   delete: boolean;
 }
 
-class MealMapper {
+export class MealMapper {
   fromBLToUi(mealList: Array<IMealBL>): Array<IMealItemUi> {
-    return mealList.reduce((acc: IMealItemUi[], mealItem) => {
-      const timeForUI = format(mealItem.mealTime, "HH ':' mm");
+    return mealList.reduce(
+      (acc: IMealItemUi[], mealItem, index, allOriginalMeals) => {
+        const timeForUI = format(mealItem.mealTime, "HH ':' mm");
 
-      const itemForUI: IMealItemUi = {
-        ...mealItem,
-        mealTime: timeForUI,
-        eatButtonDisabled: mealItem.eaten || mealItem.number !== 1,
-        eatenIcon: '',
-      };
-      acc.push(itemForUI);
+        const itemForUI: IMealItemUi = {
+          ...mealItem,
+          mealTime: timeForUI,
+          eatButtonDisabled: MealMapper.isEatButtonDisabled(
+            mealItem,
+            allOriginalMeals
+          ),
+          eatenIcon: mealItem.eaten ? iconEaten : '',
+        };
+        acc.push(itemForUI);
 
-      return acc;
-    }, []);
+        return acc;
+      },
+      []
+    );
   }
 
   fromUIToBL(mealsUI: IMealItemUi[], mealOrder: number, time: number) {
@@ -73,6 +79,30 @@ class MealMapper {
       return acc;
     }, []);
   };
+
+  static isEatButtonDisabled(meal: IMealBL, meals: IMealBL[]): boolean {
+    const enabled = false;
+    const disabled = true;
+
+    const noMealIsEaten = meals.every((meal) => !meal.eaten);
+
+    if (meal.number === 1 && noMealIsEaten) {
+      return enabled;
+    }
+
+    const prevMeal = meals[meal.number - 2];
+    const lastMeal = meals.at(-1);
+
+    if (meal.number === lastMeal?.number && prevMeal?.eaten) {
+      return meal.eaten;
+    }
+
+    if (prevMeal?.eaten && !meal.eaten) {
+      return enabled;
+    }
+
+    return disabled;
+  }
 }
 
 export const mealMapper = new MealMapper();
