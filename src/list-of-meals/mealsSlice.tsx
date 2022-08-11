@@ -14,7 +14,7 @@ export const mealsSlice = createSlice({
   name: 'meals',
   initialState: listOfMeals,
   reducers: {
-    setListOfMeals: (state, action) => {
+    setListOfMeals: () => {
       console.log('hi');
     },
   },

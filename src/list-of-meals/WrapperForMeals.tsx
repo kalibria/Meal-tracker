@@ -23,10 +23,10 @@ export const WrapperForMeals = () => {
   }, [allMeals]);
 
   const handleSubmitForEat = (mealOrderNum: number) => {
-    return (event: React.MouseEvent) => {
-      setAllMeals((prevState) => {
+    return () => {
+      setAllMeals(() => {
         const timeOnClickMs = currentTime.getCurrentTime();
-        console.log('time', timeOnClickMs);
+
         const newMeals = mealMapper.fromUIToBL(
           allMeals,
           mealOrderNum,

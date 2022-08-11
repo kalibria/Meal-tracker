@@ -85,9 +85,6 @@
 import * as React from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import style from './settings.module.css';
 import { useDispatch, batch, useSelector } from 'react-redux';
 
 import {

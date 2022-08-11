@@ -1,5 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router';
+
 import { Button } from '../buttons/Button';
 import { currentTime } from '../utility/currentTime';
 import style from '../buttons/btnSettings.module.css';
@@ -10,20 +11,30 @@ import { mealsManagerBL } from '../list-of-meals/mealsManager';
 
 export const WindowWithButton = () => {
   const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
+
   const navigate = useNavigate();
-  const goToMealList = () => {
+
+  const goToMealList = useCallback(() => {
     navigate(KnownRoutes.MEAL_LIST);
-  };
+  }, [navigate]);
 
   const handleClick = () => {
     goToMealList();
     myLocalStorage.setMealListBL(mealsManagerBL.getMealListBL());
   };
+
+  useEffect(() => {
+    if (myLocalStorage.getMealListBL().length > 0) {
+      goToMealList();
+    }
+  }, [goToMealList]);
+
   return (
     <div>
       <div className={style.btn_settings_position}>
         <SettingsBtn />
       </div>
+
       <div className={style.btn_position}>
         <Button
           text={isMorning ? 'Good morning!!!' : 'Plan your meals'}
