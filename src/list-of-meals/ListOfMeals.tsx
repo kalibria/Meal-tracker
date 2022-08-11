@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../buttonsWindow/button';
-import style from '../buttonsWindow/btnSettings.module.css';
+import { Button } from '../buttons/Button';
+import style from '../buttons/btnSettings.module.css';
 import { WrapperForMeals } from './WrapperForMeals';
 import { KnownRoutes } from '../enumsForApp';
 

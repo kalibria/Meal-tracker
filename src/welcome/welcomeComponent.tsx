@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './welcom.module.css';
-import { SettingsBtn } from '../buttonsWindow/settingsBtn';
-import style from '../buttonsWindow/btnSettings.module.css';
+import { SettingsBtn } from '../buttons/settingsBtn';
+import style from '../buttons/btnSettings.module.css';
 
 export function WelcomeComponent() {
   return (

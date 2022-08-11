@@ -1,6 +1,6 @@
 import { INewSettings } from '../settings/components/wrapperForSaveButton';
 import { Settings, settingsScreen } from '../settings/settingsConfig';
-import { IMealItemUi } from '../list-of-meals/meal.mapper';
+import { IMealBL } from '../list-of-meals/mealsManager';
 
 export class LocalStorage {
   isGeneratedMeals: boolean;
@@ -50,18 +50,18 @@ export class LocalStorage {
     return settingsScreen.timeBetweenMeals.time;
   }
 
-  setMealList(data: IMealItemUi[]) {
+  setMealListBL(data: IMealBL[]) {
     const jsonMealList = JSON.stringify(data);
     localStorage.setItem('mealList', jsonMealList);
   }
 
-  // getMealList(): IMealItemUi[] | null {
-  //   const mealList = localStorage.getItem('mealList');
-  //
-  //   if (!mealList) return null;
-  //
-  //   return JSON.parse(mealList) as IMealItemUi[];
-  // }
+  getMealListBL(): IMealBL[] {
+    const mealList = localStorage.getItem('mealList');
+
+    if (!mealList) return [];
+
+    return JSON.parse(mealList) as IMealBL[];
+  }
 }
 
 export const myLocalStorage = new LocalStorage(false);

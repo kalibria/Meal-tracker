@@ -46,6 +46,16 @@ export class MealsManagerBL {
     }, []);
   }
 
+  getActualMealListBL() {
+    const isMealListInLS = myLocalStorage.getMealListBL();
+
+    if (isMealListInLS.length === 0) {
+      return this.getMealListBL();
+    } else {
+      return myLocalStorage.getMealListBL();
+    }
+  }
+
   private getFirstMealTime(): number {
     return (
       this.currentTimeMs +

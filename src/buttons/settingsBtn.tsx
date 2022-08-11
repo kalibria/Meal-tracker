@@ -1,9 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from './btnSettings.module.css';
-import { Button } from './button';
-import { myLocalStorage } from '../utility/LocalStorage';
-import { settingsScreen } from '../settings/settingsConfig';
+import { Button } from './Button';
 import { KnownRoutes } from '../enumsForApp';
 
 export const SettingsBtn = () => {

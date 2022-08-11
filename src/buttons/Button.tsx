@@ -1,12 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
 
-interface IButton {
+export interface IButton {
   text?: string;
-  handleClick(): void;
+  handleClick: React.MouseEventHandler<HTMLButtonElement>;
   dataTest?: string;
   classNames?: string[];
   children?: React.ReactNode;
+  disabled?: boolean;
 }
 
 export const Button = ({
@@ -15,12 +16,14 @@ export const Button = ({
   dataTest,
   children,
   classNames,
+  disabled,
 }: IButton) => {
   return (
     <button
       onClick={handleClick}
       data-testid={dataTest}
       className={cx(classNames)}
+      disabled={disabled}
     >
       {text}
       {children}
