@@ -1,21 +1,22 @@
 import React from 'react';
 import { Button } from '../buttons/Button';
+import { iconEaten } from './constantOfListOfMeal';
 
 interface IEatButton {
   disabled: boolean;
   handleSubmitForEat: React.MouseEventHandler<HTMLButtonElement>;
-  eatenIcon: string;
+  eaten: boolean;
 }
 
 export const EatButton = ({
   disabled,
   handleSubmitForEat,
-  eatenIcon,
+  eaten,
 }: IEatButton) => {
   return (
     <div>
-      {eatenIcon !== '' ? (
-        <img src={eatenIcon} alt={'icon'} width={'30px'} />
+      {eaten ? (
+        <img src={iconEaten} alt={'icon'} width={'30px'} />
       ) : (
         <Button
           disabled={disabled}

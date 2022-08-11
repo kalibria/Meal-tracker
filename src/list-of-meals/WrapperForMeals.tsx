@@ -8,12 +8,12 @@ import { currentTime } from '../utility/currentTime';
 
 export const WrapperForMeals = () => {
   const [allMeals, setAllMeals] = useState<IMealItemUi[]>(
-    mealMapper.fromBLToUi(mealsManagerBL.isMealListInBL())
+    mealMapper.fromBLToUi(mealsManagerBL.getActualMealListBL())
   );
   const [isDeleteBtnDisable, setIsDeleteBtnDisable] = useState(false);
 
   useEffect(() => {
-    const mealsBL = mealsManagerBL.isMealListInBL();
+    const mealsBL = mealsManagerBL.getActualMealListBL();
 
     if (mealsBL) setAllMeals(mealMapper.fromBLToUi(mealsBL));
   }, []);
@@ -54,7 +54,7 @@ export const WrapperForMeals = () => {
         handleSubmitForEat={handleSubmitForEat(item.number)}
         conditionForDeleteBtn={item.number === lastOrderNumber}
         isDeleteBtnActive={isDeleteBtnDisable}
-        eatenIcon={item.eatenIcon}
+        eaten={item.eaten}
       />
     );
   });

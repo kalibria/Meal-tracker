@@ -9,7 +9,7 @@ export interface IMealItemUi {
   mealTime: string;
   eaten: boolean;
   eatButtonDisabled: boolean;
-  eatenIcon: string;
+  // eatenIcon: string;
   edit: boolean;
   delete: boolean;
 }
@@ -27,7 +27,7 @@ export class MealMapper {
             mealItem,
             allOriginalMeals
           ),
-          eatenIcon: mealItem.eaten ? iconEaten : '',
+          // eatenIcon: mealItem.eaten ? iconEaten : '',
         };
         acc.push(itemForUI);
 
@@ -53,7 +53,7 @@ export class MealMapper {
       newMeals[i].mealTime = timeManager.timeFromBLToUI(newTimeMS);
     }
 
-    newMeals[mealOrder - 1].eatenIcon = iconEaten;
+    // newMeals[mealOrder - 1].eatenIcon = iconEaten;
 
     if (mealOrder - 1 === lastMealNumber) {
       newMeals[mealOrder - 1].eatButtonDisabled = true;

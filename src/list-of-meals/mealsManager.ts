@@ -46,7 +46,7 @@ export class MealsManagerBL {
     }, []);
   }
 
-  isMealListInBL() {
+  getActualMealListBL() {
     const isMealListInLS = myLocalStorage.getMealListBL();
 
     if (isMealListInLS.length === 0) {
