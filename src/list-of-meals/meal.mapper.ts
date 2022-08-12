@@ -1,6 +1,5 @@
 import { format } from 'date-fns';
 import { IMealBL } from './mealsManager';
-import { iconEaten } from './constantOfListOfMeal';
 import { timeManager } from '../utility/time.manager';
 import { myLocalStorage } from '../utility/LocalStorage';
 
