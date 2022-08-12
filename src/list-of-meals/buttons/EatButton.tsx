@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '../buttons/Button';
-import { iconEaten } from './constantOfListOfMeal';
+import { Button } from '../../buttons/Button';
+import { iconEaten } from '../constantOfListOfMeal';
 
 interface IEatButton {
   disabled: boolean;

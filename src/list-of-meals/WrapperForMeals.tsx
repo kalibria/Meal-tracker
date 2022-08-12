@@ -55,6 +55,7 @@ export const WrapperForMeals = () => {
         conditionForDeleteBtn={item.number === lastOrderNumber}
         isDeleteBtnActive={isDeleteBtnDisable}
         eaten={item.eaten}
+        allMealsLength={allMeals.length}
       />
     );
   });

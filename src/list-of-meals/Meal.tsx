@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './meals.module.css';
-import { EatButton } from './EatButton';
+import { EatButton } from './buttons/EatButton';
+import { EditButton } from './buttons/EditButton';
 
 interface IMeal {
   number: number;
@@ -10,6 +11,7 @@ interface IMeal {
   conditionForDeleteBtn: boolean;
   isDeleteBtnActive: boolean;
   eaten: boolean;
+  allMealsLength: number;
 }
 
 export const Meal = ({
@@ -20,6 +22,7 @@ export const Meal = ({
   conditionForDeleteBtn,
   isDeleteBtnActive,
   eaten,
+  allMealsLength,
 }: IMeal) => {
   return (
     <div className={style.meal}>
@@ -30,7 +33,11 @@ export const Meal = ({
         handleSubmitForEat={handleSubmitForEat}
         eaten={eaten}
       />
-      <button>Edit</button>
+      <EditButton
+        allMealsLength={allMealsLength}
+        handleSubmitForEat={handleSubmitForEat}
+      />
+
       <div>
         {' '}
         {conditionForDeleteBtn && (
