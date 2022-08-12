@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../../buttons/Button';
 import ModalWindowWithTime from '../ModalWindowWithTime';
 
 interface IEditButton {
   allMealsLength: number;
-  //  handleSubmitForEdit: React.MouseEventHandler<HTMLButtonElement>;
-  // handleSubmitForEdit: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const EditButton = ({ allMealsLength }: IEditButton) => {
+  const [isClick, setIsClick] = useState(false);
+
   const handleSubmitForEdit = () => {
-    console.log('hi');
+    setIsClick(true);
   };
 
   return (
@@ -22,7 +22,7 @@ export const EditButton = ({ allMealsLength }: IEditButton) => {
           text={'Edit'}
         />
       )}
-      <ModalWindowWithTime />
+      {isClick && <ModalWindowWithTime />}
     </div>
   );
 };
