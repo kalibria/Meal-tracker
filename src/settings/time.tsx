@@ -1,4 +1,6 @@
 import {
+  initialHourForModalWindow,
+  maxHourForModalWindow,
   maxHoursBetweenMeals,
   minutesInHour,
   startMinuteBetweenMeals,
@@ -44,6 +46,15 @@ export class Time implements TimeDate {
     for (let i = maxHoursBetweenMeals; i <= maxHoursBetweenMeals; ++i) {
       this.hours.push(i);
     }
+  }
+
+  prepareHoursForModalWindow() {
+    const newHours: number[] = [];
+
+    for (let i = initialHourForModalWindow; i <= maxHourForModalWindow; ++i) {
+      newHours.push(i);
+    }
+    return newHours;
   }
 
   convertMinutes = (minutes: Array<number>): Array<string> => {

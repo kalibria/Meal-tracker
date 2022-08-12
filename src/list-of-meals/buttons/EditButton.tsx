@@ -1,27 +1,28 @@
 import React from 'react';
 import { Button } from '../../buttons/Button';
-import { iconEaten } from '../constantOfListOfMeal';
+import ModalWindowWithTime from '../ModalWindowWithTime';
 
 interface IEditButton {
   allMealsLength: number;
-  // disabled: boolean;
   //  handleSubmitForEdit: React.MouseEventHandler<HTMLButtonElement>;
-  handleSubmitForEat: React.MouseEventHandler<HTMLButtonElement>;
+  // handleSubmitForEdit: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const EditButton = ({
-  allMealsLength,
-  handleSubmitForEat,
-}: IEditButton) => {
+export const EditButton = ({ allMealsLength }: IEditButton) => {
+  const handleSubmitForEdit = () => {
+    console.log('hi');
+  };
+
   return (
     <div>
       {allMealsLength === 6 && (
         <Button
-          // disabled={disabled}
-          handleClick={handleSubmitForEat}
+          disabled={false}
+          handleClick={handleSubmitForEdit}
           text={'Edit'}
         />
       )}
+      <ModalWindowWithTime />
     </div>
   );
 };

@@ -33,10 +33,7 @@ export const Meal = ({
         handleSubmitForEat={handleSubmitForEat}
         eaten={eaten}
       />
-      <EditButton
-        allMealsLength={allMealsLength}
-        handleSubmitForEat={handleSubmitForEat}
-      />
+      <EditButton allMealsLength={allMealsLength} />
 
       <div>
         {' '}
