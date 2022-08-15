@@ -5,7 +5,11 @@ import style from '../buttons/btnSettings.module.css';
 import { WrapperForMeals } from './WrapperForMeals';
 import { KnownRoutes } from '../enumsForApp';
 
-export const ListOfMeals = () => {
+interface IListOfMeals {
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const ListOfMeals = ({ setShowModal }: IListOfMeals) => {
   const navigate = useNavigate();
   const goToFirstRouteEl = () => {
     navigate(KnownRoutes.WELCOME);
@@ -15,7 +19,7 @@ export const ListOfMeals = () => {
   };
   return (
     <div>
-      <WrapperForMeals />
+      <WrapperForMeals setShowModal={setShowModal} />
       <div className={style.btn_position}>
         <Button text={'End the day'} handleClick={handleClick} />
       </div>

@@ -12,6 +12,7 @@ interface IMeal {
   isDeleteBtnActive: boolean;
   eaten: boolean;
   allMealsLength: number;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Meal = ({
@@ -23,6 +24,7 @@ export const Meal = ({
   isDeleteBtnActive,
   eaten,
   allMealsLength,
+  setShowModal,
 }: IMeal) => {
   return (
     <div className={style.meal}>
@@ -33,7 +35,7 @@ export const Meal = ({
         handleSubmitForEat={handleSubmitForEat}
         eaten={eaten}
       />
-      <EditButton allMealsLength={allMealsLength} />
+      <EditButton allMealsLength={allMealsLength} setShowModal={setShowModal} />
 
       <div>
         {' '}

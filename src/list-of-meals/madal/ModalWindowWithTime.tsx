@@ -3,10 +3,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { minutes, time } from '../settings/time';
-import { currentTime } from '../utility/currentTime';
+import { minutes, time } from '../../settings/time';
+import { currentTime } from '../../utility/currentTime';
 
-export default function ModalWindowWithTime() {
+export const ModalWindowWithTime = () => {
   const [currentHour, setCurrentHour] = React.useState(
     currentTime.getCurrentHours().toString()
   );
@@ -74,4 +74,4 @@ export default function ModalWindowWithTime() {
       </FormControl>
     </div>
   );
-}
+};

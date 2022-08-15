@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '../../buttons/Button';
-import ModalWindowWithTime from '../ModalWindowWithTime';
 
 interface IEditButton {
   allMealsLength: number;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const EditButton = ({ allMealsLength }: IEditButton) => {
-  const [isClick, setIsClick] = useState(false);
-
+export const EditButton = ({ allMealsLength, setShowModal }: IEditButton) => {
   const handleSubmitForEdit = () => {
-    setIsClick(true);
+    setShowModal(true);
+    console.log('setShowModal', setShowModal);
   };
 
   return (
@@ -22,7 +21,6 @@ export const EditButton = ({ allMealsLength }: IEditButton) => {
           text={'Edit'}
         />
       )}
-      {isClick && <ModalWindowWithTime />}
     </div>
   );
 };

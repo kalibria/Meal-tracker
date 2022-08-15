@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -9,8 +9,12 @@ import { WindowWithButton } from './buttonsWindow/WindowWithButton';
 import { SettingsList } from './settings/components/settingsList';
 import { ListOfMeals } from './list-of-meals/ListOfMeals';
 import { KnownRoutes } from './enumsForApp';
+import ModalWindow from './list-of-meals/madal/ModalWindow';
+import { ModalWindowWithTime } from './list-of-meals/madal/ModalWindowWithTime';
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
       <Router>
@@ -23,9 +27,18 @@ function App() {
           />
           <Route path={KnownRoutes.SETTINGS} element={<SettingsList />} />
 
-          <Route path={KnownRoutes.MEAL_LIST} element={<ListOfMeals />} />
+          <Route
+            path={KnownRoutes.MEAL_LIST}
+            element={<ListOfMeals setShowModal={setShowModal} />}
+          />
         </Routes>
       </Router>
+      <div id='modal'></div>
+      {showModal && (
+        <ModalWindow onClose={() => setShowModal(false)}>
+          <ModalWindowWithTime />
+        </ModalWindow>
+      )}
     </>
   );
 }

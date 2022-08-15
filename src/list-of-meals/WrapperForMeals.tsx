@@ -6,7 +6,11 @@ import { myLocalStorage } from '../utility/LocalStorage';
 import { mealsManagerBL } from './mealsManager';
 import { currentTime } from '../utility/currentTime';
 
-export const WrapperForMeals = () => {
+interface IWrapperForMeals {
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   const [allMeals, setAllMeals] = useState<IMealItemUi[]>(
     mealMapper.fromBLToUi(mealsManagerBL.getActualMealListBL())
   );
@@ -56,6 +60,7 @@ export const WrapperForMeals = () => {
         isDeleteBtnActive={isDeleteBtnDisable}
         eaten={item.eaten}
         allMealsLength={allMeals.length}
+        setShowModal={setShowModal}
       />
     );
   });
