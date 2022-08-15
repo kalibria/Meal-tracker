@@ -9,7 +9,6 @@ interface IEditButton {
 export const EditButton = ({ allMealsLength, setShowModal }: IEditButton) => {
   const handleSubmitForEdit = () => {
     setShowModal(true);
-    console.log('setShowModal', setShowModal);
   };
 
   return (

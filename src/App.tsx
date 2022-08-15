@@ -35,7 +35,7 @@ function App() {
       </Router>
       <div id='modal'></div>
       {showModal && (
-        <ModalWindow onClose={() => setShowModal(false)}>
+        <ModalWindow showModal={showModal} onClose={() => setShowModal(false)}>
           <ModalWindowWithTime />
         </ModalWindow>
       )}
