@@ -26,6 +26,14 @@ const ModalWindow = ({ children, onClose, showModal }: ModalProps) => {
   if (showModal) {
     return createPortal(
       <div className={style.modal_background} onClick={onClose}>
+        <button className={style.modal_btn}>
+          <img
+            className={style.modal_close_icon}
+            src={
+              'https://icon-library.com/images/svg-close-icon/svg-close-icon-4.jpg'
+            }
+          />
+        </button>
         <div className={style.modal_window}>{children}</div>
       </div>,
       element.current
