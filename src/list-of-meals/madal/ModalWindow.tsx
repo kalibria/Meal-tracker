@@ -6,7 +6,7 @@ const modalRootElement = document.querySelector('#modal') as HTMLElement;
 
 interface ModalProps {
   children?: ReactNode;
-  onClose: React.MouseEventHandler<HTMLDivElement>;
+  onClose: React.MouseEventHandler<HTMLButtonElement>;
   showModal: boolean;
 }
 
@@ -25,8 +25,8 @@ const ModalWindow = ({ children, onClose, showModal }: ModalProps) => {
 
   if (showModal) {
     return createPortal(
-      <div className={style.modal_background} onClick={onClose}>
-        <button className={style.modal_btn}>
+      <div className={style.modal_background}>
+        <button className={style.modal_btn} onClick={onClose}>
           <img
             className={style.modal_close_icon}
             src={
