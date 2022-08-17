@@ -4,18 +4,24 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { minutes, time } from '../../settings/time';
-import { currentTime } from '../../utility/currentTime';
-import { myLocalStorage } from '../../utility/LocalStorage';
+import { editMealOrderNumber, mealsList } from '../../redux/selectors';
+import { useSelector } from 'react-redux';
+import { IMealBL } from '../mealsManager';
+import { timeManager } from '../../utility/time.manager';
 
 export const ModalWindowWithTime = () => {
-  const [currentHour, setCurrentHour] = React.useState(
-    currentTime.getCurrentHours().toString()
-  );
+  const mealListSelector: IMealBL[] = useSelector(mealsList);
+  const editMealNumberSelector = useSelector(editMealOrderNumber);
 
-  console.log('LS', myLocalStorage.getMealListBL());
-  const [currentMinutes, setCurrentMinutes] = React.useState(
-    currentTime.getCurrentMinutes().toString()
-  );
+  const editMealTimeMS = mealListSelector[editMealNumberSelector - 1].mealTime;
+
+  const editMealTimeUI = timeManager.timeFromBLToUI(editMealTimeMS);
+  const editMealHourUI = editMealTimeUI.slice(0, 2);
+  const editMealMinutesUI = editMealTimeUI.slice(5, 7);
+
+  const [currentHour, setCurrentHour] = React.useState(editMealHourUI);
+
+  const [currentMinutes, setCurrentMinutes] = React.useState(editMealMinutesUI);
 
   const listOfHours = time.convertMinutes(time.prepareHoursForModalWindow());
   const listOfMinutes = minutes;

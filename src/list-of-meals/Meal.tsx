@@ -37,7 +37,11 @@ export const Meal = ({
         handleSubmitForEat={handleSubmitForEat}
         eaten={eaten}
       />
-      <EditButton allMealsLength={allMealsLength} setShowModal={setShowModal} />
+      <EditButton
+        allMealsLength={allMealsLength}
+        setShowModal={setShowModal}
+        mealOrderNumber={number}
+      />
 
       <div>
         {' '}

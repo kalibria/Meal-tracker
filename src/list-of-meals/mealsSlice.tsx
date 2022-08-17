@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialStateList = {
   list: [],
+  editMealOrderNumber: 1,
 };
 
 export const mealsSlice = createSlice({
@@ -11,10 +12,13 @@ export const mealsSlice = createSlice({
     setListOfMeals: (state, action) => {
       state.list = action.payload;
     },
+    setEditMealOrderNumber: (state, action) => {
+      state.editMealOrderNumber = action.payload;
+    },
   },
 });
 
 const { actions, reducer } = mealsSlice;
-export const { setListOfMeals } = actions;
+export const { setListOfMeals, setEditMealOrderNumber } = actions;
 
 export default reducer;
