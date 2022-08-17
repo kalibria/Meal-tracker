@@ -26,6 +26,8 @@ export const Meal = ({
   allMealsLength,
   setShowModal,
 }: IMeal) => {
+  // get from redux
+
   return (
     <div className={style.meal}>
       <span>{number} </span>

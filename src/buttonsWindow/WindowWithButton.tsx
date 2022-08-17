@@ -8,11 +8,14 @@ import { SettingsBtn } from '../buttons/settingsBtn';
 import { KnownRoutes } from '../enumsForApp';
 import { myLocalStorage } from '../utility/LocalStorage';
 import { mealsManagerBL } from '../list-of-meals/mealsManager';
+import { setListOfMeals } from '../list-of-meals/mealsSlice';
+import { useDispatch } from 'react-redux';
 
 export const WindowWithButton = () => {
   const isMorning = currentTime.isMorning(currentTime.getCurrentHours());
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const goToMealList = useCallback(() => {
     navigate(KnownRoutes.MEAL_LIST);
@@ -21,6 +24,7 @@ export const WindowWithButton = () => {
   const handleClick = () => {
     goToMealList();
     myLocalStorage.setMealListBL(mealsManagerBL.getMealListBL());
+    dispatch(setListOfMeals(myLocalStorage.getMealListBL()));
   };
 
   useEffect(() => {

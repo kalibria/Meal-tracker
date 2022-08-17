@@ -8,7 +8,6 @@ export interface IMealItemUi {
   mealTime: string;
   eaten: boolean;
   eatButtonDisabled: boolean;
-  // eatenIcon: string;
   edit: boolean;
   delete: boolean;
 }
@@ -26,7 +25,6 @@ export class MealMapper {
             mealItem,
             allOriginalMeals
           ),
-          // eatenIcon: mealItem.eaten ? iconEaten : '',
         };
         acc.push(itemForUI);
 

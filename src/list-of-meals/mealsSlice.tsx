@@ -1,26 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface IMeal {
-  number: number;
-  time: number;
-  eaten?: boolean;
-  isEdit?: boolean;
-  delete?: boolean;
-}
-
-const listOfMeals: IMeal[] = [];
+const initialStateList = {
+  list: [],
+};
 
 export const mealsSlice = createSlice({
   name: 'meals',
-  initialState: listOfMeals,
+  initialState: initialStateList,
   reducers: {
-    setListOfMeals: () => {
-      console.log('hi');
+    setListOfMeals: (state, action) => {
+      state.list = action.payload;
     },
   },
 });
 
 const { actions, reducer } = mealsSlice;
-export const {} = actions;
+export const { setListOfMeals } = actions;
 
 export default reducer;

@@ -5,12 +5,15 @@ import { Meal } from './Meal';
 import { myLocalStorage } from '../utility/LocalStorage';
 import { mealsManagerBL } from './mealsManager';
 import { currentTime } from '../utility/currentTime';
+import { useDispatch } from 'react-redux';
+import { setListOfMeals } from './mealsSlice';
 
 interface IWrapperForMeals {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
+  const dispatch = useDispatch();
   const [allMeals, setAllMeals] = useState<IMealItemUi[]>(
     mealMapper.fromBLToUi(mealsManagerBL.getActualMealListBL())
   );
@@ -24,6 +27,7 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
 
   useEffect(() => {
     myLocalStorage.setMealListBL(mealMapper.mealsFromUiToBl(allMeals));
+    dispatch(setListOfMeals(myLocalStorage.getMealListBL()));
   }, [allMeals]);
 
   const handleSubmitForEat = (mealOrderNum: number) => {

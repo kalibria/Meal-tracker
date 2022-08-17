@@ -5,11 +5,14 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { minutes, time } from '../../settings/time';
 import { currentTime } from '../../utility/currentTime';
+import { myLocalStorage } from '../../utility/LocalStorage';
 
 export const ModalWindowWithTime = () => {
   const [currentHour, setCurrentHour] = React.useState(
     currentTime.getCurrentHours().toString()
   );
+
+  console.log('LS', myLocalStorage.getMealListBL());
   const [currentMinutes, setCurrentMinutes] = React.useState(
     currentTime.getCurrentMinutes().toString()
   );
