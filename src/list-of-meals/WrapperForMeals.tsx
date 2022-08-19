@@ -5,8 +5,9 @@ import { Meal } from './Meal';
 import { myLocalStorage } from '../utility/LocalStorage';
 import { mealsManagerBL } from './mealsManager';
 import { currentTime } from '../utility/currentTime';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setListOfMeals } from './mealsSlice';
+import { selectEditMealOrderNumber, selectMealsList } from '../redux/selectors';
 
 interface IWrapperForMeals {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,6 +15,9 @@ interface IWrapperForMeals {
 
 export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   const dispatch = useDispatch();
+  const editMealOrderNumber = useSelector(selectEditMealOrderNumber);
+  const mealListFromRedux = useSelector(selectMealsList);
+
   const [allMeals, setAllMeals] = useState<IMealItemUi[]>(
     mealMapper.fromBLToUi(mealsManagerBL.getActualMealListBL())
   );
@@ -29,6 +33,11 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
     myLocalStorage.setMealListBL(mealMapper.mealsFromUiToBl(allMeals));
     dispatch(setListOfMeals(myLocalStorage.getMealListBL()));
   }, [allMeals]);
+
+  useEffect(() => {
+    if (editMealOrderNumber > 0)
+      setAllMeals(mealMapper.fromBLToUi(mealListFromRedux));
+  }, [editMealOrderNumber, mealListFromRedux]);
 
   const handleSubmitForEat = (mealOrderNum: number) => {
     return () => {

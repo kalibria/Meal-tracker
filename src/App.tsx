@@ -11,9 +11,33 @@ import { ListOfMeals } from './list-of-meals/ListOfMeals';
 import { KnownRoutes } from './enumsForApp';
 import ModalWindow from './list-of-meals/madal/ModalWindow';
 import { ModalWindowWithTime } from './list-of-meals/madal/ModalWindowWithTime';
+import { useDispatch, useSelector } from 'react-redux';
+import { setNewTimeAfterEditMeal } from './list-of-meals/mealsSlice';
+import {
+  selectHourAfterEdit,
+  selectMealsList,
+  selectMinutesAfterEdit,
+} from './redux/selectors';
+import { myLocalStorage } from './utility/LocalStorage';
 
 function App() {
+  const dispatch = useDispatch();
+  const hourSelector = useSelector(selectHourAfterEdit);
+  const minutesSelector = useSelector(selectMinutesAfterEdit);
+  const listMealReduxSelector = useSelector(selectMealsList);
+
   const [showModal, setShowModal] = useState(false);
+
+  const handleCloseBtn = () => {
+    setShowModal(false);
+    dispatch(
+      setNewTimeAfterEditMeal({
+        hour: hourSelector,
+        minutes: minutesSelector,
+      })
+    );
+    myLocalStorage.setMealListBL(listMealReduxSelector);
+  };
 
   return (
     <>
@@ -35,7 +59,7 @@ function App() {
       </Router>
       <div id='modal'></div>
       {showModal && (
-        <ModalWindow showModal={showModal} onClose={() => setShowModal(false)}>
+        <ModalWindow showModal={showModal} onClose={handleCloseBtn}>
           <ModalWindowWithTime />
         </ModalWindow>
       )}

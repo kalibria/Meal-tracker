@@ -17,9 +17,9 @@ const ModalWindow = ({ children, onClose, showModal }: ModalProps) => {
     if (showModal) {
       const current = element.current;
 
-      modalRootElement!.appendChild(current);
+      modalRootElement.appendChild(current);
 
-      return () => void modalRootElement!.removeChild(current);
+      return () => void modalRootElement.removeChild(current);
     }
   }, [showModal]);
 

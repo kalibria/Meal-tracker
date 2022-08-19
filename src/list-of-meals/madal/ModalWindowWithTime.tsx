@@ -4,14 +4,20 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { minutes, time } from '../../settings/time';
-import { editMealOrderNumber, mealsList } from '../../redux/selectors';
-import { useSelector } from 'react-redux';
+import {
+  selectEditMealOrderNumber,
+  selectMealsList,
+} from '../../redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
 import { IMealBL } from '../mealsManager';
 import { timeManager } from '../../utility/time.manager';
+import { setNewHourAfterEdit, setNewMinutesAfterEdit } from '../mealsSlice';
 
 export const ModalWindowWithTime = () => {
-  const mealListSelector: IMealBL[] = useSelector(mealsList);
-  const editMealNumberSelector = useSelector(editMealOrderNumber);
+  const dispatch = useDispatch();
+
+  const mealListSelector: IMealBL[] = useSelector(selectMealsList);
+  const editMealNumberSelector = useSelector(selectEditMealOrderNumber);
 
   const editMealTimeMS = mealListSelector[editMealNumberSelector - 1].mealTime;
 
@@ -19,18 +25,20 @@ export const ModalWindowWithTime = () => {
   const editMealHourUI = editMealTimeUI.slice(0, 2);
   const editMealMinutesUI = editMealTimeUI.slice(5, 7);
 
-  const [currentHour, setCurrentHour] = React.useState(editMealHourUI);
+  const [mealHour, setMealHour] = React.useState(editMealHourUI);
 
-  const [currentMinutes, setCurrentMinutes] = React.useState(editMealMinutesUI);
+  const [mealMinutes, setMealMinutes] = React.useState(editMealMinutesUI);
 
   const listOfHours = time.convertMinutes(time.prepareHoursForModalWindow());
   const listOfMinutes = minutes;
 
   const handleHoursChange = (event: SelectChangeEvent) => {
-    setCurrentHour(event.target.value);
+    setMealHour(event.target.value);
+    dispatch(setNewHourAfterEdit(event.target.value));
   };
   const handleMinutesChange = (event: SelectChangeEvent) => {
-    setCurrentMinutes(event.target.value);
+    setMealMinutes(event.target.value);
+    dispatch(setNewMinutesAfterEdit(event.target.value));
   };
 
   const menuHourItems = listOfHours.map((item) => {
@@ -55,12 +63,12 @@ export const ModalWindowWithTime = () => {
         <Select
           labelId='hours-select-small'
           id='hours-select-small'
-          value={currentHour}
+          value={mealHour}
           label='Hours'
           onChange={handleHoursChange}
         >
-          <MenuItem value={currentHour}>
-            <em>{currentHour}</em>
+          <MenuItem value={mealHour}>
+            <em>{mealHour}</em>
           </MenuItem>
           {menuHourItems}
         </Select>
@@ -71,12 +79,12 @@ export const ModalWindowWithTime = () => {
         <Select
           labelId='minutes-select-small'
           id='minutes-select-small'
-          value={currentMinutes}
+          value={mealMinutes}
           label='Minutes'
           onChange={handleMinutesChange}
         >
-          <MenuItem value={currentMinutes}>
-            <em>{currentMinutes}</em>
+          <MenuItem value={mealMinutes}>
+            <em>{mealMinutes}</em>
           </MenuItem>
           {menuMinutesItems}
         </Select>
