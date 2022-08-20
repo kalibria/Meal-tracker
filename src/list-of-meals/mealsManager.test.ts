@@ -42,7 +42,7 @@ describe('MealsManager', () => {
       const mockLS = new LocalStorage(false);
       const mockMealManager = new MealsManagerBL(mockLS);
 
-      const [firstMeal] = mockMealManager.getMealListBL();
+      const [firstMeal] = mockMealManager.generateMealListBL();
 
       expect(
         new Date(firstMeal.mealTime).toLocaleTimeString('ru-RU')
@@ -53,7 +53,7 @@ describe('MealsManager', () => {
       const mockLS = new LocalStorage(false);
       const mockMealManager = new MealsManagerBL(mockLS);
 
-      const [, secondMeal] = mockMealManager.getMealListBL();
+      const [, secondMeal] = mockMealManager.generateMealListBL();
 
       expect(
         new Date(secondMeal.mealTime).toLocaleTimeString('ru-RU')
@@ -64,11 +64,15 @@ describe('MealsManager', () => {
       const mockLS = new LocalStorage(false);
       const mockMealManager = new MealsManagerBL(mockLS);
 
-      const [firstMeal, ...otherMeals] = mockMealManager.getMealListBL();
+      const [firstMeal, ...otherMeals] = mockMealManager.generateMealListBL();
       const lastMeal = otherMeals.at(-1);
 
       expect(firstMeal.number).toBe(1);
       expect(lastMeal?.number).toBe(6);
     });
+  });
+
+  describe('updateMealTime', () => {
+    it('should set first meal time to ', () => {});
   });
 });

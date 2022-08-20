@@ -30,7 +30,7 @@ export class MealsManagerBL {
     this.allMealsInDayBL = [];
   }
 
-  getMealListBL(): Array<IMealBL> {
+  generateMealListBL(): Array<IMealBL> {
     const allMealsTimesMs = this.accumulateAllMealsTimes();
 
     return allMealsTimesMs.reduce((acc: IMealBL[], time, iteration) => {
@@ -50,10 +50,30 @@ export class MealsManagerBL {
     const isMealListInLS = myLocalStorage.getMealListBL();
 
     if (isMealListInLS.length === 0) {
-      return this.getMealListBL();
+      return this.generateMealListBL();
     } else {
       return myLocalStorage.getMealListBL();
     }
+  }
+
+  updateMealTime(mealList: IMealBL[], mealOrderNumEdited: number): IMealBL[] {
+    return mealList.reduce((acc: IMealBL[], item, index, _mealList) => {
+      const timeBetweenMeals_Min = myLocalStorage.getTimeBetweenMeals();
+      const timeBetweenMeals_Ms = timeBetweenMeals_Min * 60 * 1000;
+
+      if (item.number <= mealOrderNumEdited) {
+        acc.push(item);
+
+        return acc;
+      }
+
+      const newItem = { ...item };
+      newItem.mealTime = item.mealTime + timeBetweenMeals_Ms;
+
+      acc.push(item);
+
+      return acc;
+    }, []);
   }
 
   private getFirstMealTime(): number {

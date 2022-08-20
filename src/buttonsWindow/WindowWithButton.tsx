@@ -23,7 +23,7 @@ export const WindowWithButton = () => {
 
   const handleClick = () => {
     goToMealList();
-    myLocalStorage.setMealListBL(mealsManagerBL.getMealListBL());
+    myLocalStorage.setMealListBL(mealsManagerBL.generateMealListBL());
     dispatch(setListOfMeals(myLocalStorage.getMealListBL()));
   };
 

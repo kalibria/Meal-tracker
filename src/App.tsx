@@ -21,13 +21,13 @@ import {
 import { myLocalStorage } from './utility/LocalStorage';
 
 function App() {
+  console.log('whole app is rerendering');
   const dispatch = useDispatch();
   const hourSelector = useSelector(selectHourAfterEdit);
   const minutesSelector = useSelector(selectMinutesAfterEdit);
   const listMealReduxSelector = useSelector(selectMealsList);
 
   const [showModal, setShowModal] = useState(false);
-
   const handleCloseBtn = () => {
     setShowModal(false);
     dispatch(

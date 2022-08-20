@@ -14,54 +14,36 @@ interface IWrapperForMeals {
 }
 
 export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
-  const dispatch = useDispatch();
-  const editMealOrderNumber = useSelector(selectEditMealOrderNumber);
   const mealListFromRedux = useSelector(selectMealsList);
+  const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
+  const dispatch = useDispatch();
 
-  const [allMeals, setAllMeals] = useState<IMealItemUi[]>(
-    mealMapper.fromBLToUi(mealsManagerBL.getActualMealListBL())
-  );
   const [isDeleteBtnDisable, setIsDeleteBtnDisable] = useState(false);
 
-  useEffect(() => {
-    const mealsBL = mealsManagerBL.getActualMealListBL();
-
-    if (mealsBL) setAllMeals(mealMapper.fromBLToUi(mealsBL));
-  }, []);
-
-  useEffect(() => {
-    myLocalStorage.setMealListBL(mealMapper.mealsFromUiToBl(allMeals));
-    dispatch(setListOfMeals(myLocalStorage.getMealListBL()));
-  }, [allMeals]);
-
-  useEffect(() => {
-    if (editMealOrderNumber > 0)
-      setAllMeals(mealMapper.fromBLToUi(mealListFromRedux));
-  }, [editMealOrderNumber, mealListFromRedux]);
+  const lastOrderNumber = mealListFromRedux.length;
 
   const handleSubmitForEat = (mealOrderNum: number) => {
     return () => {
-      setAllMeals(() => {
-        const timeOnClickMs = currentTime.getCurrentTime();
+      const timeOnClickMs = currentTime.getCurrentTime();
+      // const allMealsUi = mealMapper.fromBLToUi(mealListFromRedux);
 
-        const newMeals = mealMapper.fromUIToBL(
-          allMeals,
-          mealOrderNum,
-          timeOnClickMs
-        );
+      const newMeals = mealMapper.fromUIToBL(
+        mealListUi,
+        mealOrderNum,
+        timeOnClickMs
+      );
 
-        if (mealOrderNum - 1 === allMeals.length) {
-          setIsDeleteBtnDisable(true);
-        }
+      if (mealOrderNum - 1 === mealListUi.length) {
+        setIsDeleteBtnDisable(true);
+      }
 
-        return newMeals;
-      });
+      dispatch(setListOfMeals(mealMapper.mealsFromUiToBl(newMeals)));
+
+      return newMeals;
     };
   };
 
-  const lastOrderNumber = allMeals.length;
-
-  const mealsForUi = allMeals.map((item) => {
+  const mealsForUi = mealListUi.map((item) => {
     return (
       <Meal
         key={item.number}
@@ -72,7 +54,7 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
         conditionForDeleteBtn={item.number === lastOrderNumber}
         isDeleteBtnActive={isDeleteBtnDisable}
         eaten={item.eaten}
-        allMealsLength={allMeals.length}
+        allMealsLength={mealListFromRedux.length}
         setShowModal={setShowModal}
       />
     );
