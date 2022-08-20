@@ -14,9 +14,14 @@ interface IWrapperForMeals {
 }
 
 export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
-  const mealListFromRedux = useSelector(selectMealsList);
-  const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
   const dispatch = useDispatch();
+
+  const mealListFromRedux = useSelector(selectMealsList);
+
+  useEffect(() => {
+    myLocalStorage.setMealListBL(mealListFromRedux);
+  }, [mealListFromRedux]);
+  const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
 
   const [isDeleteBtnDisable, setIsDeleteBtnDisable] = useState(false);
 
@@ -25,7 +30,6 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   const handleSubmitForEat = (mealOrderNum: number) => {
     return () => {
       const timeOnClickMs = currentTime.getCurrentTime();
-      // const allMealsUi = mealMapper.fromBLToUi(mealListFromRedux);
 
       const newMeals = mealMapper.fromUIToBL(
         mealListUi,

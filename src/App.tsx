@@ -21,7 +21,6 @@ import {
 import { myLocalStorage } from './utility/LocalStorage';
 
 function App() {
-  console.log('whole app is rerendering');
   const dispatch = useDispatch();
   const hourSelector = useSelector(selectHourAfterEdit);
   const minutesSelector = useSelector(selectMinutesAfterEdit);

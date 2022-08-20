@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { timeManager } from '../utility/time.manager';
-import { IMealBL } from './mealsManager';
+import { IMealBL, mealsManagerBL } from './mealsManager';
 import { myLocalStorage } from '../utility/LocalStorage';
 
 export interface IInitialStateMeals {
@@ -13,7 +13,7 @@ export interface IInitialStateMeals {
 }
 
 const initialStateList: IInitialStateMeals = {
-  list: [],
+  list: mealsManagerBL.getActualMealListBL(),
   editMealOrderNumber: 0,
   newHourAfterEdit: '00',
   newMinutesAfterEdit: '00',

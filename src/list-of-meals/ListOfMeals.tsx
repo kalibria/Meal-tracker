@@ -11,7 +11,7 @@ interface IListOfMeals {
 
 export const ListOfMeals = ({ setShowModal }: IListOfMeals) => {
   const navigate = useNavigate();
-  console.log('ListOfMeals is rerendering');
+
   const goToFirstRouteEl = () => {
     navigate(KnownRoutes.WELCOME);
 
