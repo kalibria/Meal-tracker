@@ -21,6 +21,7 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   useEffect(() => {
     myLocalStorage.setMealListBL(mealListFromRedux);
   }, [mealListFromRedux]);
+
   const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
 
   const [isDeleteBtnDisable, setIsDeleteBtnDisable] = useState(false);

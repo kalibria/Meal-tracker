@@ -44,6 +44,12 @@ export const mealsSlice = createSlice({
     setNewMinutesAfterEdit: (state, action) => {
       state.newMinutesAfterEdit = action.payload;
     },
+    updateMealsAfterChangeMealTime: (state) => {
+      state.list = mealsManagerBL.updateMealTime(
+        state.list,
+        state.editMealOrderNumber
+      );
+    },
   },
 });
 
@@ -54,6 +60,7 @@ export const {
   setNewTimeAfterEditMeal,
   setNewHourAfterEdit,
   setNewMinutesAfterEdit,
+  updateMealsAfterChangeMealTime,
 } = actions;
 
 export default reducer;
