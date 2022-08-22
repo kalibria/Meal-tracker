@@ -39,9 +39,11 @@ export const mealsSlice = createSlice({
       state.list[state.editMealOrderNumber - 1].mealTime = newMealTimeBL;
     },
     setNewHourAfterEdit: (state, action) => {
+      console.log('hour', action.payload);
       state.newHourAfterEdit = action.payload;
     },
     setNewMinutesAfterEdit: (state, action) => {
+      console.log('mins', action.payload);
       state.newMinutesAfterEdit = action.payload;
     },
     updateMealsAfterChangeMealTime: (state) => {

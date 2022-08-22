@@ -8,10 +8,11 @@ import {
   selectEditMealOrderNumber,
   selectMealsList,
 } from '../../redux/selectors';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 import { IMealBL } from '../mealsManager';
 import { timeManager } from '../../utility/time.manager';
 import { setNewHourAfterEdit, setNewMinutesAfterEdit } from '../mealsSlice';
+import { useEffect } from 'react';
 
 export const ModalWindowWithTime = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,13 @@ export const ModalWindowWithTime = () => {
   const [mealHour, setMealHour] = React.useState(editMealHourUI);
 
   const [mealMinutes, setMealMinutes] = React.useState(editMealMinutesUI);
+
+  useEffect(() => {
+    batch(() => {
+      dispatch(setNewMinutesAfterEdit(mealHour));
+      dispatch(setNewMinutesAfterEdit(mealMinutes));
+    });
+  }, [mealHour, mealMinutes, dispatch]);
 
   const listOfHours = time.convertMinutes(time.prepareHoursForModalWindow());
   const listOfMinutes = minutes;
