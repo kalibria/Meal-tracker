@@ -50,8 +50,6 @@ export class MealMapper {
       newMeals[i].mealTime = timeManager.timeFromBLToUI(newTimeMS);
     }
 
-    // newMeals[mealOrder - 1].eatenIcon = iconEaten;
-
     if (mealOrder - 1 === lastMealNumber) {
       newMeals[mealOrder - 1].eatButtonDisabled = true;
       newMeals[mealOrder - 1].eaten = true;

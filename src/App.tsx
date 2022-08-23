@@ -13,35 +13,53 @@ import ModalWindow from './list-of-meals/modal/ModalWindow';
 import { ModalWindowWithTime } from './list-of-meals/modal/ModalWindowWithTime';
 import { batch, useDispatch, useSelector } from 'react-redux';
 import {
+  setEatenMeal,
   setNewTimeAfterEditMeal,
   updateMealsAfterChangeMealTime,
 } from './list-of-meals/mealsSlice';
 import {
+  selectEditMealOrderNumber,
   selectHourAfterEdit,
   selectMealsList,
   selectMinutesAfterEdit,
 } from './redux/selectors';
 import { myLocalStorage } from './utility/LocalStorage';
+import { currentTime } from './utility/currentTime';
 
 function App() {
   const dispatch = useDispatch();
-  const hourSelector = useSelector(selectHourAfterEdit);
-  const minutesSelector = useSelector(selectMinutesAfterEdit);
+  const newHours = useSelector(selectHourAfterEdit);
+  const newMinutes = useSelector(selectMinutesAfterEdit);
   const listMealReduxSelector = useSelector(selectMealsList);
 
+  const editMealOrderNumber = useSelector(selectEditMealOrderNumber);
+
+  console.log(
+    'listMealReduxSelector[editMealOrderNumber - 1]',
+    listMealReduxSelector[editMealOrderNumber - 1]
+  );
+
   const [showModal, setShowModal] = useState(false);
+
   const handleCloseBtn = () => {
     setShowModal(false);
 
-    batch(() => {
-      dispatch(
-        setNewTimeAfterEditMeal({
-          hour: hourSelector,
-          minutes: minutesSelector,
-        })
-      );
-      dispatch(updateMealsAfterChangeMealTime());
-    });
+    dispatch(
+      setNewTimeAfterEditMeal({
+        hour: newHours,
+        minutes: newMinutes,
+      })
+    );
+
+    dispatch(updateMealsAfterChangeMealTime());
+
+    const editMealBL = myLocalStorage.getMealListBL()[editMealOrderNumber - 1];
+    console.log('mealTime', editMealBL.mealTime);
+    console.log('currentTime', currentTime.getCurrentTime());
+
+    if (editMealBL.mealTime <= currentTime.getCurrentTime()) {
+      dispatch(setEatenMeal());
+    }
   };
 
   myLocalStorage.setMealListBL(listMealReduxSelector);

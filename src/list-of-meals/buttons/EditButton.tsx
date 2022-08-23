@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '../../buttons/Button';
 import { batch, useDispatch } from 'react-redux';
 import {
+  setEatenMeal,
   setEditMealOrderNumber,
   setNewHourAfterEdit,
   setNewMinutesAfterEdit,
@@ -9,6 +10,7 @@ import {
 import { timeManager } from '../../utility/time.manager';
 import { myLocalStorage } from '../../utility/LocalStorage';
 import { mealsManagerBL } from '../mealsManager';
+import { currentTime } from '../../utility/currentTime';
 
 interface IEditButton {
   allMealsLength: number;
@@ -25,8 +27,9 @@ export const EditButton = ({
 
   const handleSubmitForEdit = () => {
     setShowModal(true);
+
     const mealBL = myLocalStorage.getMealListBL()[mealOrderNumber - 1];
-    console.log('meal', mealBL);
+
     batch(() => {
       dispatch(setEditMealOrderNumber(mealOrderNumber));
       dispatch(setNewHourAfterEdit(timeManager.getHourUIFromTimeBl(mealBL)));

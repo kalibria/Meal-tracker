@@ -52,6 +52,9 @@ export const mealsSlice = createSlice({
         state.editMealOrderNumber
       );
     },
+    setEatenMeal: (state) => {
+      state.list[state.editMealOrderNumber - 1].eaten = true;
+    },
   },
 });
 
@@ -63,6 +66,7 @@ export const {
   setNewHourAfterEdit,
   setNewMinutesAfterEdit,
   updateMealsAfterChangeMealTime,
+  setEatenMeal,
 } = actions;
 
 export default reducer;
