@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { timeManager } from '../utility/time.manager';
 import { IMealBL, mealsManagerBL } from './mealsManager';
-import { myLocalStorage } from '../utility/LocalStorage';
 
 export interface IInitialStateMeals {
   list: IMealBL[];
@@ -10,6 +9,7 @@ export interface IInitialStateMeals {
   newHourAfterEdit: string;
   newMinutesAfterEdit: string;
   newTimeBLAfterEdit: number;
+  isSetNewMealTime: boolean;
 }
 
 const initialStateList: IInitialStateMeals = {
@@ -18,6 +18,7 @@ const initialStateList: IInitialStateMeals = {
   newHourAfterEdit: '00',
   newMinutesAfterEdit: '00',
   newTimeBLAfterEdit: 1,
+  isSetNewMealTime: true,
 };
 
 export const mealsSlice = createSlice({
@@ -39,14 +40,18 @@ export const mealsSlice = createSlice({
       state.list[state.editMealOrderNumber - 1].mealTime = newMealTimeBL;
     },
     setNewHourAfterEdit: (state, action) => {
-      console.log('hour', action.payload);
       state.newHourAfterEdit = action.payload;
     },
     setNewMinutesAfterEdit: (state, action) => {
-      console.log('mins', action.payload);
       state.newMinutesAfterEdit = action.payload;
     },
     updateMealsAfterChangeMealTime: (state) => {
+      state.list[state.editMealOrderNumber - 1].mealTime =
+        state.newTimeBLAfterEdit;
+      console.log(
+        'mealTime',
+        state.list[state.editMealOrderNumber - 1].mealTime
+      );
       state.list = mealsManagerBL.updateMealTime(
         state.list,
         state.editMealOrderNumber
@@ -54,6 +59,10 @@ export const mealsSlice = createSlice({
     },
     setEatenMeal: (state) => {
       state.list[state.editMealOrderNumber - 1].eaten = true;
+    },
+
+    isSetNewMeal: (state, action) => {
+      state.isSetNewMealTime = action.payload;
     },
   },
 });
@@ -67,6 +76,7 @@ export const {
   setNewMinutesAfterEdit,
   updateMealsAfterChangeMealTime,
   setEatenMeal,
+  isSetNewMeal,
 } = actions;
 
 export default reducer;

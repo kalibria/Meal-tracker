@@ -9,3 +9,5 @@ export const selectHourAfterEdit = (store: RootState) =>
   store.listOfMeals.newHourAfterEdit;
 export const selectMinutesAfterEdit = (store: RootState) =>
   store.listOfMeals.newMinutesAfterEdit;
+export const selectNewTime = (store: RootState) =>
+  store.listOfMeals.newTimeBLAfterEdit;

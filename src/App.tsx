@@ -11,8 +11,9 @@ import { ListOfMeals } from './list-of-meals/ListOfMeals';
 import { KnownRoutes } from './enumsForApp';
 import ModalWindow from './list-of-meals/modal/ModalWindow';
 import { ModalWindowWithTime } from './list-of-meals/modal/ModalWindowWithTime';
-import { batch, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
+  isSetNewMeal,
   setEatenMeal,
   setNewTimeAfterEditMeal,
   updateMealsAfterChangeMealTime,
@@ -22,42 +23,53 @@ import {
   selectHourAfterEdit,
   selectMealsList,
   selectMinutesAfterEdit,
+  selectNewTime,
 } from './redux/selectors';
 import { myLocalStorage } from './utility/LocalStorage';
 import { currentTime } from './utility/currentTime';
+import { validationMealTime } from './utility/validationMealTime';
 
 function App() {
   const dispatch = useDispatch();
   const newHours = useSelector(selectHourAfterEdit);
   const newMinutes = useSelector(selectMinutesAfterEdit);
   const listMealReduxSelector = useSelector(selectMealsList);
-
+  const newTimeBl = useSelector(selectNewTime);
   const editMealOrderNumber = useSelector(selectEditMealOrderNumber);
-
-  console.log(
-    'listMealReduxSelector[editMealOrderNumber - 1]',
-    listMealReduxSelector[editMealOrderNumber - 1]
-  );
 
   const [showModal, setShowModal] = useState(false);
 
   const handleCloseBtn = () => {
     setShowModal(false);
 
-    dispatch(
-      setNewTimeAfterEditMeal({
-        hour: newHours,
-        minutes: newMinutes,
-      })
+    const isSetNewMealTime = validationMealTime.isCurrentMealTimeLongerPrevious(
+      listMealReduxSelector,
+      editMealOrderNumber,
+      newTimeBl
     );
 
-    dispatch(updateMealsAfterChangeMealTime());
+    dispatch(isSetNewMeal(isSetNewMealTime));
+
+    if (isSetNewMealTime) {
+      dispatch(
+        setNewTimeAfterEditMeal({
+          hour: newHours,
+          minutes: newMinutes,
+        })
+      );
+    }
+
+    console.log('isSetMeLTIME', isSetNewMealTime);
+    if (isSetNewMealTime) {
+      dispatch(updateMealsAfterChangeMealTime());
+    }
 
     const editMealBL = myLocalStorage.getMealListBL()[editMealOrderNumber - 1];
-    console.log('mealTime', editMealBL.mealTime);
-    console.log('currentTime', currentTime.getCurrentTime());
 
-    if (editMealBL.mealTime <= currentTime.getCurrentTime()) {
+    const conditionForSetEatenMeal =
+      editMealBL.mealTime <= currentTime.getCurrentTime() && isSetNewMealTime;
+
+    if (conditionForSetEatenMeal) {
       dispatch(setEatenMeal());
     }
   };
