@@ -7,7 +7,11 @@ import { myLocalStorage } from '../utility/LocalStorage';
 import { currentTime } from '../utility/currentTime';
 import { useDispatch, useSelector } from 'react-redux';
 import { setListOfMeals } from './mealsSlice';
-import { selectMealsList } from '../redux/selectors';
+import {
+  selectEditMealOrderNumber,
+  selectIsSetNewMealTime,
+  selectMealsList,
+} from '../redux/selectors';
 
 interface IWrapperForMeals {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,6 +19,9 @@ interface IWrapperForMeals {
 
 export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   const dispatch = useDispatch();
+  const isMealTimeCorrect = useSelector(selectIsSetNewMealTime);
+  const editMealNumber = useSelector(selectEditMealOrderNumber);
+  console.log('isMealTimeCorrect', isMealTimeCorrect);
 
   const mealListFromRedux = useSelector(selectMealsList);
 
@@ -50,18 +57,25 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
 
   const mealsForUi = mealListUi.map((item) => {
     return (
-      <Meal
-        key={item.number}
-        number={item.number}
-        timeOfMeal={item.mealTime}
-        eatButtonDisabled={item.eatButtonDisabled}
-        handleSubmitForEat={handleSubmitForEat(item.number)}
-        conditionForDeleteBtn={item.number === lastOrderNumber}
-        isDeleteBtnActive={isDeleteBtnDisable}
-        eaten={item.eaten}
-        allMealsLength={mealListFromRedux.length}
-        setShowModal={setShowModal}
-      />
+      <>
+        <Meal
+          key={item.number}
+          number={item.number}
+          timeOfMeal={item.mealTime}
+          eatButtonDisabled={item.eatButtonDisabled}
+          handleSubmitForEat={handleSubmitForEat(item.number)}
+          conditionForDeleteBtn={item.number === lastOrderNumber}
+          isDeleteBtnActive={isDeleteBtnDisable}
+          eaten={item.eaten}
+          allMealsLength={mealListFromRedux.length}
+          setShowModal={setShowModal}
+        />
+        <div key={item.number * 10}>
+          {!isMealTimeCorrect && item.number === editMealNumber && (
+            <p>Next meal time must be after the last eaten meal’s time</p>
+          )}
+        </div>
+      </>
     );
   });
 

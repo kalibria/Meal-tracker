@@ -11,3 +11,5 @@ export const selectMinutesAfterEdit = (store: RootState) =>
   store.listOfMeals.newMinutesAfterEdit;
 export const selectNewTime = (store: RootState) =>
   store.listOfMeals.newTimeBLAfterEdit;
+export const selectIsSetNewMealTime = (store: RootState) =>
+  store.listOfMeals.isSetNewMealTime;

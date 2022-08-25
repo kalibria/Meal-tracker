@@ -3,7 +3,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { minutes, time } from '../../settings/time';
+import { hours, minutes, time } from '../../settings/time';
 import {
   selectEditMealOrderNumber,
   selectMealsList,
@@ -11,7 +11,11 @@ import {
 import { batch, useDispatch, useSelector } from 'react-redux';
 import { IMealBL } from '../mealsManager';
 import { timeManager } from '../../utility/time.manager';
-import { setNewHourAfterEdit, setNewMinutesAfterEdit } from '../mealsSlice';
+import {
+  setNewHourAfterEdit,
+  setNewMinutesAfterEdit,
+  setNewTimeAfterEditMeal,
+} from '../mealsSlice';
 import { useEffect } from 'react';
 
 export const ModalWindowWithTime = () => {
@@ -32,8 +36,11 @@ export const ModalWindowWithTime = () => {
 
   useEffect(() => {
     batch(() => {
-      dispatch(setNewMinutesAfterEdit(mealHour));
+      dispatch(setNewHourAfterEdit(mealHour));
       dispatch(setNewMinutesAfterEdit(mealMinutes));
+      dispatch(
+        setNewTimeAfterEditMeal({ hour: mealHour, minutes: mealMinutes })
+      );
     });
   }, [mealHour, mealMinutes, dispatch]);
 

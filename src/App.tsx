@@ -41,6 +41,7 @@ function App() {
 
   const handleCloseBtn = () => {
     setShowModal(false);
+    console.log('newTime', newTimeBl);
 
     const isSetNewMealTime = validationMealTime.isCurrentMealTimeLongerPrevious(
       listMealReduxSelector,
@@ -59,7 +60,6 @@ function App() {
       );
     }
 
-    console.log('isSetMeLTIME', isSetNewMealTime);
     if (isSetNewMealTime) {
       dispatch(updateMealsAfterChangeMealTime());
     }
