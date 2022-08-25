@@ -21,7 +21,6 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   const dispatch = useDispatch();
   const isMealTimeCorrect = useSelector(selectIsSetNewMealTime);
   const editMealNumber = useSelector(selectEditMealOrderNumber);
-  console.log('isMealTimeCorrect', isMealTimeCorrect);
 
   const mealListFromRedux = useSelector(selectMealsList);
 

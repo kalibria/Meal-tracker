@@ -48,10 +48,7 @@ export const mealsSlice = createSlice({
     updateMealsAfterChangeMealTime: (state) => {
       state.list[state.editMealOrderNumber - 1].mealTime =
         state.newTimeBLAfterEdit;
-      console.log(
-        'mealTime',
-        state.list[state.editMealOrderNumber - 1].mealTime
-      );
+
       state.list = mealsManagerBL.updateMealTime(
         state.list,
         state.editMealOrderNumber

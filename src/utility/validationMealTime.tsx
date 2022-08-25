@@ -6,7 +6,9 @@ class ValidationMealTime {
     editMealOrderNumber: number,
     newTime: number
   ) {
-    if (newTime > allMeals[editMealOrderNumber - 2].mealTime) {
+    if (allMeals[editMealOrderNumber - 1].number === 1) {
+      return true;
+    } else if (newTime > allMeals[editMealOrderNumber - 2].mealTime) {
       return true;
     } else return false;
   }
