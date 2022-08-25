@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { mealMapper } from './meal.mapper';
 import { Meal } from './Meal';
 import { myLocalStorage } from '../utility/LocalStorage';
+import style from '../settings/components/settings.module.css';
 
 import { currentTime } from '../utility/currentTime';
 import { useDispatch, useSelector } from 'react-redux';
@@ -69,7 +70,7 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
           allMealsLength={mealListFromRedux.length}
           setShowModal={setShowModal}
         />
-        <div key={item.number * 10}>
+        <div key={item.number * 10} className={style.error}>
           {!isMealTimeCorrect && item.number === editMealNumber && (
             <p>Next meal time must be after the last eaten meal’s time</p>
           )}
