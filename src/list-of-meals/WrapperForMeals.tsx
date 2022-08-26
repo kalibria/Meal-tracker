@@ -6,8 +6,8 @@ import { myLocalStorage } from '../utility/LocalStorage';
 import style from '../settings/components/settings.module.css';
 
 import { currentTime } from '../utility/currentTime';
-import { useDispatch, useSelector } from 'react-redux';
-import { setListOfMeals } from './mealsSlice';
+import { batch, useDispatch, useSelector } from 'react-redux';
+import { setListOfMeals, setNewMeal } from './mealsSlice';
 import {
   selectEditMealOrderNumber,
   selectIsSetNewMealTime,
@@ -22,6 +22,7 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   const dispatch = useDispatch();
   const isMealTimeCorrect = useSelector(selectIsSetNewMealTime);
   const editMealNumber = useSelector(selectEditMealOrderNumber);
+  const isSetNewMeal = useSelector(selectIsSetNewMealTime);
 
   const mealListFromRedux = useSelector(selectMealsList);
 
@@ -49,7 +50,10 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
         setIsDeleteBtnDisable(true);
       }
 
-      dispatch(setListOfMeals(mealMapper.mealsFromUiToBl(newMeals)));
+      batch(() => {
+        dispatch(setListOfMeals(mealMapper.mealsFromUiToBl(newMeals)));
+        dispatch(setNewMeal(true));
+      });
 
       return newMeals;
     };

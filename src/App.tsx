@@ -13,7 +13,7 @@ import ModalWindow from './list-of-meals/modal/ModalWindow';
 import { ModalWindowWithTime } from './list-of-meals/modal/ModalWindowWithTime';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  isSetNewMeal,
+  setNewMeal,
   setEatenMeal,
   setNewTimeAfterEditMeal,
   updateMealsAfterChangeMealTime,
@@ -48,7 +48,7 @@ function App() {
       newTimeBl
     );
 
-    dispatch(isSetNewMeal(isSetNewMealTime));
+    dispatch(setNewMeal(isSetNewMealTime));
 
     if (isSetNewMealTime) {
       dispatch(

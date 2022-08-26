@@ -2,8 +2,6 @@ import React from 'react';
 import style from './meals.module.css';
 import { EatButton } from './buttons/EatButton';
 import { EditButton } from './buttons/EditButton';
-import { useSelector } from 'react-redux';
-import { selectIsSetNewMealTime } from '../redux/selectors';
 
 interface IMeal {
   number: number;
