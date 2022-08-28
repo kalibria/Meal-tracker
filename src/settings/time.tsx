@@ -49,11 +49,13 @@ export class Time implements TimeDate {
   }
 
   prepareHoursForModalWindow() {
-    const newHours: number[] = [];
+    const newHours = new Array(maxHourForModalWindow + 1)
+      .fill(undefined)
+      .reduce((acc, cur, index) => {
+        acc.push(initialHourForModalWindow + index);
 
-    for (let i = initialHourForModalWindow; i <= maxHourForModalWindow; ++i) {
-      newHours.push(i);
-    }
+        return acc;
+      }, []);
     return newHours;
   }
 

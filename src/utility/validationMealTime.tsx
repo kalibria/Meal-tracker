@@ -1,7 +1,7 @@
 import { IMealBL } from '../list-of-meals/mealsManager';
 
 class ValidationMealTime {
-  isCurrentMealTimeLongerPrevious(
+  isCurrMealLaterThanPrev(
     allMeals: IMealBL[],
     editMealOrderNumber: number,
     newTime: number

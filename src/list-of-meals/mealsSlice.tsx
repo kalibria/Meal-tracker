@@ -58,7 +58,7 @@ export const mealsSlice = createSlice({
       state.list[state.editMealOrderNumber - 1].eaten = true;
     },
 
-    setNewMeal: (state, action) => {
+    isSetNewMeal: (state, action) => {
       state.isSetNewMealTime = action.payload;
     },
   },
@@ -73,7 +73,7 @@ export const {
   setNewMinutesAfterEdit,
   updateMealsAfterChangeMealTime,
   setEatenMeal,
-  setNewMeal,
+  isSetNewMeal,
 } = actions;
 
 export default reducer;

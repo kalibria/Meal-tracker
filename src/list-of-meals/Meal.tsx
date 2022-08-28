@@ -2,6 +2,7 @@ import React from 'react';
 import style from './meals.module.css';
 import { EatButton } from './buttons/EatButton';
 import { EditButton } from './buttons/EditButton';
+import { DeleteButton } from './buttons/DeleteButton';
 
 interface IMeal {
   number: number;
@@ -23,7 +24,6 @@ export const Meal = ({
   conditionForDeleteBtn,
   isDeleteBtnActive,
   eaten,
-  allMealsLength,
   setShowModal,
 }: IMeal) => {
   // get from redux
@@ -37,16 +37,13 @@ export const Meal = ({
         handleSubmitForEat={handleSubmitForEat}
         eaten={eaten}
       />
-      <EditButton
-        allMealsLength={allMealsLength}
-        setShowModal={setShowModal}
-        mealOrderNumber={number}
-      />
+      <EditButton setShowModal={setShowModal} mealOrderNumber={number} />
 
       <div>
         {' '}
         {conditionForDeleteBtn && (
-          <button disabled={isDeleteBtnActive}>Delete</button>
+          <DeleteButton disabled={isDeleteBtnActive} />
+          // <button disabled={isDeleteBtnActive}>Delete</button>
         )}
       </div>
     </div>

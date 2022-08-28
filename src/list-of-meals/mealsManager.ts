@@ -57,7 +57,7 @@ export class MealsManagerBL {
   }
 
   updateMealTime(mealList: IMealBL[], mealOrderNumEdited: number): IMealBL[] {
-    return mealList.reduce((acc: IMealBL[], item, index, _mealList) => {
+    return mealList.reduce((acc: IMealBL[], item, index) => {
       const timeBetweenMeals_Min = myLocalStorage.getTimeBetweenMeals();
 
       const timeBetweenMeals_Ms = timeBetweenMeals_Min * 60 * 1000;

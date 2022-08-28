@@ -4,7 +4,7 @@ import { batch, useDispatch } from 'react-redux';
 import {
   setEditMealOrderNumber,
   setNewHourAfterEdit,
-  setNewMeal,
+  isSetNewMeal,
   setNewMinutesAfterEdit,
   setNewTimeAfterEditMeal,
 } from '../mealsSlice';
@@ -12,16 +12,11 @@ import { timeManager } from '../../utility/time.manager';
 import { myLocalStorage } from '../../utility/LocalStorage';
 
 interface IEditButton {
-  allMealsLength: number;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   mealOrderNumber: number;
 }
 
-export const EditButton = ({
-  allMealsLength,
-  setShowModal,
-  mealOrderNumber,
-}: IEditButton) => {
+export const EditButton = ({ setShowModal, mealOrderNumber }: IEditButton) => {
   const dispatch = useDispatch();
 
   const handleSubmitForEdit = () => {
@@ -42,18 +37,16 @@ export const EditButton = ({
         })
       );
     });
-    dispatch(setNewMeal(true));
+    dispatch(isSetNewMeal(true));
   };
 
   return (
     <div>
-      {allMealsLength === 6 && (
-        <Button
-          disabled={false}
-          handleClick={handleSubmitForEdit}
-          text={'Edit'}
-        />
-      )}
+      <Button
+        disabled={false}
+        handleClick={handleSubmitForEdit}
+        text={'Edit'}
+      />
     </div>
   );
 };

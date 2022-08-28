@@ -13,7 +13,7 @@ import ModalWindow from './list-of-meals/modal/ModalWindow';
 import { ModalWindowWithTime } from './list-of-meals/modal/ModalWindowWithTime';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  setNewMeal,
+  isSetNewMeal,
   setEatenMeal,
   setNewTimeAfterEditMeal,
   updateMealsAfterChangeMealTime,
@@ -42,13 +42,13 @@ function App() {
   const handleCloseBtn = () => {
     setShowModal(false);
 
-    const isSetNewMealTime = validationMealTime.isCurrentMealTimeLongerPrevious(
+    const isSetNewMealTime = validationMealTime.isCurrMealLaterThanPrev(
       listMealReduxSelector,
       editMealOrderNumber,
       newTimeBl
     );
 
-    dispatch(setNewMeal(isSetNewMealTime));
+    dispatch(isSetNewMeal(isSetNewMealTime));
 
     if (isSetNewMealTime) {
       dispatch(
