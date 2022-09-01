@@ -10,6 +10,7 @@ export interface IInitialStateMeals {
   newMinutesAfterEdit: string;
   newTimeBLAfterEdit: number;
   isSetNewMealTime: boolean;
+  copyList: IMealBL[];
 }
 
 const initialStateList: IInitialStateMeals = {
@@ -19,6 +20,7 @@ const initialStateList: IInitialStateMeals = {
   newMinutesAfterEdit: '00',
   newTimeBLAfterEdit: 1,
   isSetNewMealTime: true,
+  copyList: [],
 };
 
 export const mealsSlice = createSlice({
@@ -61,6 +63,17 @@ export const mealsSlice = createSlice({
     isSetNewMeal: (state, action) => {
       state.isSetNewMealTime = action.payload;
     },
+    copyMealList: (state) => {
+      state.copyList = [...state.list];
+    },
+    changeList: (state, action) => {
+      if (action.payload === false) {
+        state.list = [...state.copyList];
+        state.copyList = [];
+      } else {
+        state.copyList = [];
+      }
+    },
   },
 });
 
@@ -74,6 +87,8 @@ export const {
   updateMealsAfterChangeMealTime,
   setEatenMeal,
   isSetNewMeal,
+  copyMealList,
+  changeList,
 } = actions;
 
 export default reducer;

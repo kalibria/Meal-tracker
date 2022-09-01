@@ -13,12 +13,14 @@ import ModalWindow from './list-of-meals/modal/ModalWindow';
 import { ModalWindowWithTime } from './list-of-meals/modal/ModalWindowWithTime';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  changeList,
   isSetNewMeal,
   setEatenMeal,
   setNewTimeAfterEditMeal,
   updateMealsAfterChangeMealTime,
 } from './list-of-meals/mealsSlice';
 import {
+  selectCopyMealsList,
   selectEditMealOrderNumber,
   selectHourAfterEdit,
   selectMealsList,
@@ -34,6 +36,7 @@ function App() {
   const newHours = useSelector(selectHourAfterEdit);
   const newMinutes = useSelector(selectMinutesAfterEdit);
   const listMealReduxSelector = useSelector(selectMealsList);
+  const copyMealsRedux = useSelector(selectCopyMealsList);
   const newTimeBl = useSelector(selectNewTime);
   const editMealOrderNumber = useSelector(selectEditMealOrderNumber);
 
@@ -41,6 +44,13 @@ function App() {
 
   const handleCloseBtn = () => {
     setShowModal(false);
+
+    const newTimeGreaterPrev = validationMealTime.isNewTimeGreaterPrev(
+      listMealReduxSelector[editMealOrderNumber - 1].mealTime,
+      copyMealsRedux[editMealOrderNumber - 1].mealTime
+    );
+
+    dispatch(changeList(newTimeGreaterPrev));
 
     const isSetNewMealTime = validationMealTime.isCurrMealLaterThanPrev(
       listMealReduxSelector,
