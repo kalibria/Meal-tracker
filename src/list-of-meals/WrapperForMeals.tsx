@@ -13,6 +13,7 @@ import {
   selectIsSetNewMealTime,
   selectMealsList,
 } from '../redux/selectors';
+import { SnackbarComponent } from './Snackbar/SnackbarComponent';
 
 interface IWrapperForMeals {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -75,9 +76,10 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
           allMealsLength={mealListFromRedux.length}
           setShowModal={setShowModal}
         />
-        <div key={item.number * 10} className={style.error}>
+        <div className={style.error}>
           {!isMealTimeCorrect && item.number === editMealNumber && (
-            <p>Next meal time must be after the last eaten meal’s time</p>
+            <SnackbarComponent />
+            // <p>Next meal time must be after the last eaten meal’s time</p>
           )}
         </div>
       </>
