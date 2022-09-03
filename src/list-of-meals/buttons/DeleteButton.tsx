@@ -1,13 +1,17 @@
 import React from 'react';
 import { Button } from '../../buttons/Button';
+import { useDispatch } from 'react-redux';
+import { deleteLastMeal } from '../mealsSlice';
 
 interface IDeleteButton {
   disabled: boolean;
+  mealOrderNumber: number;
 }
 
-export const DeleteButton = ({ disabled }: IDeleteButton) => {
+export const DeleteButton = ({ disabled, mealOrderNumber }: IDeleteButton) => {
+  const dispatch = useDispatch();
   const handleClickOnDelete = () => {
-    console.log('deleteBTN');
+    dispatch(deleteLastMeal(mealOrderNumber));
   };
 
   return (

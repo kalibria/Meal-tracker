@@ -42,8 +42,7 @@ export const Meal = ({
       <div>
         {' '}
         {conditionForDeleteBtn && (
-          <DeleteButton disabled={isDeleteBtnActive} />
-          // <button disabled={isDeleteBtnActive}>Delete</button>
+          <DeleteButton disabled={isDeleteBtnActive} mealOrderNumber={number} />
         )}
       </div>
     </div>
