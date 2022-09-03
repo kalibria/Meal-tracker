@@ -1,61 +1,88 @@
 import React, { useEffect, useState } from 'react';
 
-import { IMealItemUi, mealMapper } from './meal.mapper';
+import { mealMapper } from './meal.mapper';
 import { Meal } from './Meal';
 import { myLocalStorage } from '../utility/LocalStorage';
-import { mealsManagerBL } from './mealsManager';
-import { currentTime } from '../utility/currentTime';
+import style from '../settings/components/settings.module.css';
 
-export const WrapperForMeals = () => {
-  const [allMeals, setAllMeals] = useState<IMealItemUi[]>(
-    mealMapper.fromBLToUi(mealsManagerBL.getActualMealListBL())
-  );
+import { currentTime } from '../utility/currentTime';
+import { batch, useDispatch, useSelector } from 'react-redux';
+import { setListOfMeals, isSetNewMeal } from './mealsSlice';
+import {
+  selectEditMealOrderNumber,
+  selectIsSetNewMealTime,
+  selectMealsList,
+} from '../redux/selectors';
+import { SnackbarComponent } from './Snackbar/SnackbarComponent';
+
+interface IWrapperForMeals {
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
+  const dispatch = useDispatch();
+  const isMealTimeCorrect = useSelector(selectIsSetNewMealTime);
+  const editMealNumber = useSelector(selectEditMealOrderNumber);
+  const isSetNewMealTime = useSelector(selectIsSetNewMealTime);
+
+  const mealListFromRedux = useSelector(selectMealsList);
+  console.log('mealRedux', mealListFromRedux);
+
+  useEffect(() => {
+    myLocalStorage.setMealListBL(mealListFromRedux);
+  }, [isSetNewMealTime, mealListFromRedux]);
+
+  const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
+
   const [isDeleteBtnDisable, setIsDeleteBtnDisable] = useState(false);
 
-  useEffect(() => {
-    const mealsBL = mealsManagerBL.getActualMealListBL();
-
-    if (mealsBL) setAllMeals(mealMapper.fromBLToUi(mealsBL));
-  }, []);
-
-  useEffect(() => {
-    myLocalStorage.setMealListBL(mealMapper.mealsFromUiToBl(allMeals));
-  }, [allMeals]);
+  const lastOrderNumber = mealListFromRedux.length;
 
   const handleSubmitForEat = (mealOrderNum: number) => {
     return () => {
-      setAllMeals(() => {
-        const timeOnClickMs = currentTime.getCurrentTime();
+      const timeOnClickMs = currentTime.getCurrentTime();
 
-        const newMeals = mealMapper.fromUIToBL(
-          allMeals,
-          mealOrderNum,
-          timeOnClickMs
-        );
+      const newMeals = mealMapper.fromUIToBL(
+        mealListUi,
+        mealOrderNum,
+        timeOnClickMs
+      );
 
-        if (mealOrderNum - 1 === allMeals.length) {
-          setIsDeleteBtnDisable(true);
-        }
+      if (mealOrderNum - 1 === mealListUi.length) {
+        setIsDeleteBtnDisable(true);
+      }
 
-        return newMeals;
+      batch(() => {
+        dispatch(setListOfMeals(mealMapper.mealsFromUiToBl(newMeals)));
+        dispatch(isSetNewMeal(true));
       });
+
+      return newMeals;
     };
   };
 
-  const lastOrderNumber = allMeals.length;
-
-  const mealsForUi = allMeals.map((item) => {
+  const mealsForUi = mealListUi.map((item) => {
     return (
-      <Meal
-        key={item.number}
-        number={item.number}
-        timeOfMeal={item.mealTime}
-        eatButtonDisabled={item.eatButtonDisabled}
-        handleSubmitForEat={handleSubmitForEat(item.number)}
-        conditionForDeleteBtn={item.number === lastOrderNumber}
-        isDeleteBtnActive={isDeleteBtnDisable}
-        eaten={item.eaten}
-      />
+      <>
+        <Meal
+          key={item.number}
+          number={item.number}
+          timeOfMeal={item.mealTime}
+          eatButtonDisabled={item.eatButtonDisabled}
+          handleSubmitForEat={handleSubmitForEat(item.number)}
+          conditionForDeleteBtn={item.number === lastOrderNumber}
+          isDeleteBtnActive={isDeleteBtnDisable}
+          eaten={item.eaten}
+          allMealsLength={mealListFromRedux.length}
+          setShowModal={setShowModal}
+        />
+        <div className={style.error}>
+          {!isMealTimeCorrect && item.number === editMealNumber && (
+            <SnackbarComponent />
+            // <p>Next meal time must be after the last eaten meal’s time</p>
+          )}
+        </div>
+      </>
     );
   });
 

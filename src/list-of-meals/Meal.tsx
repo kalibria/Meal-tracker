@@ -1,6 +1,8 @@
 import React from 'react';
 import style from './meals.module.css';
-import { EatButton } from './EatButton';
+import { EatButton } from './buttons/EatButton';
+import { EditButton } from './buttons/EditButton';
+import { DeleteButton } from './buttons/DeleteButton';
 
 interface IMeal {
   number: number;
@@ -10,6 +12,8 @@ interface IMeal {
   conditionForDeleteBtn: boolean;
   isDeleteBtnActive: boolean;
   eaten: boolean;
+  allMealsLength: number;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Meal = ({
@@ -20,7 +24,10 @@ export const Meal = ({
   conditionForDeleteBtn,
   isDeleteBtnActive,
   eaten,
+  setShowModal,
 }: IMeal) => {
+  // get from redux
+
   return (
     <div className={style.meal}>
       <span>{number} </span>
@@ -30,11 +37,13 @@ export const Meal = ({
         handleSubmitForEat={handleSubmitForEat}
         eaten={eaten}
       />
-      <button>Edit</button>
+      <EditButton setShowModal={setShowModal} mealOrderNumber={number} />
+
       <div>
         {' '}
         {conditionForDeleteBtn && (
-          <button disabled={isDeleteBtnActive}>Delete</button>
+          <DeleteButton disabled={isDeleteBtnActive} />
+          // <button disabled={isDeleteBtnActive}>Delete</button>
         )}
       </div>
     </div>

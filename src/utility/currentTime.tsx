@@ -10,6 +10,11 @@ class CurrentTime {
     const currentTime = new Date().getTime();
     return currentTime;
   }
+  getCurrentMinutes() {
+    const currentMinutes = new Date().getMinutes();
+    return currentMinutes;
+  }
+
   isMorning(time: number) {
     if (time >= startMorning && time < endMorning) return true;
     else return false;
