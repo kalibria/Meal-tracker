@@ -7,6 +7,7 @@ import {
   isSetNewMeal,
   setNewMinutesAfterEdit,
   setNewTimeAfterEditMeal,
+  copyMealList,
 } from '../mealsSlice';
 import { timeManager } from '../../utility/time.manager';
 import { myLocalStorage } from '../../utility/LocalStorage';
@@ -23,6 +24,8 @@ export const EditButton = ({ setShowModal, mealOrderNumber }: IEditButton) => {
     setShowModal(true);
 
     const mealBL = myLocalStorage.getMealListBL()[mealOrderNumber - 1];
+
+    dispatch(copyMealList());
 
     batch(() => {
       dispatch(setEditMealOrderNumber(mealOrderNumber));

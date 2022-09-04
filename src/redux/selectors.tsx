@@ -2,6 +2,8 @@ import { RootState } from './store';
 
 export const selectSettings = (store: RootState) => store.settings;
 export const selectMealsList = (store: RootState) => store.listOfMeals.list;
+export const selectCopyMealsList = (store: RootState) =>
+  store.listOfMeals.copyList;
 export const selectEditMealOrderNumber = (store: RootState) =>
   store.listOfMeals.editMealOrderNumber;
 

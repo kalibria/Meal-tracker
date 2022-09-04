@@ -12,6 +12,14 @@ class ValidationMealTime {
       return true;
     } else return false;
   }
+
+  isNewTimeGreaterPrev(newTimeMs: number, prevTimeMs: number) {
+    if (newTimeMs >= prevTimeMs) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 export const validationMealTime = new ValidationMealTime();

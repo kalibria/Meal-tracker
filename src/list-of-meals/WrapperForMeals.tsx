@@ -23,12 +23,14 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   const dispatch = useDispatch();
   const isMealTimeCorrect = useSelector(selectIsSetNewMealTime);
   const editMealNumber = useSelector(selectEditMealOrderNumber);
+  const isSetNewMealTime = useSelector(selectIsSetNewMealTime);
 
   const mealListFromRedux = useSelector(selectMealsList);
+  console.log('mealRedux', mealListFromRedux);
 
   useEffect(() => {
     myLocalStorage.setMealListBL(mealListFromRedux);
-  }, [mealListFromRedux]);
+  }, [isSetNewMealTime, mealListFromRedux]);
 
   const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
 
