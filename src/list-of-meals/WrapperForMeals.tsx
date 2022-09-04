@@ -32,7 +32,7 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
 
   const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
 
-  const [isDeleteBtnDisable, setIsDeleteBtnDisable] = useState(false);
+  // const [isDeleteBtnDisable, setIsDeleteBtnDisable] = useState(false);
 
   const lastOrderNumber = mealListFromRedux.length;
 
@@ -46,9 +46,9 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
         timeOnClickMs
       );
 
-      if (mealOrderNum - 1 === mealListUi.length) {
-        setIsDeleteBtnDisable(true);
-      }
+      // if (mealOrderNum - 1 === mealListUi.length) {
+      //   setIsDeleteBtnDisable(true);
+      // }
 
       batch(() => {
         dispatch(setListOfMeals(mealMapper.mealsFromUiToBl(newMeals)));
@@ -69,7 +69,7 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
           eatButtonDisabled={item.eatButtonDisabled}
           handleSubmitForEat={handleSubmitForEat(item.number)}
           conditionForDeleteBtn={item.number === lastOrderNumber}
-          isDeleteBtnActive={isDeleteBtnDisable}
+          // isDeleteBtnActive={isDeleteBtnDisable}
           eaten={item.eaten}
           allMealsLength={mealListFromRedux.length}
           setShowModal={setShowModal}

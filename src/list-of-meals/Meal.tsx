@@ -10,7 +10,7 @@ interface IMeal {
   eatButtonDisabled: boolean;
   handleSubmitForEat: React.MouseEventHandler<HTMLButtonElement>;
   conditionForDeleteBtn: boolean;
-  isDeleteBtnActive: boolean;
+  // isDeleteBtnActive: boolean;
   eaten: boolean;
   allMealsLength: number;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,7 +22,7 @@ export const Meal = ({
   eatButtonDisabled,
   handleSubmitForEat,
   conditionForDeleteBtn,
-  isDeleteBtnActive,
+  // isDeleteBtnActive,
   eaten,
   setShowModal,
 }: IMeal) => {
@@ -42,7 +42,10 @@ export const Meal = ({
       <div>
         {' '}
         {conditionForDeleteBtn && (
-          <DeleteButton disabled={isDeleteBtnActive} mealOrderNumber={number} />
+          <DeleteButton
+            // disabled={isDeleteBtnActive}
+            mealOrderNumber={number}
+          />
         )}
       </div>
     </div>

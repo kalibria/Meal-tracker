@@ -1,4 +1,6 @@
-
+.editBtN_snackbar:last-child {
+    display: none
+}
 
 
 .meal {
