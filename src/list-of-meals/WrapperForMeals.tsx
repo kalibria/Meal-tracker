@@ -34,8 +34,6 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
 
   const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
 
-  const [isDeleteBtnDisable, setIsDeleteBtnDisable] = useState(false);
-
   const lastOrderNumber = mealListFromRedux.length;
 
   const handleSubmitForEat = (mealOrderNum: number) => {
@@ -48,10 +46,6 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
         timeOnClickMs
       );
 
-      if (mealOrderNum - 1 === mealListUi.length) {
-        setIsDeleteBtnDisable(true);
-      }
-
       batch(() => {
         dispatch(setListOfMeals(mealMapper.mealsFromUiToBl(newMeals)));
         dispatch(isSetNewMeal(true));
@@ -63,15 +57,13 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
 
   const mealsForUi = mealListUi.map((item) => {
     return (
-      <>
+      <React.Fragment key={item.number}>
         <Meal
-          key={item.number}
           number={item.number}
           timeOfMeal={item.mealTime}
           eatButtonDisabled={item.eatButtonDisabled}
           handleSubmitForEat={handleSubmitForEat(item.number)}
           conditionForDeleteBtn={item.number === lastOrderNumber}
-          isDeleteBtnActive={isDeleteBtnDisable}
           eaten={item.eaten}
           allMealsLength={mealListFromRedux.length}
           setShowModal={setShowModal}
@@ -79,10 +71,9 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
         <div className={style.error}>
           {!isMealTimeCorrect && item.number === editMealNumber && (
             <SnackbarComponent />
-            // <p>Next meal time must be after the last eaten meal’s time</p>
           )}
         </div>
-      </>
+      </React.Fragment>
     );
   });
 

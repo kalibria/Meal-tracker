@@ -1,21 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '../../buttons/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteLastMeal } from '../mealsSlice';
+import { minNumMealsPerDay } from '../constantOfListOfMeal';
+import { selectMealsList } from '../../redux/selectors';
+
+import { useSnackbar } from 'notistack';
 
 interface IDeleteButton {
-  disabled: boolean;
+  mealOrderNumber: number;
 }
 
-export const DeleteButton = ({ disabled }: IDeleteButton) => {
+export const DeleteButton = ({ mealOrderNumber }: IDeleteButton) => {
+  const dispatch = useDispatch();
+  const lengthOfMealsArray = useSelector(selectMealsList).length;
+  const [isDisabled] = useState(() => {
+    return lengthOfMealsArray <= minNumMealsPerDay;
+  });
+
   const handleClickOnDelete = () => {
-    console.log('deleteBTN');
+    if (lengthOfMealsArray > minNumMealsPerDay) {
+      dispatch(deleteLastMeal(mealOrderNumber));
+    }
   };
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  useEffect(() => {
+    if (lengthOfMealsArray <= minNumMealsPerDay) {
+      enqueueSnackbar(message, {
+        variant: 'warning',
+        autoHideDuration: 5000,
+        preventDuplicate: true,
+      });
+    }
+  }, [enqueueSnackbar, lengthOfMealsArray]);
+  const message = 'There cannot be fewer than three meals per day';
 
   return (
     <div>
       <Button
         handleClick={handleClickOnDelete}
         text={'Delete'}
-        disabled={disabled}
+        disabled={isDisabled}
       />
     </div>
   );

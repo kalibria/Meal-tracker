@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import { SnackbarProvider } from 'notistack';
 
 import { FirstRouteEl } from './routeElements/firstRouteEl';
 import { SecondRuteEl } from './routeElements/secondRouteEl';
@@ -87,28 +88,30 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path={KnownRoutes.START_PAGE} element={<FirstRouteEl />} />
-          <Route path={KnownRoutes.WELCOME} element={<SecondRuteEl />} />
-          <Route
-            path={KnownRoutes.PLANE_MEALS}
-            element={<WindowWithButton />}
-          />
-          <Route path={KnownRoutes.SETTINGS} element={<SettingsList />} />
+      <SnackbarProvider maxSnack={1} preventDuplicate>
+        <Router>
+          <Routes>
+            <Route path={KnownRoutes.START_PAGE} element={<FirstRouteEl />} />
+            <Route path={KnownRoutes.WELCOME} element={<SecondRuteEl />} />
+            <Route
+              path={KnownRoutes.PLANE_MEALS}
+              element={<WindowWithButton />}
+            />
+            <Route path={KnownRoutes.SETTINGS} element={<SettingsList />} />
 
-          <Route
-            path={KnownRoutes.MEAL_LIST}
-            element={<ListOfMeals setShowModal={setShowModal} />}
-          />
-        </Routes>
-      </Router>
-      <div id='modal'></div>
-      {showModal && (
-        <ModalWindow showModal={showModal} onClose={handleCloseBtn}>
-          <ModalWindowWithTime />
-        </ModalWindow>
-      )}
+            <Route
+              path={KnownRoutes.MEAL_LIST}
+              element={<ListOfMeals setShowModal={setShowModal} />}
+            />
+          </Routes>
+        </Router>
+        <div id='modal'></div>
+        {showModal && (
+          <ModalWindow showModal={showModal} onClose={handleCloseBtn}>
+            <ModalWindowWithTime />
+          </ModalWindow>
+        )}
+      </SnackbarProvider>
     </>
   );
 }

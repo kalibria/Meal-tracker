@@ -63,6 +63,10 @@ export const mealsSlice = createSlice({
     isSetNewMeal: (state, action) => {
       state.isSetNewMealTime = action.payload;
     },
+
+    deleteLastMeal: (state, action) => {
+      state.list = state.list.slice(0, action.payload - 1);
+    },
     copyMealList: (state) => {
       state.copyList = [...state.list];
     },
@@ -87,6 +91,7 @@ export const {
   updateMealsAfterChangeMealTime,
   setEatenMeal,
   isSetNewMeal,
+  deleteLastMeal,
   copyMealList,
   changeList,
 } = actions;
