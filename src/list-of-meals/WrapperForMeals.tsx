@@ -57,9 +57,8 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
 
   const mealsForUi = mealListUi.map((item) => {
     return (
-      <>
+      <React.Fragment key={item.number}>
         <Meal
-          key={item.number}
           number={item.number}
           timeOfMeal={item.mealTime}
           eatButtonDisabled={item.eatButtonDisabled}
@@ -74,7 +73,7 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
             <SnackbarComponent />
           )}
         </div>
-      </>
+      </React.Fragment>
     );
   });
 
