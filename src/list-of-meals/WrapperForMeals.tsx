@@ -7,7 +7,7 @@ import style from '../settings/components/settings.module.css';
 
 import { currentTime } from '../utility/currentTime';
 import { batch, useDispatch, useSelector } from 'react-redux';
-import { setListOfMeals, isSetNewMeal } from './mealsSlice';
+import { setListOfMeals, isSetNewMeal, addExtraMeal } from './mealsSlice';
 import {
   selectEditMealOrderNumber,
   selectIsSetNewMealTime,
@@ -34,9 +34,13 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
 
   useEffect(() => {
     if (mealsManagerBL.checkEaten(mealListFromRedux)) {
-      const addExtraMeal = confirm('Would you like to create an extra meal?');
+      const isAddExtraMeal = confirm('Would you like to create an extra meal?');
+
+      if (isAddExtraMeal) {
+        dispatch(addExtraMeal());
+      }
     }
-  }, [mealListFromRedux]);
+  }, [dispatch, mealListFromRedux]);
 
   const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
 
