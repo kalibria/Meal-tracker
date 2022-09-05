@@ -14,6 +14,7 @@ import {
   selectMealsList,
 } from '../redux/selectors';
 import { SnackbarComponent } from './Snackbar/SnackbarComponent';
+import { mealsManagerBL } from './mealsManager';
 
 interface IWrapperForMeals {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -26,11 +27,16 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   const isSetNewMealTime = useSelector(selectIsSetNewMealTime);
 
   const mealListFromRedux = useSelector(selectMealsList);
-  console.log('mealRedux', mealListFromRedux);
 
   useEffect(() => {
     myLocalStorage.setMealListBL(mealListFromRedux);
   }, [isSetNewMealTime, mealListFromRedux]);
+
+  useEffect(() => {
+    if (mealsManagerBL.checkEaten(mealListFromRedux)) {
+      const addExtraMeal = confirm('Would you like to create an extra meal?');
+    }
+  }, [mealListFromRedux]);
 
   const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
 

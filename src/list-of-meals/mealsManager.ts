@@ -78,6 +78,20 @@ export class MealsManagerBL {
     }, []);
   }
 
+  checkEaten(meals: IMealBL[]) {
+    const isAllEaten = meals.every((value) => {
+      if (value.eaten === true) {
+        return true;
+      }
+    });
+
+    if (isAllEaten) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   private getFirstMealTime(): number {
     return (
       this.currentTimeMs +
