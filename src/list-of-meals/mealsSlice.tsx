@@ -4,6 +4,7 @@ import { timeManager } from '../utility/time.manager';
 import { IMealBL, mealsManagerBL } from './mealsManager';
 import { myLocalStorage } from '../utility/LocalStorage';
 import { minutesInHour } from '../settings/settings_constant';
+import { defaultLatestTime, timeOfLastMeal } from './constantOfListOfMeal';
 
 export interface IInitialStateMeals {
   list: IMealBL[];
@@ -84,16 +85,23 @@ export const mealsSlice = createSlice({
     addExtraMeal: (state) => {
       const lastMeal = state.list[state.list.length - 1];
 
-      console.log(
-        'timeBetween',
-        myLocalStorage.getTimeBetweenMeals() * minutesInHour * 1000
-      );
+      const latestMealTime = (time: number) => {
+        const timeOfLastMealTimeBL = timeManager.timeFromUIToBL(timeOfLastMeal);
+        const defaultLatestMealTimeBL =
+          timeManager.timeFromUIToBL(defaultLatestTime);
+
+        if (time > timeOfLastMealTimeBL) {
+          return defaultLatestMealTimeBL;
+        } else {
+          return (
+            time + myLocalStorage.getTimeBetweenMeals() * minutesInHour * 1000
+          );
+        }
+      };
 
       const extraMeal: IMealBL = {
         number: lastMeal.number + 1,
-        mealTime:
-          lastMeal.mealTime +
-          myLocalStorage.getTimeBetweenMeals() * minutesInHour * 1000,
+        mealTime: latestMealTime(lastMeal.mealTime),
         eaten: false,
         edit: false,
         delete: false,
