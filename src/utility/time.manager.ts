@@ -13,7 +13,7 @@ class TimeManager {
   }
 
   timeFromUIToBL(timeUI: string) {
-    const time = parse(timeUI, "HH ':' mm", new Date());
+    const time = parse(timeUI, "HH':'mm", new Date());
     return time.getTime();
   }
 

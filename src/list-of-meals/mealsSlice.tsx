@@ -89,6 +89,7 @@ export const mealsSlice = createSlice({
         edit: false,
         delete: false,
       };
+
       state.list.push(extraMeal);
     },
   },
