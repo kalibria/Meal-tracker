@@ -1,15 +1,13 @@
 import React from 'react';
 import { Button } from '../../buttons/Button';
+import { useDispatch } from 'react-redux';
+import { addExtraMeal } from '../mealsSlice';
 
-interface IAddExtraMEalButton {
-  setIsAddExtraMeal: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export const AddExtraMEalButton = () => {
+  const dispatch = useDispatch();
 
-export const AddExtraMEalButton = ({
-  setIsAddExtraMeal,
-}: IAddExtraMEalButton) => {
   const handleClickAddExtraMeal = () => {
-    setIsAddExtraMeal(true);
+    dispatch(addExtraMeal());
   };
   return (
     <Button text={'Add extra meal'} handleClick={handleClickAddExtraMeal} />

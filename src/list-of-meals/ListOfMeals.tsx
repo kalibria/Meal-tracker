@@ -13,8 +13,6 @@ interface IListOfMeals {
 export const ListOfMeals = ({ setShowModal }: IListOfMeals) => {
   const navigate = useNavigate();
 
-  const [isAddExtraMeal, setIsAddExtraMeal] = useState(false);
-
   const goToFirstRouteEl = () => {
     navigate(KnownRoutes.WELCOME);
 
@@ -25,13 +23,9 @@ export const ListOfMeals = ({ setShowModal }: IListOfMeals) => {
   };
   return (
     <div>
-      <WrapperForMeals
-        setShowModal={setShowModal}
-        isAddExtraMeal={isAddExtraMeal}
-        setIsAddExtraMeal={setIsAddExtraMeal}
-      />
+      <WrapperForMeals setShowModal={setShowModal} />
       <div className={style.btn_position}>
-        <AddExtraMEalButton setIsAddExtraMeal={setIsAddExtraMeal} />
+        <AddExtraMEalButton />
         <Button text={'End the day'} handleClick={handleClick} />
       </div>
     </div>

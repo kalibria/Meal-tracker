@@ -18,15 +18,9 @@ import { mealsManagerBL } from './mealsManager';
 
 interface IWrapperForMeals {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  isAddExtraMeal: boolean;
-  setIsAddExtraMeal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const WrapperForMeals = ({
-  setShowModal,
-  isAddExtraMeal,
-  setIsAddExtraMeal,
-}: IWrapperForMeals) => {
+export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   const dispatch = useDispatch();
   const isMealTimeCorrect = useSelector(selectIsSetNewMealTime);
   const editMealNumber = useSelector(selectEditMealOrderNumber);
@@ -46,13 +40,8 @@ export const WrapperForMeals = ({
       if (questionAddExtraMeal) {
         dispatch(addExtraMeal());
       }
-    } else if (isAddExtraMeal) {
-      console.log('isAddExtraMeal', isAddExtraMeal);
-      dispatch(addExtraMeal());
-      setIsAddExtraMeal(false);
-      return;
     }
-  }, [dispatch, isAddExtraMeal, mealListFromRedux, setIsAddExtraMeal]);
+  }, [dispatch, mealListFromRedux]);
 
   const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
 
