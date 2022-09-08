@@ -22,7 +22,7 @@ export const ListOfMeals = ({ setShowModal }: IListOfMeals) => {
     goToFirstRouteEl();
   };
   return (
-    <div>
+    <div className={style.listOfMeals}>
       <WrapperForMeals setShowModal={setShowModal} />
       <div className={style.btn_position}>
         <AddExtraMEalButton />

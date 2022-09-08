@@ -5,6 +5,7 @@ import { addExtraMeal } from '../mealsSlice';
 import { selectMealsList } from '../../redux/selectors';
 import { defaultLatestTime } from '../constantOfListOfMeal';
 import { timeManager } from '../../utility/time.manager';
+import styles from '../meals.module.css';
 
 export const AddExtraMEalButton = () => {
   const [isDisabled, setIsDisabled] = useState(false);
@@ -23,11 +24,15 @@ export const AddExtraMEalButton = () => {
       setIsDisabled(true);
     }
   }, [lastMealTime]);
+
   return (
     <Button
-      text={'Add extra meal'}
+      text={'+ Add extra meal'}
       handleClick={handleClickAddExtraMeal}
       disabled={isDisabled}
+      classNames={
+        isDisabled ? [styles.disabledExtraMeal] : [styles.addExtraMeal]
+      }
     />
   );
 };

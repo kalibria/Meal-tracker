@@ -4,5 +4,5 @@ export const iconEaten =
 
 export const minNumMealsPerDay = 3;
 
-export const timeOfLastMeal = '21:00';
-export const defaultLatestTime = '23:20';
+export const timeOfLastMeal = '21 : 00';
+export const defaultLatestTime = '23 : 20';

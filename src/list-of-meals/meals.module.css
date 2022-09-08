@@ -10,6 +10,21 @@
     margin-bottom: 20px;
 }
 
+.addExtraMeal {
+    border: none;
+    color: blue;
+    background-color: transparent;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.disabledExtraMeal {
+    border: none;
+    color: lightgray;
+    background-color: transparent;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
 
 
 
