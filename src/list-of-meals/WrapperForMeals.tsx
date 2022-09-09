@@ -3,17 +3,11 @@ import React, { useEffect } from 'react';
 import { mealMapper } from './meal.mapper';
 import { Meal } from './Meal';
 import { myLocalStorage } from '../utility/LocalStorage';
-import style from '../settings/components/settings.module.css';
 
 import { currentTime } from '../utility/currentTime';
 import { batch, useDispatch, useSelector } from 'react-redux';
 import { setListOfMeals, isSetNewMeal, addExtraMeal } from './mealsSlice';
-import {
-  selectEditMealOrderNumber,
-  selectIsSetNewMealTime,
-  selectMealsList,
-} from '../redux/selectors';
-import { SnackbarComponent } from './Snackbar/SnackbarComponent';
+import { selectIsSetNewMealTime, selectMealsList } from '../redux/selectors';
 import { mealsManagerBL } from './mealsManager';
 
 interface IWrapperForMeals {
@@ -22,8 +16,7 @@ interface IWrapperForMeals {
 
 export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   const dispatch = useDispatch();
-  const isMealTimeCorrect = useSelector(selectIsSetNewMealTime);
-  const editMealNumber = useSelector(selectEditMealOrderNumber);
+
   const isSetNewMealTime = useSelector(selectIsSetNewMealTime);
 
   const mealListFromRedux = useSelector(selectMealsList);
@@ -79,12 +72,6 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
           allMealsLength={mealListFromRedux.length}
           setShowModal={setShowModal}
         />
-
-        <div className={style.error}>
-          {!isMealTimeCorrect && item.number === editMealNumber && (
-            <SnackbarComponent />
-          )}
-        </div>
       </React.Fragment>
     );
   });
