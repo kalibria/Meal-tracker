@@ -22,8 +22,12 @@ export const AddExtraMEalButton = () => {
       timeManager.timeFromUIToBL(defaultLatestTime);
     if (lastMealTime === defaultLatestMealTimeBL) {
       setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
     }
   }, [lastMealTime]);
+
+  console.log('isDisabledExtraMeeal', isDisabled);
 
   return (
     <Button
