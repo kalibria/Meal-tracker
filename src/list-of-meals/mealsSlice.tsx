@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { timeManager } from '../utility/time.manager';
 import { IMealBL, mealsManagerBL } from './mealsManager';
+import { myLocalStorage } from '../utility/LocalStorage';
 
 export interface IInitialStateMeals {
   list: IMealBL[];
@@ -92,6 +93,12 @@ export const mealsSlice = createSlice({
 
       state.list.push(extraMeal);
     },
+
+    removeMealList: (state, action) => {
+      myLocalStorage.removeLS(action.payload);
+
+      state.list = myLocalStorage.getMealListBL();
+    },
   },
 });
 
@@ -109,6 +116,7 @@ export const {
   copyMealList,
   changeList,
   addExtraMeal,
+  removeMealList,
 } = actions;
 
 export default reducer;

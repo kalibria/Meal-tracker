@@ -27,8 +27,6 @@ export const AddExtraMEalButton = () => {
     }
   }, [lastMealTime]);
 
-  console.log('isDisabledExtraMeeal', isDisabled);
-
   return (
     <Button
       text={'+ Add extra meal'}

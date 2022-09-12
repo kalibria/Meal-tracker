@@ -62,6 +62,10 @@ export class LocalStorage {
 
     return JSON.parse(mealList) as IMealBL[];
   }
+
+  removeLS(key: string) {
+    localStorage.removeItem(key);
+  }
 }
 
 export const myLocalStorage = new LocalStorage(false);
