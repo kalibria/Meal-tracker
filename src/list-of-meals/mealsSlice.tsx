@@ -78,6 +78,20 @@ export const mealsSlice = createSlice({
         state.copyList = [];
       }
     },
+
+    addExtraMeal: (state) => {
+      const lastMeal = state.list[state.list.length - 1];
+
+      const extraMeal: IMealBL = {
+        number: lastMeal.number + 1,
+        mealTime: timeManager.latestMealTime(lastMeal.mealTime),
+        eaten: false,
+        edit: false,
+        delete: false,
+      };
+
+      state.list.push(extraMeal);
+    },
   },
 });
 
@@ -94,6 +108,7 @@ export const {
   deleteLastMeal,
   copyMealList,
   changeList,
+  addExtraMeal,
 } = actions;
 
 export default reducer;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { SnackbarProvider } from 'notistack';
+import { SnackbarProvider, useSnackbar } from 'notistack';
 
 import { FirstRouteEl } from './routeElements/firstRouteEl';
 import { SecondRuteEl } from './routeElements/secondRouteEl';
@@ -24,6 +24,7 @@ import {
   selectCopyMealsList,
   selectEditMealOrderNumber,
   selectHourAfterEdit,
+  selectIsSetNewMealTime,
   selectMealsList,
   selectMinutesAfterEdit,
   selectNewTime,
@@ -40,11 +41,22 @@ function App() {
   const copyMealsRedux = useSelector(selectCopyMealsList);
   const newTimeBl = useSelector(selectNewTime);
   const editMealOrderNumber = useSelector(selectEditMealOrderNumber);
+  const isMealTimeCorrect = useSelector(selectIsSetNewMealTime);
 
   const [showModal, setShowModal] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+  const message = 'Next meal time must be after the last eaten meal’s time';
 
   const handleCloseBtn = () => {
     setShowModal(false);
+
+    if (isMealTimeCorrect) {
+      enqueueSnackbar(message, {
+        variant: 'warning',
+        autoHideDuration: 5000,
+        preventDuplicate: true,
+      });
+    }
 
     const newTimeGreaterPrev = validationMealTime.isNewTimeGreaterPrev(
       listMealReduxSelector[editMealOrderNumber - 1].mealTime,
@@ -88,30 +100,28 @@ function App() {
 
   return (
     <>
-      <SnackbarProvider maxSnack={1} preventDuplicate>
-        <Router>
-          <Routes>
-            <Route path={KnownRoutes.START_PAGE} element={<FirstRouteEl />} />
-            <Route path={KnownRoutes.WELCOME} element={<SecondRuteEl />} />
-            <Route
-              path={KnownRoutes.PLANE_MEALS}
-              element={<WindowWithButton />}
-            />
-            <Route path={KnownRoutes.SETTINGS} element={<SettingsList />} />
+      <Router>
+        <Routes>
+          <Route path={KnownRoutes.START_PAGE} element={<FirstRouteEl />} />
+          <Route path={KnownRoutes.WELCOME} element={<SecondRuteEl />} />
+          <Route
+            path={KnownRoutes.PLANE_MEALS}
+            element={<WindowWithButton />}
+          />
+          <Route path={KnownRoutes.SETTINGS} element={<SettingsList />} />
 
-            <Route
-              path={KnownRoutes.MEAL_LIST}
-              element={<ListOfMeals setShowModal={setShowModal} />}
-            />
-          </Routes>
-        </Router>
-        <div id='modal'></div>
-        {showModal && (
-          <ModalWindow showModal={showModal} onClose={handleCloseBtn}>
-            <ModalWindowWithTime />
-          </ModalWindow>
-        )}
-      </SnackbarProvider>
+          <Route
+            path={KnownRoutes.MEAL_LIST}
+            element={<ListOfMeals setShowModal={setShowModal} />}
+          />
+        </Routes>
+      </Router>
+      <div id='modal'></div>
+      {showModal && (
+        <ModalWindow showModal={showModal} onClose={handleCloseBtn}>
+          <ModalWindowWithTime />
+        </ModalWindow>
+      )}
     </>
   );
 }

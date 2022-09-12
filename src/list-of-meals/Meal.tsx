@@ -3,6 +3,7 @@ import style from './meals.module.css';
 import { EatButton } from './buttons/EatButton';
 import { EditButton } from './buttons/EditButton';
 import { DeleteButton } from './buttons/DeleteButton';
+import { AddExtraMEalButton } from './buttons/AddExtraMEalButton';
 
 interface IMeal {
   number: number;
@@ -27,20 +28,22 @@ export const Meal = ({
   // get from redux
 
   return (
-    <div className={style.meal}>
-      <span>{number} </span>
-      <span>{timeOfMeal} </span>
-      <EatButton
-        disabled={eatButtonDisabled}
-        handleSubmitForEat={handleSubmitForEat}
-        eaten={eaten}
-      />
-      <EditButton setShowModal={setShowModal} mealOrderNumber={number} />
+    <>
+      <div className={style.meal}>
+        <span>{number} </span>
+        <span>{timeOfMeal} </span>
+        <EatButton
+          disabled={eatButtonDisabled}
+          handleSubmitForEat={handleSubmitForEat}
+          eaten={eaten}
+        />
+        <EditButton setShowModal={setShowModal} mealOrderNumber={number} />
 
-      <div>
-        {' '}
-        {conditionForDeleteBtn && <DeleteButton mealOrderNumber={number} />}
+        <div>
+          {' '}
+          {conditionForDeleteBtn && <DeleteButton mealOrderNumber={number} />}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
