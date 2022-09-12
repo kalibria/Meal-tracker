@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button } from '../../buttons/Button';
 import { batch, useDispatch } from 'react-redux';
 import {
@@ -11,8 +11,6 @@ import {
 } from '../mealsSlice';
 import { timeManager } from '../../utility/time.manager';
 import { myLocalStorage } from '../../utility/LocalStorage';
-import { useSnackbar } from 'notistack';
-import { minNumMealsPerDay } from '../constantOfListOfMeal';
 
 interface IEditButton {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;

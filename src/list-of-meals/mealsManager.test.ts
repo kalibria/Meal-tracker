@@ -1,6 +1,4 @@
 import { mealsManagerBL, MealsManagerBL } from './mealsManager';
-import { LocalStorage } from '../utility/LocalStorage';
-import { addMinutes } from 'date-fns';
 
 describe('MealsManager', () => {
   const localStorageMock = {
@@ -40,8 +38,7 @@ describe('MealsManager', () => {
 
   describe('Meal list', () => {
     it('should generate first meal at current time plus time before first meal (default is 20 min)', () => {
-      const mockLS = new LocalStorage(false);
-      const mockMealManager = new MealsManagerBL(mockLS);
+      const mockMealManager = new MealsManagerBL();
 
       const [firstMeal] = mockMealManager.generateMealListBL();
 
@@ -51,8 +48,7 @@ describe('MealsManager', () => {
     });
 
     it('should place second meal 2h after first meal', () => {
-      const mockLS = new LocalStorage(false);
-      const mockMealManager = new MealsManagerBL(mockLS);
+      const mockMealManager = new MealsManagerBL();
 
       const [, secondMeal] = mockMealManager.generateMealListBL();
 
@@ -62,8 +58,7 @@ describe('MealsManager', () => {
     });
 
     test('first meal should have order number 1', () => {
-      const mockLS = new LocalStorage(false);
-      const mockMealManager = new MealsManagerBL(mockLS);
+      const mockMealManager = new MealsManagerBL();
 
       const [firstMeal, ...otherMeals] = mockMealManager.generateMealListBL();
       const lastMeal = otherMeals.at(-1);
