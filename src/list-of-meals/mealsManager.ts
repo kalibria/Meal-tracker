@@ -85,11 +85,7 @@ export class MealsManagerBL {
       }
     });
 
-    if (isAllEaten) {
-      return true;
-    } else {
-      return false;
-    }
+    return isAllEaten;
   }
 
   private getFirstMealTime(): number {
