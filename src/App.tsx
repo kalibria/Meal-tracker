@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { SnackbarProvider, useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 
 import { FirstRouteEl } from './routeElements/firstRouteEl';
 import { SecondRuteEl } from './routeElements/secondRouteEl';
