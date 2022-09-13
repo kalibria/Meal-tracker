@@ -1,6 +1,6 @@
 import { currentTime } from '../utility/currentTime';
 import { serialNumberOfFirstMeal } from './constantOfListOfMeal';
-import { LocalStorage, myLocalStorage } from '../utility/LocalStorage';
+import { myLocalStorage } from '../utility/LocalStorage';
 
 export interface IMealBL {
   number: number;
@@ -23,7 +23,7 @@ export class MealsManagerBL {
   allMealsInDayBL: Array<IMealBL>;
   timesOfMeals: Array<number>;
 
-  constructor(private myLocalStorage: LocalStorage) {
+  constructor() {
     this.currentTimeMs = currentTime.getCurrentTime();
 
     this.timesOfMeals = [];
@@ -79,13 +79,9 @@ export class MealsManagerBL {
   }
 
   checkEaten(meals: IMealBL[]) {
-    const isAllEaten = meals.every((value) => {
-      if (value.eaten === true) {
-        return true;
-      }
+    return meals.every((value) => {
+      return value.eaten;
     });
-
-    return isAllEaten;
   }
 
   private getFirstMealTime(): number {
@@ -115,4 +111,4 @@ export class MealsManagerBL {
   }
 }
 
-export const mealsManagerBL = new MealsManagerBL(myLocalStorage);
+export const mealsManagerBL = new MealsManagerBL();

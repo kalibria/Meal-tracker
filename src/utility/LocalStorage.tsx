@@ -63,7 +63,7 @@ export class LocalStorage {
     return JSON.parse(mealList) as IMealBL[];
   }
 
-  removeItem(key: string) {
+  removeLS(key: string) {
     localStorage.removeItem(key);
   }
 }
