@@ -1,5 +1,6 @@
 .btn_settings_position {
     margin-left: 85%;
+    margin-bottom: 20px;
 }
 
 .listOfMeals {
@@ -10,7 +11,8 @@
 .btn_position {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    align-items: center;
+
 }
 
 .settingsIcon {
