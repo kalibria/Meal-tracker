@@ -29,16 +29,24 @@ class TimeManager {
     return minutesUi;
   }
 
-  latestMealTime = (time: number) => {
-    const timeOfLastMealTimeBL = this.timeFromUIToBL(timeOfLastMeal);
-    const defaultLatestMealTimeBL = this.timeFromUIToBL(defaultLatestTime);
-
-    if (time > timeOfLastMealTimeBL) {
-      return defaultLatestMealTimeBL;
-    } else {
-      return time + myLocalStorage.getTimeBetweenMeals() * minutesInHour * 1000;
-    }
-  };
+  // latestMealTime = (time: number) => {
+  //   // const timeOfLastMealTimeBL = this.timeFromUIToBL(timeOfLastMeal);
+  //   const defaultLatestMealTimeBL = this.timeFromUIToBL(defaultLatestTime);
+  //   const timeBetweenMealsMS =
+  //     myLocalStorage.getTimeBetweenMeals() * minutesInHour * 1000;
+  //
+  //   const latestMealTime = time +
+  //
+  //   if (time > timeOfLastMealTimeBL) {
+  //     if (time + timeBetweenMealsMS < defaultLatestMealTimeBL) {
+  //       return time + timeBetweenMealsMS;
+  //     } else {
+  //       return 0;
+  //     }
+  //   } else {
+  //     return time + timeBetweenMealsMS;
+  //   }
+  // };
 }
 
 export const timeManager = new TimeManager();
