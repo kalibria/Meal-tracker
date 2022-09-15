@@ -28,7 +28,7 @@ The user can add extra meal if time of that extra meal would be less than 23:20.
 Some functions have been tested using `Jest`.
 
 
-![image](photo/Screenshot 2022-09-15 at 11.58.11.png)image
+![image](./photo/Screenshot 2022-09-15 at 11.58.11.png)
 
 ![eaten meals](photo/Screenshot 2022-09-15 at 11.58.29.png)
 
