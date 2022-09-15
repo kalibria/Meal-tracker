@@ -1,6 +1,10 @@
 import { currentTime } from '../utility/currentTime';
-import { serialNumberOfFirstMeal } from './constantOfListOfMeal';
+import {
+  defaultLatestTime,
+  serialNumberOfFirstMeal,
+} from './constantOfListOfMeal';
 import { myLocalStorage } from '../utility/LocalStorage';
+import { timeManager } from '../utility/time.manager';
 
 export interface IMealBL {
   number: number;
@@ -97,17 +101,24 @@ export class MealsManagerBL {
       myLocalStorage.getMealsNumber()
     ).fill(1);
 
-    return allMealTimes.reduce((acc: number[], time: number, iteration) => {
-      if (iteration === 0) {
-        acc[0] = firstMealTime;
+    const allTimes = allMealTimes.reduce(
+      (acc: number[], time: number, iteration) => {
+        if (iteration === 0) {
+          acc[0] = firstMealTime;
+          return acc;
+        }
+
+        acc[iteration] =
+          acc[iteration - 1] + myLocalStorage.getTimeBetweenMeals() * 60 * 1000;
+
         return acc;
-      }
+      },
+      []
+    );
 
-      acc[iteration] =
-        acc[iteration - 1] + myLocalStorage.getTimeBetweenMeals() * 60 * 1000;
-
-      return acc;
-    }, []);
+    return allTimes.filter((item) => {
+      return item <= timeManager.timeFromUIToBL(defaultLatestTime);
+    });
   }
 }
 

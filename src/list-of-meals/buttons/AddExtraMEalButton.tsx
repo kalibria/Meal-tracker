@@ -6,6 +6,8 @@ import { selectMealsList } from '../../redux/selectors';
 import { defaultLatestTime } from '../constantOfListOfMeal';
 import { timeManager } from '../../utility/time.manager';
 import styles from '../meals.module.css';
+import { myLocalStorage } from '../../utility/LocalStorage';
+import { minutesInHour } from '../../settings/settings_constant';
 
 export const AddExtraMEalButton = () => {
   const [isDisabled, setIsDisabled] = useState(false);
@@ -20,7 +22,11 @@ export const AddExtraMEalButton = () => {
   useEffect(() => {
     const defaultLatestMealTimeBL =
       timeManager.timeFromUIToBL(defaultLatestTime);
-    if (lastMealTime === defaultLatestMealTimeBL) {
+    if (
+      lastMealTime +
+        myLocalStorage.getTimeBetweenMeals() * minutesInHour * 1000 >=
+      defaultLatestMealTimeBL
+    ) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
