@@ -3,7 +3,6 @@ import style from './meals.module.css';
 import { EatButton } from './buttons/EatButton';
 import { EditButton } from './buttons/EditButton';
 import { DeleteButton } from './buttons/DeleteButton';
-import { AddExtraMEalButton } from './buttons/AddExtraMEalButton';
 
 interface IMeal {
   number: number;

@@ -5,6 +5,7 @@ import {
 } from './constantOfListOfMeal';
 import { myLocalStorage } from '../utility/LocalStorage';
 import { timeManager } from '../utility/time.manager';
+import { IMealItemUi } from './meal.mapper';
 
 export interface IMealBL {
   number: number;
@@ -82,7 +83,7 @@ export class MealsManagerBL {
     }, []);
   }
 
-  checkEaten(meals: IMealBL[]) {
+  checkAllMealsEaten(meals: IMealItemUi[]) {
     return meals.every((value) => {
       return value.eaten;
     });

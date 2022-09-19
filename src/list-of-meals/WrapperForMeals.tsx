@@ -18,26 +18,13 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
   const dispatch = useDispatch();
 
   const isSetNewMealTime = useSelector(selectIsSetNewMealTime);
-
   const mealListFromRedux = useSelector(selectMealsList);
 
   useEffect(() => {
     myLocalStorage.setMealListBL(mealListFromRedux);
   }, [isSetNewMealTime, mealListFromRedux]);
 
-  useEffect(() => {
-    if (mealsManagerBL.checkEaten(mealListFromRedux)) {
-      const questionAddExtraMeal = confirm(
-        'Would you like to create an extra meal?'
-      );
-      if (questionAddExtraMeal) {
-        dispatch(addExtraMeal());
-      }
-    }
-  }, [dispatch, mealListFromRedux]);
-
   const mealListUi = mealMapper.fromBLToUi(mealListFromRedux);
-
   const lastOrderNumber = mealListFromRedux.length;
 
   const handleSubmitForEat = (mealOrderNum: number) => {
@@ -54,6 +41,16 @@ export const WrapperForMeals = ({ setShowModal }: IWrapperForMeals) => {
         dispatch(setListOfMeals(mealMapper.mealsFromUiToBl(newMeals)));
         dispatch(isSetNewMeal(true));
       });
+
+      if (mealsManagerBL.checkAllMealsEaten(newMeals)) {
+        const questionAddExtraMeal = window.confirm(
+          'Would you like to create an extra meal?'
+        );
+
+        if (questionAddExtraMeal) {
+          dispatch(addExtraMeal());
+        }
+      }
 
       return newMeals;
     };

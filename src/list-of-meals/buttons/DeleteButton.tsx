@@ -14,9 +14,18 @@ interface IDeleteButton {
 export const DeleteButton = ({ mealOrderNumber }: IDeleteButton) => {
   const dispatch = useDispatch();
   const lengthOfMealsArray = useSelector(selectMealsList).length;
-  const [isDisabled] = useState(() => {
+  const allMeals = useSelector(selectMealsList);
+  const lastMealIsEaten = allMeals[lengthOfMealsArray - 1].eaten;
+
+  const [isDisabled, setIsDisabled] = useState(() => {
     return lengthOfMealsArray <= minNumMealsPerDay;
   });
+
+  useEffect(() => {
+    if (lastMealIsEaten) {
+      setIsDisabled(true);
+    }
+  }, [lastMealIsEaten]);
 
   const handleClickOnDelete = () => {
     if (lengthOfMealsArray > minNumMealsPerDay) {
