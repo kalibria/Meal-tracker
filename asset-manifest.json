@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Meal-tracker/static/css/main.0f17f46e.css",
+    "main.js": "/Meal-tracker/static/js/main.6ea68a30.js",
+    "static/js/453.57bc0ea1.chunk.js": "/Meal-tracker/static/js/453.57bc0ea1.chunk.js",
+    "index.html": "/Meal-tracker/index.html",
+    "main.0f17f46e.css.map": "/Meal-tracker/static/css/main.0f17f46e.css.map",
+    "main.6ea68a30.js.map": "/Meal-tracker/static/js/main.6ea68a30.js.map",
+    "453.57bc0ea1.chunk.js.map": "/Meal-tracker/static/js/453.57bc0ea1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0f17f46e.css",
+    "static/js/main.6ea68a30.js"
+  ]
+}
