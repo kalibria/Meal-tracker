@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Meal-tracker/static/css/main.0f17f46e.css",
-    "main.js": "/Meal-tracker/static/js/main.4b48a48f.js",
+    "main.css": "/Meal-tracker/static/css/main.fc766b85.css",
+    "main.js": "/Meal-tracker/static/js/main.4e6c876e.js",
     "static/js/453.57bc0ea1.chunk.js": "/Meal-tracker/static/js/453.57bc0ea1.chunk.js",
     "index.html": "/Meal-tracker/index.html",
-    "main.0f17f46e.css.map": "/Meal-tracker/static/css/main.0f17f46e.css.map",
-    "main.4b48a48f.js.map": "/Meal-tracker/static/js/main.4b48a48f.js.map",
+    "main.fc766b85.css.map": "/Meal-tracker/static/css/main.fc766b85.css.map",
+    "main.4e6c876e.js.map": "/Meal-tracker/static/js/main.4e6c876e.js.map",
     "453.57bc0ea1.chunk.js.map": "/Meal-tracker/static/js/453.57bc0ea1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0f17f46e.css",
-    "static/js/main.4b48a48f.js"
+    "static/css/main.fc766b85.css",
+    "static/js/main.4e6c876e.js"
   ]
 }
